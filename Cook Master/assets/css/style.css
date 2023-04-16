@@ -493,8 +493,6 @@ h6 {
 }
 
 .shadow-box {
-  width: 80%;
-  height: 80%;
   background-color: rgba(26, 24, 20, 90%);
   position: absolute;
   top: 50%;
