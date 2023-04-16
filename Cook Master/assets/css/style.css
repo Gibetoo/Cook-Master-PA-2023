@@ -1,11 +1,3 @@
-/**
-* Template Name: Restaurantly
-* Updated: Mar 10 2023 with Bootstrap v5.2.3
-* Template URL: https://bootstrapmade.com/restaurantly-restaurant-template/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
-
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
@@ -191,12 +183,11 @@ h6 {
   line-height: 1;
   font-weight: 300;
   letter-spacing: 1px;
-  text-transform: uppercase;
-  font-family: "Poppins", sans-serif;
+  font-family: "Gabriela", sans-serif;
 }
 
 #header .logo a {
-  color: #fff;
+  color: #cda45e;
 }
 
 #header .logo img {
@@ -211,7 +202,7 @@ h6 {
   border: 2px solid #cda45e;
   color: #fff;
   border-radius: 50px;
-  padding: 8px 25px;
+  padding: 5px 25px;
   text-transform: uppercase;
   font-size: 13px;
   font-weight: 500;
@@ -491,6 +482,7 @@ h6 {
 }
 
 #hero h1 span {
+  font-family: "Gabriela", sans-serif;
   color: #cda45e;
 }
 
@@ -498,6 +490,32 @@ h6 {
   color: #eee;
   margin-bottom: 10px 0 0 0;
   font-size: 22px;
+}
+
+.shadow-box {
+  width: 80%;
+  height: 80%;
+  background-color: rgba(26, 24, 20, 90%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 30px;
+  padding: 20px;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+#hero .shadow-box h1 {
+  font-family: "Gabriela", sans-serif;
+  color: white;
+  font-size: 30px;
+}
+
+.lien a {
+  font-size: 80%;
+  color: rgb(78, 78, 249);
+  text-decoration: underline;
 }
 
 #hero .btns {
@@ -655,18 +673,6 @@ section {
 
 .section-title {
   padding-bottom: 40px;
-}
-
-.section-title h2 {
-  font-size: 14px;
-  font-weight: 500;
-  padding: 0;
-  line-height: 1px;
-  margin: 0 0 5px 0;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: #aaaaaa;
-  font-family: "Poppins", sans-serif;
 }
 
 .section-title h2::after {
