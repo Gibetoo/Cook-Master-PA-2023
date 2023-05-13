@@ -26,7 +26,7 @@
                     </div>
                 </form>
                 <div class="lien text-center">
-                    <a href="page.inscription.php" class="text-center mt-2">Pas encore inscrit ?</a>
+                    <a href="page.inscription" class="text-center mt-2">Pas encore inscrit ?</a>
                 </div>
             </div>
         </div>

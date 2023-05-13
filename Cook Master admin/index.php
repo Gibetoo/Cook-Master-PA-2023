@@ -11,7 +11,7 @@
     <main id="hero" class="d-flex align-items-center">
         <div class="shadow-box">
             <div class="row">
-                <h2 class="text-center"><a href="#" class="color: black;">Gestion des sites de dégustations</a></h2>
+                <h2 class="text-center"><a href="gestion_degustations.php" class="color: black;">Gestion des sites de dégustations</a></h2>
                 <h2 class="text-center"><a href="gestion_utilisateurs.php">Gestion des utilisateurs</a></h2>
                 <h2 class="text-center"><a href="#">Gestion des chefs cuisinier</a></h2>
                 <h2 class="text-center"><a href="#">Gestion des livraisons</a></h2>
