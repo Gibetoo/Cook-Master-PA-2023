@@ -13,7 +13,7 @@
             <div class="d-flex justify-content-center">
                 <div class="row">
                     <h1 class="text-center">Créer un compte</h1>
-                    <form action="routes/users/inscription.php" method="POST">
+                    <form action="entities/users/inscription.php" method="POST">
                         <div class="mt-3">
                             <label for="exampleFormControlInput1" class="form-label">Nom</label>
                             <input type="text" name="nom" class="form-control" id="exampleFormControlInput1" placeholder="Nom">

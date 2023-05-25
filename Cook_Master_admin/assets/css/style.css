@@ -8,7 +8,7 @@ body {
 }
 
 a {
-  color: black;
+  color: #cda45e;
   text-decoration: none;
 }
 
@@ -896,6 +896,10 @@ section {
 .why-us .box:hover h4,
 .why-us .box:hover p {
   color: #fff;
+}
+
+.materiels {
+  background-color: #1a1814;
 }
 
 /*--------------------------------------------------------------

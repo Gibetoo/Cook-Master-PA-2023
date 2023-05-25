@@ -63,7 +63,7 @@
         &copy; Copyright <strong><span>Cook Master</span></strong>. All Rights Reserved
       </div>
       <div class="credits">
-        Designed by <a href="">GTI Technologies</a>
+        Designed by <a href="#">GTI Technologies</a>
       </div>
     </div>
   </footer><!-- End Footer -->

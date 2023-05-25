@@ -1,3 +1,10 @@
+<?php 
+session_start();
+
+require_once 'entities/users/verif_connecter.php';
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

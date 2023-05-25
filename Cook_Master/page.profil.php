@@ -1,4 +1,9 @@
-<?php session_start() ?>
+<?php 
+session_start();
+
+require_once 'entities/users/verif_connecter.php';
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,7 +14,6 @@
 
     <?php require_once 'forms/header_base.php'; ?>
 
-    <!-- ======= Hero Main ======= -->
     <main id="hero" class="d-flex align-items-center">
         <div class="shadow-box">
             <div class="row">
@@ -29,12 +33,12 @@
                     <a href="page.abonnement" class="btn-menu animated fadeInUp scrollto">Voir mon abonnement</a>
                 </div>
                 <div class="mt-2 text-center">
-                    <a href="routes/users/deconnexion" class="btn-menu animated fadeInUp scrollto">Déconnexion</a>
+                    <a href="entities/users/deconnexion" class="btn-menu animated fadeInUp scrollto">Déconnexion</a>
                 </div>
             </div>
         </div>
 
-    </main><!-- End Main -->
+    </main>
 
     <?php require_once 'forms/footer.php'; ?>
 

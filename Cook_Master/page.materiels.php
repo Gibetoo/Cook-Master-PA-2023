@@ -1,15 +1,21 @@
-<?php
+<?php 
 session_start();
+
+require_once 'entities/users/verif_connecter.php';
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
-<?php require_once 'forms/head.php'; ?>
+<?php
+
+require_once 'forms/head.php';
+require_once 'entities/users/get_materiels.php';
+
+?>
 
 <body>
 
-    <!-- ======= Top Bar ======= -->
     <div id="topbar" class="d-flex align-items-center fixed-top">
         <div class="container d-flex justify-content-center justify-content-md-between">
 
@@ -30,19 +36,17 @@ session_start();
 
     <?php require_once "forms/header.php"; ?>
 
-    <!-- ======= Hero Section ======= -->
     <section id="hero" class="d-flex align-items-center">
         <div class="container position-relative text-center text-lg-start" data-aos="zoom-in" data-aos-delay="100">
             <div class="row">
                 <div class="col-lg-8">
                     <h1><span>Cook Master</span> matériels</h1>
-                    <!-- <h2>Livre de la bonne nourriture depuis plus de 18 ans!</h2> -->
                     <h2>Découvrer toute notre collections et plus encore...</h2>
                 </div>
 
             </div>
         </div>
-    </section><!-- End Hero -->
+    </section>
 
     <main id="main">
 
@@ -50,13 +54,29 @@ session_start();
             <div class="container" data-aos="fade-up">
 
                 <div class="section-title">
-                    <h2>A propos</h2>
-                    <p>Abonnements</p>
+                    <h2>Nos matériels</h2>
                 </div>
 
                 <div class="row">
 
-                    <div class="col-lg-4">
+                    <?php foreach ($results as $materiel) {
+                        echo '<div class="col-lg-4 mt-4">';
+                        echo '<div class="card" style="background-color: #404040;">';
+                        echo '<div class="container">';
+                        echo '<div class="m-5 p-3" style="background-color: #CDA45E;border-radius: 15px;">';
+                        echo '<img src="assets/img/Cook_Junior.png" class="card-img-top" alt="...">';
+                        echo '</div>';
+                        echo '</div>';
+                        echo '<div class="card-body text-center">';
+                        echo '<h5 class="card-title">'. $materiel['nom_ma'].'</h5>';
+                        echo '<p class="card-text">'. $materiel['description'] . '</p>';
+                        echo '<a href="#" class="btn btn-secondary" style="color: black;font-family: Gabriella;">Selectionner</a>';
+                        echo '</div>';
+                        echo '</div>';
+                        echo '</div>';
+                    }; ?>
+
+                    <!-- <div class="col-lg-4">
                         <div class="card" style="background-color: #404040;">
                             <div class="container">
                                 <div class="m-5 p-3" style="background-color: #CDA45E;border-radius: 15px;">
@@ -99,14 +119,13 @@ session_start();
                                 <a href="#" class="btn btn-secondary" style="color: black;font-family: Gabriella;">S'abonner</a>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
                 </div>
-
             </div>
-        </section><!-- End Why Us Section -->
+        </section>
 
-    </main><!-- End #main -->
+    </main>
 
     <?php require_once 'forms/footer.php'; ?>
 

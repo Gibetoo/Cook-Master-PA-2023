@@ -11,7 +11,7 @@
     <main id="hero" class="d-flex align-items-center">
         <div class="shadow-box">
             <div class="row">
-                <form action="routes/users/connexion.php" method="POST">
+                <form action="entities/users/connexion.php" method="POST">
                     <h1 class="text-center">Connectez-vous</h1>
                     <div class="mt-3">
                         <label for="exampleFormControlInput1" class="form-label">Adresse email</label>

@@ -1,4 +1,9 @@
-<?php session_start() ?>
+<?php 
+session_start();
+
+require_once 'entities/users/verif_connecter.php';
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -6,7 +11,7 @@
 <?php
 require_once 'forms/head.php';
 
-$url = 'http://10.211.55.6/Projet-Annuel/Database/index'; // On définit l'URL du serveur
+$url = 'http://localhost/Projet-Annuel/Database/index'; // On définit l'URL du serveur
 $ch = curl_init($url); // On initialise CURL
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET"); // On définit la méthode GET
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // On demande à CURL de nous retourner la réponse
@@ -24,7 +29,7 @@ curl_close($ch); // On ferme CURL
 $response = json_decode($result, true); // On décode la réponse JSON
 
 if ($response["success"] == true) { // Si la création de l'utilisateur a réussi, on affecte la réponse à $results
-    $results = $response["user"];
+    $results = $response["message"];
 } else { // Si la création de l'utilisateur a échoué, on affecte un tableau vide à $results
     $results = [];
 }
@@ -63,19 +68,19 @@ if ($response["success"] == true) { // Si la création de l'utilisateur a réuss
                         echo '<td class="text-white"><NOBR>' . $utilisateur['nom'] . '</NOBR></td>';
                         echo '<td class="text-white"><NOBR>' . $utilisateur['role'] . '</NOBR></td>';
                         echo '<td><NOBR>';
-                        if ($utilisateur['email'] != $_SESSION['email']) { // Si l'utilisateur n'est pas l'utilisateur connecté le bouton est bleu
-                            echo '<form action="mod_droits.php" method="POST">';
+                        if ($utilisateur['email'] != $_SESSION['user']['email']) { // Si l'utilisateur n'est pas l'utilisateur connecté le bouton est bleu
+                            echo '<form action="mod_droits" method="POST">';
                             echo '<button type="submit" value="' . $utilisateur['email'] . '" name="email" class="btn btn-primary btn-sm">Modifier les droits</button>';
                             echo '</form>';
-                        } else { 
-                            echo '<a class="btn btn-primary btn-sm">Admin</a>';
+                        } else {  
+                            echo '<button type="submit" value="' . $utilisateur['email'] . '" name="email" class="btn btn-secondary btn-sm">Modifier les droits</button>';
                         }
                         echo '</NOBR></td>';
                         echo '<td><NOBR>';
-                        echo '<form action="modif-abo.php" method="POST">';
+                        echo '<form action="mod-abo.php" method="POST">';
                         echo '<button type="submit" value="' . $utilisateur['email'] . '" name="email" class="btn btn-primary btn-sm">Cook ' . $utilisateur['abonnement'] . '</button></NOBR></td>';
                         echo '<td><NOBR>';
-                        if ($utilisateur['email'] != $_SESSION['email']) { // Si l'utilisateur n'est pas l'utilisateur connecté
+                        if ($utilisateur['user'] != $_SESSION['user']['email']) { // Si l'utilisateur n'est pas l'utilisateur connecté
                             echo '<form action="bannir.php" method="POST">';
                             if ($utilisateur['ban'] == 0) { // Si l'utilisateur n'est pas banni le bouton est rouge 
                                 echo '<button type="submit" value="' . $utilisateur['email'] . '" name="email" class="btn btn-danger btn-sm">Bannir</button>';
@@ -88,7 +93,7 @@ if ($response["success"] == true) { // Si la création de l'utilisateur a réuss
                         }
                         echo '</NOBR></td>';
                         echo '<td><NOBR>';
-                        if ($utilisateur['email'] != $_SESSION['email']) {
+                        if ($utilisateur['email'] != $_SESSION['user']['email']) {
                             echo '<form action="sup_user.php" method="POST">';
                             echo '<button type="submit" value="' . $utilisateur['email'] . '" name="email" class="btn btn-danger btn-sm">Supprimer</button>';
                             echo '</form>';

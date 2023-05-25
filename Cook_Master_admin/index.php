@@ -11,16 +11,23 @@
     <main id="hero" class="d-flex align-items-center">
         <div class="shadow-box">
             <div class="row">
-                <h2 class="text-center"><a href="gestion_degustations" class="color: black;">Gestion des sites de dégustations</a></h2>
-                <h2 class="text-center"><a href="gestion_utilisateurs">Gestion des utilisateurs</a></h2>
-                <h2 class="text-center"><a href="#">Gestion des chefs cuisinier</a></h2>
-                <h2 class="text-center"><a href="#">Gestion des livraisons</a></h2>
-                <h2 class="text-center"><a href="#">Gestion des salles</a></h2>
-                <h2 class="text-center"><a href="#">Gestions des ateliers</a></h2>
-                <h2 class="text-center"><a href="#">Gestion des leçon/cours</a></h2>
-                <h2 class="text-center"><a href="#">Administration de la messagerie</a></h2>
-                <h2 class="text-center"><a href="#">Gestions des matériels</a></h2>
-                <h2 class="text-center"><a href="#">Gestion des Formations</a></h2>
+                <form action="entities/users/connexion.php" method="POST">
+                    <h1 class="text-center">Connectez-vous</h1>
+                    <div class="mt-3">
+                        <label for="exampleFormControlInput1" class="form-label">Adresse email</label>
+                        <input type="email" name="email" class="form-control <?= isset($_GET['validmail']) ? $_GET['validmail'] : (isset($_GET['valid']) ? $_GET['valid'] : "") ?>" id="exampleFormControlInput1" placeholder="name@example.com" value="<?= isset($_COOKIE['email']) ? $_COOKIE['email'] : "" ?>">
+                    </div>
+                    <div class="mt-3">
+                        <label for="inputPassword5" class="form-label">Mot de passe</label>
+                        <input type="password" name="password" id="inputPassword5" class="form-control <?= isset($_GET['validpasswd']) ? $_GET['validpasswd'] : (isset($_GET['valid']) ? $_GET['valid'] : "") ?>" placeholder="Password" aria-labelledby="passwordHelpBlock">
+                    </div>
+                    <div class="mt-5 text-center">
+                        <button type="submit" class="btn-menu animated fadeInUp scrollto">Se connecter</button>
+                    </div>
+                </form>
+                <div class="lien text-center mt-2">
+                    <a href="#" class="text-center">Un problème de connexion ?</a>
+                </div>
             </div>
         </div>
 

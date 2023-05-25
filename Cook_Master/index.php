@@ -105,7 +105,7 @@ session_start();
                 </div>
               </div>
               <div class="card-body text-center">
-                <h5 class="card-title">Card title</h5>
+                <h5 class="card-title">Cook Cadet</h5>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 <a href="#" class="btn btn-secondary" style="color: black;font-family: Gabriella;">S'abonner</a>
               </div>
@@ -120,7 +120,7 @@ session_start();
                 </div>
               </div>
               <div class="card-body text-center">
-                <h5 class="card-title">Card title</h5>
+                <h5 class="card-title">Cook Junior</h5>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 <a href="#" class="btn btn-secondary" style="color: black;font-family: Gabriella;">S'abonner</a>
               </div>
@@ -135,7 +135,7 @@ session_start();
                 </div>
               </div>
               <div class="card-body text-center">
-                <h5 class="card-title">Card title</h5>
+                <h5 class="card-title">Cook Senior</h5>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 <a href="#" class="btn btn-secondary" style="color: black;font-family: Gabriella;">S'abonner</a>
               </div>
@@ -147,122 +147,126 @@ session_start();
       </div>
     </section><!-- End Why Us Section -->
 
-    <!-- ======= Menu Section ======= -->
-    <section id="menu" class="menu section-bg">
-      <div class="container" data-aos="fade-up">
+    <?php if (isset($_SESSION['user']) && !empty($_SESSION['user'])) { ?>
 
-        <div class="section-title">
-          <h2>Recette</h2>
-          <p>Choisissez votre plat du jour</p>
+      <!-- ======= Menu Section ======= -->
+      <section id="menu" class="menu section-bg">
+        <div class="container" data-aos="fade-up">
+
+          <div class="section-title">
+            <h2>Recette</h2>
+            <p>Choisissez votre plat du jour</p>
+          </div>
+
+          <div class="row" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-lg-12 d-flex justify-content-center">
+              <ul id="menu-flters">
+                <li data-filter="*" class="filter-active">Tout</li>
+                <li data-filter=".filter-starters">Pour Débuter</li>
+                <li data-filter=".filter-salads">Salades</li>
+                <li data-filter=".filter-specialty">Specialté</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
+
+            <div class="col-lg-6 menu-item filter-starters">
+              <img src="assets/img/menu/lobster-bisque.jpg" class="menu-img" alt="">
+              <div class="menu-content">
+                <a href="#">Lobster Bisque</a>
+              </div>
+              <div class="menu-ingredients">
+                Lorem, deren, trataro, filede, nerada
+              </div>
+            </div>
+
+            <div class="col-lg-6 menu-item filter-specialty">
+              <img src="assets/img/menu/bread-barrel.jpg" class="menu-img" alt="">
+              <div class="menu-content">
+                <a href="#">Bread Barrel</a>
+              </div>
+              <div class="menu-ingredients">
+                Lorem, deren, trataro, filede, nerada
+              </div>
+            </div>
+
+            <div class="col-lg-6 menu-item filter-starters">
+              <img src="assets/img/menu/cake.jpg" class="menu-img" alt="">
+              <div class="menu-content">
+                <a href="#">Crab Cake</a>
+              </div>
+              <div class="menu-ingredients">
+                A delicate crab cake served on a toasted roll with lettuce and tartar sauce
+              </div>
+            </div>
+
+            <div class="col-lg-6 menu-item filter-salads">
+              <img src="assets/img/menu/caesar.jpg" class="menu-img" alt="">
+              <div class="menu-content">
+                <a href="#">Caesar Selections</a>
+              </div>
+              <div class="menu-ingredients">
+                Lorem, deren, trataro, filede, nerada
+              </div>
+            </div>
+
+            <div class="col-lg-6 menu-item filter-specialty">
+              <img src="assets/img/menu/tuscan-grilled.jpg" class="menu-img" alt="">
+              <div class="menu-content">
+                <a href="#">Tuscan Grilled</a>
+              </div>
+              <div class="menu-ingredients">
+                Grilled chicken with provolone, artichoke hearts, and roasted red pesto
+              </div>
+            </div>
+
+            <div class="col-lg-6 menu-item filter-starters">
+              <img src="assets/img/menu/mozzarella.jpg" class="menu-img" alt="">
+              <div class="menu-content">
+                <a href="#">Mozzarella Stick</a>
+              </div>
+              <div class="menu-ingredients">
+                Lorem, deren, trataro, filede, nerada
+              </div>
+            </div>
+
+            <div class="col-lg-6 menu-item filter-salads">
+              <img src="assets/img/menu/greek-salad.jpg" class="menu-img" alt="">
+              <div class="menu-content">
+                <a href="#">Greek Salad</a>
+              </div>
+              <div class="menu-ingredients">
+                Fresh spinach, crisp romaine, tomatoes, and Greek olives
+              </div>
+            </div>
+
+            <div class="col-lg-6 menu-item filter-salads">
+              <img src="assets/img/menu/spinach-salad.jpg" class="menu-img" alt="">
+              <div class="menu-content">
+                <a href="#">Spinach Salad</a>
+              </div>
+              <div class="menu-ingredients">
+                Fresh spinach with mushrooms, hard boiled egg, and warm bacon vinaigrette
+              </div>
+            </div>
+
+            <div class="col-lg-6 menu-item filter-specialty">
+              <img src="assets/img/menu/lobster-roll.jpg" class="menu-img" alt="">
+              <div class="menu-content">
+                <a href="#">Lobster Roll</a>
+              </div>
+              <div class="menu-ingredients">
+                Plump lobster meat, mayo and crisp lettuce on a toasted bulky roll
+              </div>
+            </div>
+
+          </div>
+
         </div>
+      </section><!-- End Menu Section -->
 
-        <div class="row" data-aos="fade-up" data-aos-delay="100">
-          <div class="col-lg-12 d-flex justify-content-center">
-            <ul id="menu-flters">
-              <li data-filter="*" class="filter-active">Tout</li>
-              <li data-filter=".filter-starters">Pour Débuter</li>
-              <li data-filter=".filter-salads">Salades</li>
-              <li data-filter=".filter-specialty">Specialté</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
-
-          <div class="col-lg-6 menu-item filter-starters">
-            <img src="assets/img/menu/lobster-bisque.jpg" class="menu-img" alt="">
-            <div class="menu-content">
-              <a href="#">Lobster Bisque</a>
-            </div>
-            <div class="menu-ingredients">
-              Lorem, deren, trataro, filede, nerada
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-specialty">
-            <img src="assets/img/menu/bread-barrel.jpg" class="menu-img" alt="">
-            <div class="menu-content">
-              <a href="#">Bread Barrel</a>
-            </div>
-            <div class="menu-ingredients">
-              Lorem, deren, trataro, filede, nerada
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-starters">
-            <img src="assets/img/menu/cake.jpg" class="menu-img" alt="">
-            <div class="menu-content">
-              <a href="#">Crab Cake</a>
-            </div>
-            <div class="menu-ingredients">
-              A delicate crab cake served on a toasted roll with lettuce and tartar sauce
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-salads">
-            <img src="assets/img/menu/caesar.jpg" class="menu-img" alt="">
-            <div class="menu-content">
-              <a href="#">Caesar Selections</a>
-            </div>
-            <div class="menu-ingredients">
-              Lorem, deren, trataro, filede, nerada
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-specialty">
-            <img src="assets/img/menu/tuscan-grilled.jpg" class="menu-img" alt="">
-            <div class="menu-content">
-              <a href="#">Tuscan Grilled</a>
-            </div>
-            <div class="menu-ingredients">
-              Grilled chicken with provolone, artichoke hearts, and roasted red pesto
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-starters">
-            <img src="assets/img/menu/mozzarella.jpg" class="menu-img" alt="">
-            <div class="menu-content">
-              <a href="#">Mozzarella Stick</a>
-            </div>
-            <div class="menu-ingredients">
-              Lorem, deren, trataro, filede, nerada
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-salads">
-            <img src="assets/img/menu/greek-salad.jpg" class="menu-img" alt="">
-            <div class="menu-content">
-              <a href="#">Greek Salad</a>
-            </div>
-            <div class="menu-ingredients">
-              Fresh spinach, crisp romaine, tomatoes, and Greek olives
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-salads">
-            <img src="assets/img/menu/spinach-salad.jpg" class="menu-img" alt="">
-            <div class="menu-content">
-              <a href="#">Spinach Salad</a>
-            </div>
-            <div class="menu-ingredients">
-              Fresh spinach with mushrooms, hard boiled egg, and warm bacon vinaigrette
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-specialty">
-            <img src="assets/img/menu/lobster-roll.jpg" class="menu-img" alt="">
-            <div class="menu-content">
-              <a href="#">Lobster Roll</a>
-            </div>
-            <div class="menu-ingredients">
-              Plump lobster meat, mayo and crisp lettuce on a toasted bulky roll
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- End Menu Section -->
+    <?php } ?>
 
     <!-- ======= Formations Section ======= -->
     <section id="events" class="events">
@@ -364,56 +368,60 @@ session_start();
       </div>
     </section><!-- End Formations Section -->
 
-    <!-- ======= Book A Table Section ======= -->
-    <section id="book-a-table" class="book-a-table">
-      <div class="container" data-aos="fade-up">
+    <?php if (isset($_SESSION['user']) && !empty($_SESSION['user'])) { ?>
 
-        <div class="section-title">
-          <h2>Réservation</h2>
-          <p>Réservation de cours</p>
+      <!-- ======= Book A Table Section ======= -->
+      <section id="book-a-table" class="book-a-table">
+        <div class="container" data-aos="fade-up">
+
+          <div class="section-title">
+            <h2>Réservation</h2>
+            <p>Réservation de cours</p>
+          </div>
+
+          <form action="forms/book-a-table.php" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
+            <div class="row">
+              <div class="col-lg-4 col-md-6 form-group">
+                <input type="text" name="name" class="form-control" id="name" placeholder="Nom" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+                <div class="validate"></div>
+              </div>
+              <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
+                <input type="email" class="form-control" name="email" id="email" placeholder="Email" data-rule="email" data-msg="Please enter a valid email">
+                <div class="validate"></div>
+              </div>
+              <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
+                <input type="text" class="form-control" name="phone" id="phone" placeholder="Téléphone" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+                <div class="validate"></div>
+              </div>
+              <div class="col-lg-4 col-md-6 form-group mt-3">
+                <input type="text" name="date" class="form-control" id="date" placeholder="Jours" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+                <div class="validate"></div>
+              </div>
+              <div class="col-lg-4 col-md-6 form-group mt-3">
+                <input type="text" class="form-control" name="time" id="time" placeholder="Heure" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+                <div class="validate"></div>
+              </div>
+              <div class="col-lg-4 col-md-6 form-group mt-3">
+                <input type="number" class="form-control" name="people" id="people" placeholder="Nombre de personne" min="0" data-msg="Please enter at least 1 chars">
+                <div class="validate"></div>
+              </div>
+            </div>
+            <div class="form-group mt-3">
+              <textarea class="form-control" name="message" rows="5" placeholder="Message"></textarea>
+              <div class="validate"></div>
+            </div>
+            <div class="mb-3">
+              <div class="loading">Loading</div>
+              <div class="error-message"></div>
+              <div class="sent-message">Your booking request was sent. We will call back or send an Email to confirm your reservation. Thank you!</div>
+            </div>
+            <div class="text-center"><button type="submit">S'inscrire</button></div>
+          </form>
+
         </div>
+      </section><!-- End Book A Table Section -->
 
-        <form action="forms/book-a-table.php" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
-          <div class="row">
-            <div class="col-lg-4 col-md-6 form-group">
-              <input type="text" name="name" class="form-control" id="name" placeholder="Nom" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-              <div class="validate"></div>
-            </div>
-            <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
-              <input type="email" class="form-control" name="email" id="email" placeholder="Email" data-rule="email" data-msg="Please enter a valid email">
-              <div class="validate"></div>
-            </div>
-            <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
-              <input type="text" class="form-control" name="phone" id="phone" placeholder="Téléphone" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-              <div class="validate"></div>
-            </div>
-            <div class="col-lg-4 col-md-6 form-group mt-3">
-              <input type="text" name="date" class="form-control" id="date" placeholder="Jours" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-              <div class="validate"></div>
-            </div>
-            <div class="col-lg-4 col-md-6 form-group mt-3">
-              <input type="text" class="form-control" name="time" id="time" placeholder="Heure" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-              <div class="validate"></div>
-            </div>
-            <div class="col-lg-4 col-md-6 form-group mt-3">
-              <input type="number" class="form-control" name="people" id="people" placeholder="Nombre de personne" min="0" data-msg="Please enter at least 1 chars">
-              <div class="validate"></div>
-            </div>
-          </div>
-          <div class="form-group mt-3">
-            <textarea class="form-control" name="message" rows="5" placeholder="Message"></textarea>
-            <div class="validate"></div>
-          </div>
-          <div class="mb-3">
-            <div class="loading">Loading</div>
-            <div class="error-message"></div>
-            <div class="sent-message">Your booking request was sent. We will call back or send an Email to confirm your reservation. Thank you!</div>
-          </div>
-          <div class="text-center"><button type="submit">S'inscrire</button></div>
-        </form>
-
-      </div>
-    </section><!-- End Book A Table Section -->
+    <?php } ?>
 
     <!-- ======= Gallery Section ======= -->
     <section id="gallery" class="gallery">
