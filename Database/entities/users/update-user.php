@@ -29,6 +29,6 @@ function updateUser(string $id, $columns): void
     $set = implode(", ", $set);
 
     $databaseConnection = getDatabaseConnection();
-    $updateUserQuery = $databaseConnection->prepare("UPDATE users SET $set WHERE id = :id;");
+    $updateUserQuery = $databaseConnection->prepare("UPDATE Client SET $set WHERE id = :id;");
     $updateUserQuery->execute($sanitizedColumns);
 }

@@ -14,7 +14,7 @@ $data = array(
 
 $data_string = json_encode($data); // On encode les données en JSON
 
-$url = 'http://192.168.0.17/Projet-Annuel/Database/'; // On définit l'URL du serveur
+$url = 'http://127.0.0.1/Projet-Annuel/Database/'; // On définit l'URL du serveur
 $ch = curl_init($url); // On initialise CURL
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST"); // On définit la méthode POST
 curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string); // On définit les données à envoyer
@@ -30,7 +30,7 @@ curl_close($ch); // On ferme CURL
 $response = json_decode($result, true); // On décode la réponse JSON
 
 if ($response["success"] == true) { // Si la création de l'utilisateur a réussi
-    header('Location: http://192.168.0.17/Projet-Annuel/Cook_Master/');
+    header('Location: https://cook-master.site/');
 } else { // Si la création de l'utilisateur a échoué, on affiche un message d'erreur
-    echo "Erreur" . $response["error"];
+    echo "Erreur " . $response["error"];
 }

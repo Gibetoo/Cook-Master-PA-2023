@@ -1,6 +1,6 @@
 <?php
 
-$url = 'http://localhost/Projet-Annuel/Database/index?demande=materiels'; // On définit l'URL du serveur
+$url = 'http://127.0.0.1/Projet-Annuel/Database/index?demande=materiels'; // On définit l'URL du serveur
 $ch = curl_init($url); // On initialise CURL
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET"); // On définit la méthode GET
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // On demande à CURL de nous retourner la réponse

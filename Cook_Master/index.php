@@ -40,7 +40,9 @@ session_start();
           <h2>Ensemble donnons vie à vos papilles...</h2>
 
           <div class="btns">
-            <a href="#menu" class="btn-menu animated fadeInUp scrollto">Recette</a>
+            <?php if (isset($_SESSION['user']) && !empty($_SESSION['user'])) { ?>
+              <a href="#menu" class="btn-menu animated fadeInUp scrollto">Recette</a>
+            <?php } ?>
             <a href="#book-a-table" class="btn-book animated fadeInUp scrollto">Reservation</a>
           </div>
         </div>

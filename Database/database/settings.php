@@ -13,7 +13,7 @@
 
 $databaseDialect = "mysql";
 
-$databaseHostname = "localhost";
+$databaseHostname = "127.0.0.1";
 
 $databasePort = 3306;
 
@@ -21,4 +21,4 @@ $databaseName = "COOKMASTERDB";
 
 $databaseUsername = "admin";
 
-$databasePassword = "password";
+$databasePassword = "IlyaThomasGilbertoPA23";

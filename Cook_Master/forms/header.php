@@ -2,11 +2,11 @@
 <header id="header" class="fixed-top d-flex align-items-center">
   <div class="container-fluid container-xl d-flex align-items-center justify-content-lg-between">
 
-    <h1 class="logo me-auto me-lg-0"><a href="index">Cook Master</a></h1>
+    <h1 class="logo me-auto me-lg-0"><a href="/">Cook Master</a></h1>
 
     <nav id="navbar" class="navbar order-last order-lg-0">
       <ul>
-        <li><a class="nav-link scrollto active" href="index">Accueil</a></li>
+        <li><a class="nav-link scrollto active" href="/">Accueil</a></li>
         <li><a class="nav-link scrollto" href="#why-us">Abonnement</a></li>
         <?php if (isset($_SESSION['user']) && !empty($_SESSION['user'])) { ?>
           <li><a class="nav-link scrollto" href="#menu">Recette</a></li>
