@@ -89,7 +89,7 @@ session_start();
     </section><!-- End About Section -->
 
     <!-- ======= Subsricption Section ======= -->
-    <section id="why-us" class="why-us">
+    <section id="Abonnements" class="why-us">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
@@ -102,14 +102,14 @@ session_start();
           <div class="col-lg-4">
             <div class="card" style="background-color: #404040;">
               <div class="container">
-                <div class="m-5 p-3" style="background-color: #CDA45E;border-radius: 15px;">
+                <div class="mx-5 mt-5 p-3" style="background-color: #CDA45E;border-radius: 15px;">
                   <img src="assets/img/Cook_Cadet.png" class="card-img-top" alt="...">
                 </div>
               </div>
-              <div class="card-body text-center">
-                <h5 class="card-title">Cook Cadet</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-secondary" style="color: black;font-family: Gabriella;">S'abonner</a>
+              <div class="card-body text-center mt-3 mb-3">
+                <div class="container">
+                  <p class="card-text">Le grade cadet est un abonnement gratuit sur notre site, offrant un accès limité à des recettes, des cours et d'autres fonctionnalités, accompagné de publicités.</p>
+                </div>
               </div>
             </div>
           </div>
@@ -117,14 +117,14 @@ session_start();
           <div class="col-lg-4 mt-4 mt-lg-0">
             <div class="card" style="background-color: #404040;">
               <div class="container">
-                <div class="m-5 p-3" style="background-color: #CDA45E;border-radius: 15px;">
+                <div class="mx-5 mt-5 p-3" style="background-color: #CDA45E;border-radius: 15px;">
                   <img src="assets/img/Cook_Junior.png" class="card-img-top" alt="...">
                 </div>
               </div>
-              <div class="card-body text-center">
-                <h5 class="card-title">Cook Junior</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-secondary" style="color: black;font-family: Gabriella;">S'abonner</a>
+              <div class="card-body text-center mt-3 mb-3">
+                <div class="container">
+                  <p class="card-text">Le grade junior est un abonnement payant sur notre site, offrant plsuieurs recettes ainsi que des cours et d'autres fonctionnalités, sans publicités.</p>
+                </div>
               </div>
             </div>
           </div>
@@ -132,16 +132,25 @@ session_start();
           <div class="col-lg-4 mt-4 mt-lg-0">
             <div class="card" style="background-color: #404040;">
               <div class="container">
-                <div class="m-5 p-3" style="background-color: #CDA45E;border-radius: 15px;">
+                <div class="mx-5 mt-5 p-3" style="background-color: #CDA45E;border-radius: 15px;">
                   <img src="assets/img/Cook_Senior.png" class="card-img-top" alt="...">
                 </div>
               </div>
-              <div class="card-body text-center">
-                <h5 class="card-title">Cook Senior</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-secondary" style="color: black;font-family: Gabriella;">S'abonner</a>
+              <div class="card-body text-center mt-3 mb-3">
+                <div class="container">
+                  <p class="card-text">Le grade senior est un abonnement payant sur notre site, offrant toutes les recettes ainsi que des cours et d'autres fonctionnalités, sans publicités.</p>
+                </div>
               </div>
             </div>
+          </div>
+
+          <div class="mt-5 text-center">
+
+            <form action="page.connexion-adhesion" method="POST">
+              <input type="hidden" name="abonnement" value="senior">
+              <button class="btn" style="background-color: #404040;color: #CDA45E;font-family: Gabriella;font-size: 20px;">En savoir plus <?= (!isset($_SESSION['user'])) ? "et s'inscrire" : "" ?></button>
+            </form>
+
           </div>
 
         </div>
@@ -152,7 +161,7 @@ session_start();
     <?php if (isset($_SESSION['user']) && !empty($_SESSION['user'])) { ?>
 
       <!-- ======= Menu Section ======= -->
-      <section id="menu" class="menu section-bg">
+      <section id="recette" class="menu section-bg">
         <div class="container" data-aos="fade-up">
 
           <div class="section-title">
@@ -271,7 +280,7 @@ session_start();
     <?php } ?>
 
     <!-- ======= Formations Section ======= -->
-    <section id="events" class="events">
+    <section id="formation" class="events">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
@@ -372,8 +381,8 @@ session_start();
 
     <?php if (isset($_SESSION['user']) && !empty($_SESSION['user'])) { ?>
 
-      <!-- ======= Book A Table Section ======= -->
-      <section id="book-a-table" class="book-a-table">
+      <!-- ======= Reservation ======= -->
+      <section id="reservation" class="book-a-table">
         <div class="container" data-aos="fade-up">
 
           <div class="section-title">
@@ -384,15 +393,15 @@ session_start();
           <form action="forms/book-a-table.php" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
             <div class="row">
               <div class="col-lg-4 col-md-6 form-group">
-                <input type="text" name="name" class="form-control" id="name" placeholder="Nom" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+                <input type="text" name="name" class="form-control" id="name" placeholder="Nom" value="<?= (!isset($_SESSION['user']))?'':$_SESSION['user']['nom'] ?>" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
                 <div class="validate"></div>
               </div>
               <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
-                <input type="email" class="form-control" name="email" id="email" placeholder="Email" data-rule="email" data-msg="Please enter a valid email">
+                <input type="email" class="form-control" name="email" id="email" placeholder="Email" data-rule="email" value="<?= (!isset($_SESSION['user']))?'':$_SESSION['user']['email'] ?>" data-msg="Please enter a valid email">
                 <div class="validate"></div>
               </div>
               <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
-                <input type="text" class="form-control" name="phone" id="phone" placeholder="Téléphone" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+                <input type="text" class="form-control" name="phone" id="phone" placeholder="Téléphone" value="<?= (!isset($_SESSION['user']))?'':$_SESSION['user']['num_tel'] ?>" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
                 <div class="validate"></div>
               </div>
               <div class="col-lg-4 col-md-6 form-group mt-3">

@@ -1,26 +1,29 @@
 <?php
 
-function createMateriel(string $nom, string $description, int $prix): void
+function createMateriel(string $nom, string $description, int $prix, string $image): void
 {
     require_once __DIR__ . "/../../database/connection.php";
 
     $databaseConnection = getDatabaseConnection();
 
     $createUserQuery = $databaseConnection->prepare("
-        INSERT INTO Materiels(
+        INSERT INTO Materiel(
             nom_ma,
             description,
-            prix
+            prix,
+            image
         ) VALUES (
             :nom_ma,
             :description,
-            :prix
+            :prix,
+            :image
         );
     ");
 
     $createUserQuery->execute([
         "nom_ma" => htmlspecialchars($nom),
         "description" => htmlspecialchars($description),
-        "prix" => $prix
+        "prix" => $prix,
+        "image" => htmlspecialchars($image)
     ]);
 }

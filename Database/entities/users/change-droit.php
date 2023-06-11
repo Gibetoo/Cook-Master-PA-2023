@@ -8,7 +8,7 @@ function changeDroit($email, $role)
     try {
         $databaseConnection = getDatabaseConnection(); // On récupère la connexion à la base de données
         $createUserQuery = $databaseConnection->prepare("
-        UPDATE users SET role = :role WHERE email = :email
+        UPDATE Client SET role = :role WHERE email = :email
     ");
 
         $createUserQuery->execute([

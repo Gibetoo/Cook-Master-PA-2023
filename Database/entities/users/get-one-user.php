@@ -9,7 +9,7 @@ function getOneUser($email): array
     ];
 
     $databaseConnection = getDatabaseConnection(); // On récupère la connexion à la base de données
-    $getOneUser = $databaseConnection->prepare("SELECT * FROM users WHERE email = :email"); // On prépare la requête SQL
+    $getOneUser = $databaseConnection->prepare("SELECT * FROM Client WHERE email = :email"); // On prépare la requête SQL
     $getOneUser->execute($sanitizedColumns); // On exécute la requête SQL en passant les colonnes sanitizées en paramètres
 
     $userData = $getOneUser->fetch(PDO::FETCH_ASSOC); // On récupère les données de l'utilisateur

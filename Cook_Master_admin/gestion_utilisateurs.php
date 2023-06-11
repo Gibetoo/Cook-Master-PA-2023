@@ -3,6 +3,8 @@ session_start();
 
 require_once 'entities/users/verif_connecter.php';
 
+ini_set('display_errors', 1);
+
 ?>
 
 <!DOCTYPE html>
@@ -11,7 +13,7 @@ require_once 'entities/users/verif_connecter.php';
 <?php
 require_once 'forms/head.php';
 
-$url = 'http://localhost/Projet-Annuel/Database/index'; // On définit l'URL du serveur
+$url = 'http://localhost/Projet-Annuel/Database/'; // On définit l'URL du serveur
 $ch = curl_init($url); // On initialise CURL
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET"); // On définit la méthode GET
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // On demande à CURL de nous retourner la réponse
@@ -30,7 +32,7 @@ $response = json_decode($result, true); // On décode la réponse JSON
 
 if ($response["success"] == true) { // Si la création de l'utilisateur a réussi, on affecte la réponse à $results
     $results = $response["message"];
-} else { // Si la création de l'utilisateur a échoué, on affecte un tableau vide à $results
+} else { 
     $results = [];
 }
 ?>
@@ -77,10 +79,15 @@ if ($response["success"] == true) { // Si la création de l'utilisateur a réuss
                         }
                         echo '</NOBR></td>';
                         echo '<td><NOBR>';
-                        echo '<form action="mod-abo.php" method="POST">';
-                        echo '<button type="submit" value="' . $utilisateur['email'] . '" name="email" class="btn btn-primary btn-sm">Cook ' . $utilisateur['abonnement'] . '</button></NOBR></td>';
+                        if ($utilisateur['email'] != $_SESSION['user']['email']) { // Si l'utilisateur n'est pas l'utilisateur connecté le bouton est bleu
+                            echo '<form action="mod-abo.php" method="POST">';
+                            echo '<button type="submit" value="' . $utilisateur['email'] . '" name="email" class="btn btn-primary btn-sm">Cook ' . $utilisateur['abonnement'] . '</button></NOBR></td>';
+                            echo '</form>';
+                        } else { // Si l'utilisateur est l'utilisateur connecté le bouton est gris
+                            echo '<button name="email" class="btn btn-secondary btn-sm">Cook ' . $utilisateur['abonnement'] . '</button></NOBR></td>';
+                        }
                         echo '<td><NOBR>';
-                        if ($utilisateur['user'] != $_SESSION['user']['email']) { // Si l'utilisateur n'est pas l'utilisateur connecté
+                        if ($utilisateur['email'] != $_SESSION['user']['email']) { // Si l'utilisateur n'est pas l'utilisateur connecté
                             echo '<form action="bannir.php" method="POST">';
                             if ($utilisateur['ban'] == 0) { // Si l'utilisateur n'est pas banni le bouton est rouge 
                                 echo '<button type="submit" value="' . $utilisateur['email'] . '" name="email" class="btn btn-danger btn-sm">Bannir</button>';

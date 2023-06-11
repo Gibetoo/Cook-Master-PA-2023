@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 
 require_once 'entities/users/verif_connecter.php';
@@ -34,7 +34,34 @@ require_once 'entities/users/get_materiels.php';
         </div>
     </div>
 
-    <?php require_once "forms/header.php"; ?>
+    <header id="header" class="fixed-top d-flex align-items-center">
+        <div class="container-fluid container-xl d-flex align-items-center justify-content-lg-between">
+
+            <h1 class="logo me-auto me-lg-0"><a href="/">Cook Master</a></h1>
+
+            <nav id="navbar" class="navbar order-last order-lg-0">
+                <ul>
+                    <li><a class="nav-link scrollto" href="/">Accueil</a></li>
+                    <li><a class="nav-link scrollto" href="/#Abonnements">Abonnement</a></li>
+                    <?php if (isset($_SESSION['user']) && !empty($_SESSION['user'])) { ?>
+                        <li><a class="nav-link scrollto" href="/#recette">Recette</a></li>
+                        <li><a class="nav-link scrollto" href="/#formation">Formation</a></li>
+                        <li><a class="nav-link scrollto" href="/#reservation">Réservations</a></li>
+                        <li><a class="nav-link scrollto active" href="page.materiels">Matériels</a></li>
+                    <?php } ?>
+                    <li><a class="nav-link scrollto" href="/#gallery">Galerie</a></li>
+                    <li><a class="nav-link scrollto" href="/#chefs">Chefs</a></li>
+                    <li><a class="nav-link scrollto" href="/#contact">Contact</a></li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+            <?php if (isset($_SESSION['user']) && !empty($_SESSION['user'])) { ?>
+                <a href="page.profil" class="book-a-table-btn scrollto d-none d-lg-flex">Profil</a>
+            <?php } else { ?>
+                <a href="page.connexion" class="book-a-table-btn scrollto d-none d-lg-flex">Connexion</a>
+            <?php } ?>
+        </div>
+    </header>
 
     <section id="hero" class="d-flex align-items-center">
         <div class="container position-relative text-center text-lg-start" data-aos="zoom-in" data-aos-delay="100">
@@ -68,8 +95,8 @@ require_once 'entities/users/get_materiels.php';
                         echo '</div>';
                         echo '</div>';
                         echo '<div class="card-body text-center">';
-                        echo '<h5 class="card-title">'. $materiel['nom_ma'].'</h5>';
-                        echo '<p class="card-text">'. $materiel['description'] . '</p>';
+                        echo '<h5 class="card-title">' . $materiel['nom_ma'] . '</h5>';
+                        echo '<p class="card-text">' . $materiel['description'] . '</p>';
                         echo '<a href="#" class="btn btn-secondary" style="color: black;font-family: Gabriella;">Selectionner</a>';
                         echo '</div>';
                         echo '</div>';

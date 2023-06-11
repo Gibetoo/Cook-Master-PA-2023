@@ -6,6 +6,8 @@ require_once __DIR__ . "/../../entities/users/get-one-user.php";
 require_once __DIR__ . "/../../entities/users/get-one-user&pass.php";
 require_once __DIR__ . "/../../entities/users/get-materiels.php";
 require_once __DIR__ . "/../../entities/users/change-droit.php";
+require_once __DIR__ . "/../../entities/users/change-ban.php";
+require_once __DIR__ . "/../../entities/users/sup_user.php";
 
 try {
 
@@ -21,6 +23,43 @@ try {
         }
 
         $message = $change;
+    } else if (isset($_GET['demande']) && isset($_GET['email']) && isset($_GET['ban']) && $_GET['demande'] == 'change_ban') {
+        $ban = changeBan($_GET['ban'], $_GET['email']);
+
+        if (isset($change["error"])) { // Si l'utilisateur n'existe pas
+            echo jsonResponse(404, [], [
+                "success" => false,
+                "error" => $ban["error"]
+            ]); // On renvoie un code 404 (Not Found) et l'erreur
+            die();
+        }
+
+        $message = $ban;
+    } else if (isset($_GET['demande']) && isset($_GET['email']) && $_GET['demande'] == 'supp') {
+        $supp = supUser($_GET['email']);
+
+        if (isset($supp["error"])) { // Si l'utilisateur n'existe pas
+            echo jsonResponse(404, [], [
+                "success" => false,
+                "error" => $supp["error"]
+            ]); // On renvoie un code 404 (Not Found) et l'erreur
+            die();
+        }
+
+        $message = $supp;
+    } else if (isset($_GET["email"]) && isset($_GET["password"]) && isset($_GET["droit"])) { // Si l'API reçoit un email on récupère l'utilisateur
+        $users = getOneUserPass($_GET["email"], $_GET["password"]);
+
+        if (isset($users["error"])) { // Si l'utilisateur n'existe pas
+            echo jsonResponse(404, [], [
+                "success" => false,
+                "error" => $users["error"]
+            ]); // On renvoie un code 404 (Not Found) et l'erreur
+            die();
+        }
+
+        $message = $users;
+    
     } else if (isset($_GET["email"]) && isset($_GET["password"])) { // Si l'API reçoit un email on récupère l'utilisateur
         $users = getOneUserPass($_GET["email"], $_GET["password"]);
 
@@ -50,6 +89,11 @@ try {
         $materiels = getMateriel();
 
         $message = $materiels;
+    } else if (isset($_GET['demande']) && $_GET['demande'] == 'prestataires') {
+
+        $prest = getPrest();
+
+        $message = $prest;
     } else { // Si l'API ne reçoit pas d'email et de mot de passe on récupère tous les utilisateurs
         $users = getUsers();
 

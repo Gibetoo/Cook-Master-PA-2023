@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 
 require_once 'entities/users/verif_connecter.php';
@@ -22,6 +22,9 @@ require_once 'entities/users/verif_connecter.php';
                     <?php
                     echo '<img src="assets/img/Cook_' . $_SESSION['user']['abonnement'] . '.png" style="width: 50%;height: auto;" alt="avatar">';
                     ?>
+                </div>
+                <div class="mt-2 text-center">
+                    <a href="page.compte" class="btn-menu animated fadeInUp scrollto">Compte</a>
                 </div>
                 <div class="mt-2 text-center">
                     <a href="page.atelier" class="btn-menu animated fadeInUp scrollto">Mes ateliers</a>

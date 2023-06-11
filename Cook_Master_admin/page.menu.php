@@ -21,7 +21,7 @@ require_once 'entities/users/verif_connecter.php';
                 <h1 class="text-center mb-2">Menu</h1>
                 <h2 class="text-center"><a href="gestion_degustations" class="color: black;">Gestion des sites de dégustations</a></h2>
                 <h2 class="text-center"><a href="gestion_utilisateurs">Gestion des utilisateurs</a></h2>
-                <h2 class="text-center"><a href="#">Gestion des chefs cuisinier</a></h2>
+                <h2 class="text-center"><a href="page.prestataire">Gestion des prestataires</a></h2>
                 <h2 class="text-center"><a href="#">Gestion des livraisons</a></h2>
                 <h2 class="text-center"><a href="#">Gestion des salles</a></h2>
                 <h2 class="text-center"><a href="#">Gestions des ateliers</a></h2>

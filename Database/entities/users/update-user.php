@@ -1,34 +1,51 @@
 <?php
 
-function updateUser(string $id, $columns): void
+function updateUser(string $nom, string $prenom, string $email, string $date_naissance, string $num_tel): void
 {
-    if (count($columns) === 0) {
-        return;
-    }
-
     require_once __DIR__ . "/../../database/connection.php";
 
-    $authorizedColumns = ["email", "password"];
+    $databaseConnection = getDatabaseConnection(); // On récupère la connexion à la base de données
 
-    $set = [];
+    if (empty($date_naissance) && empty($num_tel)) {
+        $updateUser = $databaseConnection->prepare("UPDATE Client SET nom = :nom, prenom = :prenom WHERE email = :email");
 
-    $sanitizedColumns = [
-        "id" => htmlspecialchars($id)
-    ];
+        $updateUser->execute([
+            "nom" => htmlspecialchars($nom),
+            "prenom" => htmlspecialchars($prenom),
+            "email" => htmlspecialchars($email)
+        ]);
 
-    foreach ($columns as $columnName => $columnValue) {
-        if (!in_array($columnName, $authorizedColumns)) {
-            continue;
-        }
+    } else if (empty($num_tel)) {
+        $updateUser = $databaseConnection->prepare("UPDATE Client SET nom = :nom, prenom = :prenom, date_naissance = :date_naissance WHERE email = :email");
 
-        $set[] = "$columnName = :$columnName";
+        $updateUser->execute([
+            "nom" => htmlspecialchars($nom),
+            "prenom" => htmlspecialchars($prenom),
+            "email" => htmlspecialchars($email),
+            "date_naissance" => htmlspecialchars($date_naissance)
+        ]);
 
-        $sanitizedColumns[$columnName] = htmlspecialchars($columnValue);
+    } else if (empty($date_naissance)) {
+        $updateUser = $databaseConnection->prepare("UPDATE Client SET nom = :nom, prenom = :prenom, num_tel = :num_tel WHERE email = :email");
+
+        $updateUser->execute([
+            "nom" => htmlspecialchars($nom),
+            "prenom" => htmlspecialchars($prenom),
+            "email" => htmlspecialchars($email),
+            "num_tel" => htmlspecialchars($num_tel)
+        ]);
+
+    } else {
+        $updateUser = $databaseConnection->prepare("UPDATE Client SET nom = :nom, prenom = :prenom, date_naissance = :date_naissance, num_tel = :num_tel WHERE email = :email");
+
+        $updateUser->execute([
+            "nom" => htmlspecialchars($nom),
+            "prenom" => htmlspecialchars($prenom),
+            "email" => htmlspecialchars($email),
+            "date_naissance" => htmlspecialchars($date_naissance),
+            "num_tel" => htmlspecialchars($num_tel)
+        ]);
+
     }
 
-    $set = implode(", ", $set);
-
-    $databaseConnection = getDatabaseConnection();
-    $updateUserQuery = $databaseConnection->prepare("UPDATE Client SET $set WHERE id = :id;");
-    $updateUserQuery->execute($sanitizedColumns);
 }

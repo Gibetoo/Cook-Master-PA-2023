@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if ($_SESSION['user']) {
+    header('Location: page.menu.php');
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,7 +31,7 @@
                         <input type="password" name="password" id="inputPassword5" class="form-control <?= isset($_GET['validpasswd']) ? $_GET['validpasswd'] : (isset($_GET['valid']) ? $_GET['valid'] : "") ?>" placeholder="Password" aria-labelledby="passwordHelpBlock">
                     </div>
                     <div class="mt-5 text-center">
-                        <button type="submit" class="btn-menu animated fadeInUp scrollto">Se connecter</button>
+                        <button type="submit" class="btn-menu animated fadeInUp scrollto" style="background-color: #cda45e;border-color: #cda45e;">Se connecter</button>
                     </div>
                 </form>
                 <div class="lien text-center mt-2">

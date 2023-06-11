@@ -27,7 +27,12 @@ require_once 'entities/users/get_materiels.php';
 
                 <div class="row">
 
-                    <?php foreach ($results as $materiel) {
+                    <div class="text-center my-5">
+                        <a type="submit" href="page.creer_materiel.php" class="btn bg-white btn-bg">Ajouter un nouveau matériel</a>
+                    </div>
+                    <?php
+
+                    foreach ($results as $materiel) {
                         echo '<div class="col-lg-4 mt-4">';
                         echo '<div class="card" style="background-color: #404040;">';
                         echo '<div class="container">';
