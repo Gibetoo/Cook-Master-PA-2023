@@ -90,63 +90,24 @@ require_once 'entities/users/get_materiels.php';
                         echo '<div class="col-lg-4 mt-4">';
                         echo '<div class="card" style="background-color: #404040;">';
                         echo '<div class="container">';
-                        echo '<div class="m-5 p-3" style="background-color: #CDA45E;border-radius: 15px;">';
-                        echo '<img src="assets/img/Cook_Junior.png" class="card-img-top" alt="...">';
+                        echo '<div class="mx-5 mt-5 p-3 text-center" style="background-color: #CDA45E;border-radius: 15px;">';
+                        echo '<img src="entities/users/upload/' . $materiel['image'] . '" style="height: 150px;width: auto;" class="card-img-top" alt="...">';
                         echo '</div>';
                         echo '</div>';
-                        echo '<div class="card-body text-center">';
+                        echo '<div class="card-body text-center mt-3 mb-3">';
                         echo '<h5 class="card-title">' . $materiel['nom_ma'] . '</h5>';
                         echo '<p class="card-text">' . $materiel['description'] . '</p>';
-                        echo '<a href="#" class="btn btn-secondary" style="color: black;font-family: Gabriella;">Selectionner</a>';
+                        echo '<div class="mt-3">';
+                        echo '<div class="container px-5">';
+                        echo '<form action="" method="POST">';
+                        echo '<button class="btn btn-secondary mt-3" style="background-color: grey;color: white;font-family: Gabriella;">Selectionner</button>';
+                        echo '</form>';
+                        echo '</div>';
+                        echo '</div>';
                         echo '</div>';
                         echo '</div>';
                         echo '</div>';
                     }; ?>
-
-                    <!-- <div class="col-lg-4">
-                        <div class="card" style="background-color: #404040;">
-                            <div class="container">
-                                <div class="m-5 p-3" style="background-color: #CDA45E;border-radius: 15px;">
-                                    <img src="assets/img/Cook_Cadet.png" class="card-img-top" alt="...">
-                                </div>
-                            </div>
-                            <div class="card-body text-center">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-secondary" style="color: black;font-family: Gabriella;">S'abonner</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 mt-4 mt-lg-0">
-                        <div class="card" style="background-color: #404040;">
-                            <div class="container">
-                                <div class="m-5 p-3" style="background-color: #CDA45E;border-radius: 15px;">
-                                    <img src="assets/img/Cook_Junior.png" class="card-img-top" alt="...">
-                                </div>
-                            </div>
-                            <div class="card-body text-center">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-secondary" style="color: black;font-family: Gabriella;">S'abonner</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 mt-4 mt-lg-0">
-                        <div class="card" style="background-color: #404040;">
-                            <div class="container">
-                                <div class="m-5 p-3" style="background-color: #CDA45E;border-radius: 15px;">
-                                    <img src="assets/img/Cook_Senior.png" class="card-img-top" alt="...">
-                                </div>
-                            </div>
-                            <div class="card-body text-center">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-secondary" style="color: black;font-family: Gabriella;">S'abonner</a>
-                            </div>
-                        </div>
-                    </div> -->
 
                 </div>
             </div>

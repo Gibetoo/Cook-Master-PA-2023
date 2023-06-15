@@ -1,7 +1,5 @@
 <?php
 
-ini_set('display_errors', 1);
-
 require_once __DIR__ . "/entities/users/supp_user.php";
 
 if (!isset($_POST['email'])) {

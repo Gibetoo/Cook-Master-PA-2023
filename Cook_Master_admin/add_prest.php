@@ -2,6 +2,10 @@
 session_start();
 
 require_once 'entities/users/verif_connecter.php';
+require_once __DIR__ . "/entities/users/get_metier.php";
+
+ini_set('display_errors', 1);
+$results = getMetier();
 
 ?>
 
@@ -34,16 +38,16 @@ require_once 'entities/users/verif_connecter.php';
                             </div>
                             <div class="mt-3">
                                 <label for="telephone" class="form-label">Numero de téléphone</label>
-                                <input type="number" name="num_tel_pres" class="form-control" placeholder="N°" pattern="[0-9]+" maxlength="12" inputmode="numeric" required >
+                                <input type="number" name="num_tel_pres" class="form-control" placeholder="N°" pattern="[0-9]+" maxlength="12" inputmode="numeric" required>
                             </div>
                             <div class="mt-3">
                                 <label class="mt-3" for="sel1">Métier :</label>
-                                <select class="form-control" id="sel1" name='metier'>
+                                <select class="form-select" id="sel1" name='metier'>
                                     <option selected>Métier</option>
-                                    <option value='1'>Chef patissier</option>
-                                    <option value='2'>Chef cuisinier</option>
-                                    <option value='3'>Livreur</option>
-                                    <option name='4'>Serveur</option>
+                                    <?php
+                                    foreach ($results as $nomMetier) {
+                                        echo '<option value=' . $nomMetier['id_metier'] . '>' . $nomMetier['nom_metier'] . '</option>';
+                                    } ?>
 
                                 </select>
                             </div>

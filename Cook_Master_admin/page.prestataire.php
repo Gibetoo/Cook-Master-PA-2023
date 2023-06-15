@@ -19,8 +19,10 @@ require_once 'entities/users/verif_connecter.php';
         <div class="shadow-box">
             <div class="row">
                 <h1 class="text-center mb-2">Gestion des Prestataire</h1>
-                <h2 class="text-center"><a href="add_prest.php" class="color: black;">Ajouter un prestataire</a></h2>
-                <h2 class="text-center"><a href="gestion_prest.php">Gestion des prestataires</a></h2>
+                <h2 class="text-center"><a href="add_prest" class="color: black;">Ajouter un prestataire</a></h2>
+                <h2 class="text-center"><a href="gestion_prest">Gestion des prestataires</a></h2>
+                <h2 class="text-center"><a href="add_metier">Ajouter un métier</a></h2>
+                <h2 class="text-center"><a href="gestion_metier">Gestion des métier</a></h2>
             </div>
         </div>
 

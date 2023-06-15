@@ -11,6 +11,9 @@ require_once __DIR__ . "/../../entities/users/create-user.php";
 require_once __DIR__ . "/../../entities/users/create-materiel.php";
 require_once __DIR__ . "/../../entities/users/create-prest.php";
 require_once __DIR__ . "/../../entities/users/update-user.php";
+require_once __DIR__ . "/../../entities/users/update-materiel.php";
+require_once __DIR__ . "/../../entities/users/create-metier.php";
+require_once __DIR__ . "/../../entities/users/create-salle.php";
 
 try {
     $body = getBody();
@@ -33,6 +36,20 @@ try {
         updateUser($body["nom"], $body["prenom"], $body["email"], $body["date_naissance"], $body["num_tel"]);
 
         $message = "Compte modifié";
+    } else if (isset($body["action"]) && ($body["action"]) == "modifier_materiel") {
+
+        updateMateriel($body['id_ma'] ,$body["nom_ma"], $body["description"], $body["prix"], $body["image"]);
+
+        $message = "Materiel modifié";
+    }else if (isset($body["nom_metier"])) {
+
+        createMetier($body["nom_metier"]);
+
+        $message = "Métier créé";
+    }else if (isset($body["nom_salle"]) && isset($body["num_salle"]) && isset($body["nb_presonne"]) && isset($body["prix_salle"]) && isset($body["dimension"])) {
+        createSalle($body["nom_salle"], $body["num_salle"], $body["nb_presonne"], $body["prix_salle"], $body["dimension"]);
+
+        $message = "Salle créé";
     }
 
     echo jsonResponse(200, [], [

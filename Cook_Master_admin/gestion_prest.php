@@ -1,9 +1,8 @@
-<?php 
+<?php
 session_start();
 
 require_once 'entities/users/verif_connecter.php';
-
-ini_set('display_errors', 1);
+require_once __DIR__ . "/entities/users/get_idprest.php";
 
 ?>
 
@@ -12,43 +11,20 @@ ini_set('display_errors', 1);
 
 <?php
 require_once 'forms/head.php';
+require_once __DIR__ . "/entities/users/get_prest.php";
 
-$url = 'http://localhost/Projet-Annuel/Database/index.php?demande=prestataires'; // On définit l'URL du serveur
-$ch = curl_init($url); // On initialise CURL
-curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET"); // On définit la méthode GET
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // On demande à CURL de nous retourner la réponse
-curl_setopt(
-    $ch,
-    CURLOPT_HTTPHEADER,
-    array(
-        'Content-Type: application/json'
-    )
-); // On définit le header de la requête
-
-$result = curl_exec($ch); // On exécute la requête
-curl_close($ch); // On ferme CURL
-
-$response = json_decode($result, true); // On décode la réponse JSON
-
-if ($response["success"] == true) { // Si la création de l'utilisateur a réussi, on affecte la réponse à $results
-    $results = $response["message"];
-} else { 
-    $results = [];
-    var_dump($results);
-    exit;
-}
 
 ?>
 
 <body>
 
-    <?php /* require_once 'forms/header_base_admin.php'; */ ?>
+    <?php require_once 'forms/header_base_admin.php'; ?>
 
     <!-- ======= Hero Main ======= -->
     <main id="hero" class="d-flex align-items-center">
         <div class="shadow-box">
 
-            <h1 class="text-center">Gestion des utilisateurs</h1>
+            <h1 class="text-center">Gestion des prestataires</h1>
 
             <table class="text-white text-center table table-striped mt-4">
                 <thead>
@@ -63,53 +39,33 @@ if ($response["success"] == true) { // Si la création de l'utilisateur a réuss
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($results as $prest) { // On parcourt les utilisateurs
+                    <?php 
+                        
+                        foreach ($results as $prest) { // On parcourt les utilisateurs
                         echo '<tr>';
                         echo '<td></td>';
                         echo '<td class="text-white"><NOBR>' . $prest['email_pres'] . '</NOBR></td>';
                         echo '<td class="text-white"><NOBR>' . $prest['prenom_pres'] . '</NOBR></td>';
                         echo '<td class="text-white"><NOBR>' . $prest['nom_pres'] . '</NOBR></td>';
-                        
+                        $metier = getidPrest($prest['id_metier']);
+                        echo '<td class="text-white"><NOBR>' . $metier . '</NOBR></td>';
+
                         echo '<td><NOBR>';
-                        if ($utilisateur['email'] != $_SESSION['user']['email']) { // Si l'utilisateur n'est pas l'utilisateur connecté le bouton est bleu
-                            echo '<form action="mod_droits" method="POST">';
-                            echo '<button type="submit" value="' . $utilisateur['email'] . '" name="email" class="btn btn-primary btn-sm">Modifier les droits</button>';
-                            echo '</form>';
-                        } else {  
-                            echo '<button type="submit" value="' . $utilisateur['email'] . '" name="email" class="btn btn-secondary btn-sm">Modifier les droits</button>';
-                        }
-                        echo '</NOBR></td>';
-                        echo '<td><NOBR>';
-                        if ($utilisateur['email'] != $_SESSION['user']['email']) { // Si l'utilisateur n'est pas l'utilisateur connecté le bouton est bleu
-                            echo '<form action="mod-abo.php" method="POST">';
-                            echo '<button type="submit" value="' . $utilisateur['email'] . '" name="email" class="btn btn-primary btn-sm">Cook ' . $utilisateur['abonnement'] . '</button></NOBR></td>';
-                            echo '</form>';
-                        } else { // Si l'utilisateur est l'utilisateur connecté le bouton est gris
-                            echo '<button name="email" class="btn btn-secondary btn-sm">Cook ' . $utilisateur['abonnement'] . '</button></NOBR></td>';
-                        }
-                        echo '<td><NOBR>';
-                        if ($utilisateur['email'] != $_SESSION['user']['email']) { // Si l'utilisateur n'est pas l'utilisateur connecté
-                            echo '<form action="bannir.php" method="POST">';
-                            if ($utilisateur['ban'] == 0) { // Si l'utilisateur n'est pas banni le bouton est rouge 
-                                echo '<button type="submit" value="' . $utilisateur['email'] . '" name="email" class="btn btn-danger btn-sm">Bannir</button>';
+                            echo '<form action="bannir_prest.php" method="POST">';
+                            if ($prest['ban'] == 0) { // Si l'utilisateur n'est pas banni le bouton est rouge 
+                                echo '<button type="submit" value="' . $prest['email_pres'] . '" name="email_pres" class="btn btn-danger btn-sm">Bannir</button>';
                             } else { // Si l'utilisateur est banni le bouton est orange
-                                echo '<button type="submit" value="' . $utilisateur['email'] . '" name="email" class="btn btn-warning btn-sm">débannir</button>';
+                                echo '<button type="submit" value="' . $prest['email_pres'] . '" name="email_pres" class="btn btn-warning btn-sm">débannir</button>';
                             }
                             echo '</form>';
-                        } else { // Si l'utilisateur est l'utilisateur connecté le bouton est en gris et désactivé
-                            echo '<a class="btn btn-secondary btn-sm">Bannir</a>';
-                        }
+
                         echo '</NOBR></td>';
                         echo '<td><NOBR>';
-                        if ($utilisateur['email'] != $_SESSION['user']['email']) {
-                            echo '<form action="sup_user.php" method="POST">';
-                            echo '<button type="submit" value="' . $utilisateur['email'] . '" name="email" class="btn btn-danger btn-sm">Supprimer</button>';
+                            echo '<form action="sup_prest.php" method="POST">';
+                            echo '<button type="submit" value="' . $prest['email_pres'] . '" name="email_pres" class="btn btn-danger btn-sm">Supprimer</button>';
                             echo '</form>';
-                        } else {
-                            echo '<a class="btn btn-secondary btn-sm">Supprimer</a>';
-                        }
                         echo '</NOBR></td>';
-                    } ?>
+                    }?>
                     </tr>
                 </tbody>
             </table>

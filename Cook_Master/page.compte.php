@@ -38,7 +38,7 @@ require_once 'entities/users/verif_connecter.php';
                     </div>
                     <div class="mt-3">
                         <label for="exampleFormControlInput1" class="form-label">Numéro de téléphone</label>
-                        <input type="tel" name="num_tel" class="form-control" id="exampleFormControlInput1" placeholder="numéro de téléphone" required>
+                        <input type="tel" name="num_tel" class="form-control" id="exampleFormControlInput1" placeholder="numéro de téléphone" value="<?= (!isset($_SESSION['user'])) ? '' : $_SESSION['user']['num_tel'] ?>" required>
                     </div>
 
                     <div class="mt-5 text-center">
