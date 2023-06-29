@@ -28,21 +28,30 @@ if (!isset($_SESSION['user'])) {
                             <div class="text-center">
                                 <img src="assets/img/Cook_Cadet.png" alt="">
                                 <h1 class="mt-5 mb-2" style="color: #cda45e;">Grade Cadet</h1>
-                                <a type="button" class="mt-5 btn btn-primary btn-lg btn-block" style="background-color: #cda45e;border-color: #cda45e;">S'abonner</a>
+                                <form action="page.choice" method="POST">
+                                    <input type="hidden" name="abonnement" value="Cadet">
+                                    <h2 class="mt-5">FREE</h2>
+                                </form>
                             </div>
                         </div>
                         <div class="col-lg-4">
                             <div class="text-center">
                                 <img src="assets/img/Cook_Junior.png" alt="">
                                 <h1 class="mt-5 mb-2" style="color: #cda45e;">Grade Junior</h1>
-                                <a type="button" class="mt-5 btn btn-primary btn-lg btn-block" style="background-color: #cda45e;border-color: #cda45e;">S'abonner</a>
+                                <form action="page.choice" method="POST">
+                                    <input type="hidden" name="abonnement" value="junior">
+                                    <button type="submit" class="mt-5 btn btn-primary btn-lg btn-block" style="background-color: #cda45e;border-color: #cda45e;">S'abonner</button>
+                                </form>
                             </div>
                         </div>
                         <div class="col-lg-4">
                             <div class="text-center">
                                 <img src="assets/img/Cook_Senior.png" alt="">
                                 <h1 class="mt-5 mb-2" style="color: #cda45e;">Grade Senior</h1>
-                                <a type="button" class="mt-5 btn btn-primary btn-lg btn-block" style="background-color: #cda45e;border-color: #cda45e;">S'abonner</a>
+                                <form action="page.choice" method="POST">
+                                    <input type="hidden" name="abonnement" value="senior">
+                                    <button type="submit" class="mt-5 btn btn-primary btn-lg btn-block" style="background-color: #cda45e;border-color: #cda45e;">S'abonner</button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -99,7 +108,7 @@ if (!isset($_SESSION['user'])) {
                     </p>
 
 
-            </div>
+                </div>
         </section>
     </main>
 

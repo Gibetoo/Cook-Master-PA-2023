@@ -16,6 +16,16 @@ require_once __DIR__ . "/../../entities/users/sup_prest.php";
 require_once __DIR__ . "/../../entities/users/change-ban-prest.php";
 require_once __DIR__ . "/../../entities/users/get-one-prest.php";
 require_once __DIR__ . "/../../entities/users/sup_metier.php";
+require_once __DIR__ . "/../../entities/users/get-adresse-lo.php";
+require_once __DIR__ . "/../../entities/users/sup_adresse_lo.php";
+require_once __DIR__ . "/../../entities/users/get-local.php";
+require_once __DIR__ . "/../../entities/users/get-one-adresse-lo.php";
+require_once __DIR__ . "/../../entities/users/sup_local.php";
+require_once __DIR__ . "/../../entities/users/get-salle.php";
+require_once __DIR__ . "/../../entities/users/get-one-local.php";
+require_once __DIR__ . "/../../entities/users/sup_salle.php";
+require_once __DIR__ . "/../../entities/users/savekey.php";
+
 
 
 try {
@@ -153,9 +163,9 @@ try {
 
     } else if (isset($_GET['demande']) && isset($_GET['id_metier']) && $_GET['demande'] == 'prestataire') {
 
-        $prest = getIdPrest($_GET['id_metier']);
+        $prestid = getIdPrest($_GET['id_metier']);
 
-        $message = $prest;
+        $message = $prestid;
 
     }else if (isset($_GET['demande']) && $_GET['demande'] == 'metier') {
 
@@ -163,8 +173,8 @@ try {
 
         $message = $metier;
 
-    }else if (isset($_GET['demande']) && isset($_GET['nom_metier']) && $_GET['demande'] == 'supp_metier') {
-        $supp_metier = supMetier($_GET['nom_metier']);
+    }else if (isset($_GET['demande']) && isset($_GET['id_metier']) && $_GET['demande'] == 'supp_metier') {
+        $supp_metier = supMetier($_GET['id_metier']);
 
         if (isset($supp_metier["error"])) { // Si l'utilisateur n'existe pas
             echo jsonResponse(404, [], [
@@ -178,10 +188,10 @@ try {
     } else if (isset($_GET['demande']) && isset($_GET['email_pres']) && $_GET['demande'] == 'supp_pres') {
         $supp_pres = supPres($_GET['email_pres']);
 
-        if (isset($supp["error"])) { // Si l'utilisateur n'existe pas
+        if (isset($supp_pres["error"])) { // Si l'utilisateur n'existe pas
             echo jsonResponse(404, [], [
                 "success" => false,
-                "error" => $supp["error"]
+                "error" => $supp_pres["error"]
             ]); // On renvoie un code 404 (Not Found) et l'erreur
             die();
         }
@@ -202,7 +212,7 @@ try {
     } else if (isset($_GET['demande']) && isset($_GET['email_prest']) && isset($_GET['ban']) && $_GET['demande'] == 'change_ban_prest') {
         $ban = changeBanPrest($_GET['ban'], $_GET['email_prest']);
 
-        if (isset($change["error"])) { // Si l'utilisateur n'existe pas
+        if (isset($ban["error"])) { // Si l'utilisateur n'existe pas
             echo jsonResponse(404, [], [
                 "success" => false,
                 "error" => $ban["error"]
@@ -211,6 +221,105 @@ try {
         }
 
         $message = $ban;
+    } else if (isset($_GET['demande']) && $_GET['demande'] == 'adresse_lo') {
+
+        $adresse = getAdresse();
+
+        if (isset($adresse["error"])) { // Si l'utilisateur n'existe pas
+            echo jsonResponse(404, [], [
+                "success" => false,
+                "error" => $adresse["error"]
+            ]); // On renvoie un code 404 (Not Found) et l'erreur
+            die();
+        }
+
+        $message = $adresse;
+    }else if (isset($_GET['demande']) && isset($_GET['id_adr']) && $_GET['demande'] == 'supp_adresse_lo') {
+        $supp_adresse = supAdresselo($_GET['id_adr']);
+
+        if (isset($supp_adresse["error"])) { // Si l'utilisateur n'existe pas
+            echo jsonResponse(404, [], [
+                "success" => false,
+                "error" => $supp_adresse["error"]
+            ]); // On renvoie un code 404 (Not Found) et l'erreur
+            die();
+        }
+
+        $message = $supp_adresse;
+    }else if (isset($_GET['demande']) && $_GET['demande'] == 'local') {
+
+        $local = getLocal();
+
+        if (isset($local["error"])) { // Si l'utilisateur n'existe pas
+            echo jsonResponse(404, [], [
+                "success" => false,
+                "error" => $local["error"]
+            ]); // On renvoie un code 404 (Not Found) et l'erreur
+            die();
+        }
+
+        $message = $local;
+    } else if (isset($_GET['demande']) && isset($_GET['id_adr']) && $_GET['demande'] == 'one_adresse_lo') {
+
+        $oneAdresse = getOneAdresseLo($_GET['id_adr']);
+
+        $message = $oneAdresse;
+
+    }else if (isset($_GET['demande']) && isset($_GET['id_es']) && $_GET['demande'] == 'supp_local') {
+        $supp_local = supLocal($_GET['id_es']);
+
+        if (isset($supp_local["error"])) { // Si l'utilisateur n'existe pas
+            echo jsonResponse(404, [], [
+                "success" => false,
+                "error" => $supp_local["error"]
+            ]); // On renvoie un code 404 (Not Found) et l'erreur
+            die();
+        }
+
+        $message = $supp_local;
+    }else if (isset($_GET['demande']) && $_GET['demande'] == 'salle') {
+
+        $salle = getsalle();
+
+        if (isset($salle["error"])) { // Si l'utilisateur n'existe pas
+            echo jsonResponse(404, [], [
+                "success" => false,
+                "error" => $salle["error"]
+            ]); // On renvoie un code 404 (Not Found) et l'erreur
+            die();
+        }
+
+        $message = $salle;
+    }else if (isset($_GET['demande']) && isset($_GET['id_es']) && $_GET['demande'] == 'one_local') {
+
+        $oneLocal = getOnelocal($_GET['id_es']);
+
+        $message = $oneLocal;
+
+    }else if (isset($_GET['demande']) && isset($_GET['id_salle']) && $_GET['demande'] == 'supp_salle') {
+        $supp_salle = supSalle($_GET['id_salle']);
+
+        if (isset($supp_salle["error"])) { // Si l'utilisateur n'existe pas
+            echo jsonResponse(404, [], [
+                "success" => false,
+                "error" => $supp_salle["error"]
+            ]); // On renvoie un code 404 (Not Found) et l'erreur
+            die();
+        }
+
+        $message = $supp_salle;
+    } else if (isset($_GET['demande']) && isset($_GET['email']) && isset($_GET['code']) && $_GET['demande'] == 'savekey') {
+        $savekey = savekey($_GET['email'], $_GET['code']);
+
+        if (isset($savekey["error"])) { // Si l'utilisateur n'existe pas
+            echo jsonResponse(404, [], [
+                "success" => false,
+                "error" => $savekey["error"]
+            ]); // On renvoie un code 404 (Not Found) et l'erreur
+            die();
+        }
+
+        $message = $savekey;
     } else { // Si l'API ne reçoit pas d'email et de mot de passe on récupère tous les utilisateurs
         $users = getUsers();
 

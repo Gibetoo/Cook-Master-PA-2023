@@ -14,6 +14,8 @@ require_once __DIR__ . "/../../entities/users/update-user.php";
 require_once __DIR__ . "/../../entities/users/update-materiel.php";
 require_once __DIR__ . "/../../entities/users/create-metier.php";
 require_once __DIR__ . "/../../entities/users/create-salle.php";
+require_once __DIR__ . "/../../entities/users/create-adresse-lo.php";
+require_once __DIR__ . "/../../entities/users/create-local.php";
 
 try {
     $body = getBody();
@@ -46,10 +48,19 @@ try {
         createMetier($body["nom_metier"]);
 
         $message = "Métier créé";
-    }else if (isset($body["nom_salle"]) && isset($body["num_salle"]) && isset($body["nb_presonne"]) && isset($body["prix_salle"]) && isset($body["dimension"])) {
-        createSalle($body["nom_salle"], $body["num_salle"], $body["nb_presonne"], $body["prix_salle"], $body["dimension"]);
+    }else if (isset($body["nom_salle"]) && isset($body["num_salle"]) && isset($body["nb_presonne"]) && isset($body["prix_salle"]) && isset($body["dimension"]) && isset($body["id_es"])) {
+        createSalle($body["nom_salle"], $body["num_salle"], $body["nb_presonne"], $body["prix_salle"], $body["dimension"] , $body["id_es"]);
 
         $message = "Salle créé";
+    }
+    else if (isset($body["etage"]) && isset($body["num_bat_es"]) && isset($body["rue_es"]) && isset($body["code_postal_es"]) && isset($body["ville_es"]) && isset($body["pays_es"])) {
+        createAdresseLo($body["etage"], $body["num_bat_es"], $body["rue_es"], $body["code_postal_es"], $body["ville_es"], $body["pays_es"]);
+
+        $message = "Adresse créé";
+    }else if (isset($body["nom_es"]) && isset($body["dimension"]) && isset($body["nb_salle"]) && isset($body["id_adr"])) {
+        createLocal($body["nom_es"], $body["dimension"], $body["nb_salle"], $body["id_adr"]);
+
+        $message = "Local créé";
     }
 
     echo jsonResponse(200, [], [

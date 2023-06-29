@@ -16,7 +16,7 @@ require_once 'entities/users/verif_connecter.php';
 
     <main id="hero" class="d-flex align-items-center">
         <div class="shadow-box">
-            <div class="row my-3">
+            <div class="row m-3">
 
                 <h1 class="text-center">Modifier votre compte</h1>
 

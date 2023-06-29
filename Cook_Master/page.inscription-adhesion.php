@@ -10,7 +10,7 @@
     <!-- ======= Hero Main ======= -->
     <main id="hero" class="d-flex align-items-center">
         <div class="shadow-box">
-            <div class="d-flex justify-content-center">
+            <div class="d-flex justify-content-center m-4">
                 <div class="row">
                     <h1 class="text-center">Créer un compte</h1>
                     <form action="entities/users/inscription-adhesion.php" method="POST">

@@ -1,6 +1,6 @@
 <?php
 
-function createSalle(string $nom_salle, int $num_salle, int $nb_presonne, float $prix_salle, float $dimension): void
+function createSalle(string $nom_salle, int $num_salle, int $nb_presonne, float $prix_salle, float $dimension, int $id_es): void
 {
     require_once __DIR__ . "/../../database/connection.php";
 
@@ -13,6 +13,7 @@ function createSalle(string $nom_salle, int $num_salle, int $nb_presonne, float 
             nb_personne,
             prix_salle,
             dimension,
+            id_es
             
 
         ) VALUES (
@@ -21,6 +22,7 @@ function createSalle(string $nom_salle, int $num_salle, int $nb_presonne, float 
             :nb_presonne,
             :prix_salle,
             :dimension,
+            :id_es
         );
     ");
 
@@ -30,6 +32,7 @@ function createSalle(string $nom_salle, int $num_salle, int $nb_presonne, float 
         "nb_presonne" => htmlspecialchars($nb_presonne),
         "prix_salle" => htmlspecialchars($prix_salle),
         "dimension" => htmlspecialchars($dimension),
+        "id_es" => htmlspecialchars($id_es)
         
 
     ]);

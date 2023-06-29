@@ -88,16 +88,17 @@ require_once 'entities/users/get_materiels.php';
 
                     <?php foreach ($results as $materiel) {
                         echo '<div class="col-lg-4 mt-4">';
-                        echo '<div class="card" style="background-color: #404040;">';
+                        echo '<div class="card" style="background-color: #404040;height: 750px;">';
                         echo '<div class="container">';
-                        echo '<div class="mx-5 mt-5 p-3 text-center" style="background-color: #CDA45E;border-radius: 15px;">';
+                        echo '<div class="mx-5 mt-5 p-3 text-center" style="background-color: white;border-radius: 15px;">';
                         echo '<img src="entities/users/upload/' . $materiel['image'] . '" style="height: 150px;width: auto;" class="card-img-top" alt="...">';
                         echo '</div>';
                         echo '</div>';
-                        echo '<div class="card-body text-center mt-3 mb-3">';
-                        echo '<h5 class="card-title">' . $materiel['nom_ma'] . '</h5>';
+                        echo '<div class="card-body text-center mt-3 mb-3 d-flex flex-column">';
+                        echo '<h4 class="card-title">' . $materiel['nom_ma'] . '</h4>';
                         echo '<p class="card-text">' . $materiel['description'] . '</p>';
-                        echo '<div class="mt-3">';
+                        echo '<h5 class="card-text">' . $materiel['prix'] . ' €</h5>';
+                        echo '<div class="mt-auto">';
                         echo '<div class="container px-5">';
                         echo '<form action="" method="POST">';
                         echo '<button class="btn btn-secondary mt-3" style="background-color: grey;color: white;font-family: Gabriella;">Selectionner</button>';

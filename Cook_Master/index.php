@@ -41,9 +41,9 @@ session_start();
 
           <div class="btns">
             <?php if (isset($_SESSION['user']) && !empty($_SESSION['user'])) { ?>
-              <a href="#menu" class="btn-menu animated fadeInUp scrollto">Recette</a>
+              <a href="#recette" class="btn-menu animated fadeInUp scrollto">Recette</a>
+              <a href="#reservation" class="btn-book animated fadeInUp scrollto">Reservation</a>
             <?php } ?>
-            <a href="#book-a-table" class="btn-book animated fadeInUp scrollto">Reservation</a>
           </div>
         </div>
         <div class="col-lg-4 d-flex align-items-center justify-content-center position-relative" data-aos="zoom-in" data-aos-delay="200">
@@ -371,7 +371,7 @@ session_start();
                 </div>
               </div>
             </div><!-- End testimonial item -->
-            
+
 
           </div>
           <div class="swiper-pagination"></div>
@@ -394,15 +394,15 @@ session_start();
           <form action="forms/book-a-table.php" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
             <div class="row">
               <div class="col-lg-4 col-md-6 form-group">
-                <input type="text" name="name" class="form-control" id="name" placeholder="Nom" value="<?= (!isset($_SESSION['user']))?'':$_SESSION['user']['nom'] ?>" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+                <input type="text" name="name" class="form-control" id="name" placeholder="Nom" value="<?= (!isset($_SESSION['user'])) ? '' : $_SESSION['user']['nom'] ?>" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
                 <div class="validate"></div>
               </div>
               <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
-                <input type="email" class="form-control" name="email" id="email" placeholder="Email" data-rule="email" value="<?= (!isset($_SESSION['user']))?'':$_SESSION['user']['email'] ?>" data-msg="Please enter a valid email">
+                <input type="email" class="form-control" name="email" id="email" placeholder="Email" data-rule="email" value="<?= (!isset($_SESSION['user'])) ? '' : $_SESSION['user']['email'] ?>" data-msg="Please enter a valid email">
                 <div class="validate"></div>
               </div>
               <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
-                <input type="text" class="form-control" name="phone" id="phone" placeholder="Téléphone" value="<?= (!isset($_SESSION['user']))?'':$_SESSION['user']['num_tel'] ?>" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+                <input type="text" class="form-control" name="phone" id="phone" placeholder="Téléphone" value="<?= (!isset($_SESSION['user'])) ? '' : $_SESSION['user']['num_tel'] ?>" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
                 <div class="validate"></div>
               </div>
               <div class="col-lg-4 col-md-6 form-group mt-3">

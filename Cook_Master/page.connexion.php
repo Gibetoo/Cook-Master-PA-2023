@@ -14,7 +14,7 @@ session_start();
     <!-- ======= Hero Main ======= -->
     <main id="hero" class="d-flex align-items-center">
         <div class="shadow-box">
-            <div class="row">
+            <div class="row m-4">
                 <form action="entities/users/connexion.php" method="POST">
                     <h1 class="text-center">Connectez-vous</h1>
                     <div class="mt-3">
@@ -31,6 +31,9 @@ session_start();
                 </form>
                 <div class="lien text-center">
                     <a href="page.inscription" class="text-center mt-2">Pas encore inscrit ?</a>
+                </div>
+                <div class="lien text-center">
+                        <a href="page.connexion-prestataire" class="text-center mt-2">Prestataire ?</a>
                 </div>
             </div>
         </div>

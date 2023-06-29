@@ -36,3 +36,5 @@ if ($response["success"] == true) { // Si la création de l'utilisateur a réuss
         echo "Une erreur est survenue";
     }
 }
+
+

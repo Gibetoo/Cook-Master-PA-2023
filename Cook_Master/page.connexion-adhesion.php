@@ -18,7 +18,7 @@ if (isset($_SESSION['user'])) {
 
     <main id="hero" class="d-flex align-items-center">
         <div class="shadow-box">
-            <div class="row">
+            <div class="row m-4">
                 <form action="entities/users/connexion-adhesion.php" method="POST">
                     <h1 class="text-center">Connectez-vous</h1>
                     <div class="mt-3">

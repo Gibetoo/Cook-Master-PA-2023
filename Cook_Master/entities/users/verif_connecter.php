@@ -1,6 +1,7 @@
 <?php
 if (!isset($_SESSION['user']['email'])) {
-    header('location: /Projet-Annuel/Cook_Master/');
-    exit;
+    if (!isset($_SESSION['user']['email_pres'])) {
+        header('location: /');
+        exit;
+    }
 }
-?>
