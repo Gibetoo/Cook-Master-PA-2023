@@ -25,6 +25,7 @@ require_once __DIR__ . "/../../entities/users/get-salle.php";
 require_once __DIR__ . "/../../entities/users/get-one-local.php";
 require_once __DIR__ . "/../../entities/users/sup_salle.php";
 require_once __DIR__ . "/../../entities/users/savekey.php";
+require_once __DIR__ . "/../../entities/users/get-cours.php";
 
 
 
@@ -154,6 +155,20 @@ try {
         }
 
         $message = $formation;
+
+    } else if (isset($_GET['demande']) && $_GET['demande'] == 'cours') {
+
+        $Cours = getCours();
+
+        if (isset($Cours["error"])) { // Si l'utilisateur n'existe pas
+            echo jsonResponse(404, [], [
+                "success" => false,
+                "error" => $Cours["error"]
+            ]); // On renvoie un code 404 (Not Found) et l'erreur
+            die();
+        }
+
+        $message = $Cours;
 
     } else if (isset($_GET['demande']) && $_GET['demande'] == 'prestataires') {
 

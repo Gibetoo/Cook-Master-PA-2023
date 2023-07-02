@@ -92,9 +92,6 @@ if ($response["success"] == true) { // Si la création de l'utilisateur a réuss
     $code = getRandomKey(25);
     $reponse = savekey($_POST['email'],$code);
     var_dump($reponse);
-    
-    
-    
 
     $sujet = 'Activation de votre compte';
 
@@ -102,11 +99,6 @@ if ($response["success"] == true) { // Si la création de l'utilisateur a réuss
     
     require "../../Cook_Master_admin/entities/users/mail.php";
     sendmail($sujet, $message, $_POST['email']);
-    
-    
-
-    
-    
 
     header('Location: https://cook-master.site/');
     exit();

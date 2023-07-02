@@ -31,7 +31,7 @@ $results = getMetier();
                     <div class="d-flex">
                     
 
-                        <div class="mt-3 mx-5">
+                        <div class="mt-3 me-5">
                             <div class="mt-3">
                                 <label for="exampleFormControlInput1" class="form-label">Nom</label>
                                 <input type="text" name="nom_pres" class="form-control" id="exampleFormControlInput1" placeholder="Nom" required>
@@ -59,7 +59,7 @@ $results = getMetier();
 
                         </div>
 
-                        <div class="mt-3 mx-5">
+                        <div class="mt-3">
                             <div class="mt-3">
                                 <label for="inputPassword5" class="form-label">Email</label>
                                 <input type="email" name="email_pres" id="inputPassword5" class="form-control" placeholder="Email" aria-labelledby="passwordHelpBlock" required>
