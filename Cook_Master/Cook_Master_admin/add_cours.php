@@ -20,7 +20,7 @@ require_once __DIR__ . "/entities/users/get_adresse_lo.php";
     <main id="hero" class="d-flex align-items-center">
         <div class="shadow-box">
             <div class="row">
-                <form action="add_cours_suite" method="POST" enctype="multipart/form-data">
+                <form action="add_cours_pres" method="POST" enctype="multipart/form-data">
                     <h1 class="text-center">Ajouter un Cours</h1>
                     <div class="d-flex">
 
@@ -28,6 +28,12 @@ require_once __DIR__ . "/entities/users/get_adresse_lo.php";
                             <div class="mt-3">
                                 <label for="exampleFormControlInput1" class="form-label">Titre du Cours</label>
                                 <input type="text" name="nom_cours" class="form-control" id="exampleFormControlInput1" placeholder="Nom">
+                            </div>
+                            <div class="mt-3">
+                                <label for="disabledSelect" class="form-label">Image pour le cours :</label>
+                                <div class="input-group ">
+                                    <input type="file" class="form-control" name="image_cours" accept="image/jpg, image/gif, image/png, image/jpeg">
+                                </div>
                             </div>
                             <div class="mt-3">
                                 <label for="exampleFormControlInput1" class="form-label">Prix</label>
