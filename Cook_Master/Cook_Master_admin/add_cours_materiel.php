@@ -18,7 +18,7 @@ require_once __DIR__ . "/entities/users/get_materiels.php";
     <main id="hero" class="d-flex align-items-center">
         <div class="shadow-box">
             <div class="row">
-                <form action="add_cours_materiel" method="POST">
+                <form action="add_cours_recette" method="POST">
                     <h1 class="text-center">Ajouter un Cours</h1>
                     <h2 class="text-center mt-3">Selectionner le(s) matériel(s) nécessaire</h2>
 

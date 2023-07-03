@@ -26,10 +26,9 @@ require_once 'entities/users/verif_connecter.php';
                 <h2 class="text-center"><a href="#">Gestion des livraisons</a></h2>
                 <h2 class="text-center"><a href="page.salle">Gestion des salles</a></h2>
                 <h2 class="text-center"><a href="#">Gestions des ateliers</a></h2>
-                <h2 class="text-center"><a href="page.cours">Gestion des leçon/cours</a></h2>
+                <h2 class="text-center"><a href="page.cours">Gestion des recettes/cours</a></h2>
                 <h2 class="text-center"><a href="#">Administration de la messagerie</a></h2>
                 <h2 class="text-center"><a href="page.materiels">Gestions des matériels</a></h2>
-                <h2 class="text-center"><a href="page.formation">Gestion des Formations</a></h2>
             </div>
             <div class="text-center mt-2">
                 <a href="entities/users/deconnexion.php" class="book-a-table-btn scrollto">Déconnexion</a>

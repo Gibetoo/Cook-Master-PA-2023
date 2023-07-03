@@ -2,7 +2,7 @@
 session_start();
 
 require_once 'entities/users/verif_connecter.php';
-require_once __DIR__ . "/entities/users/get_materiels.php";
+require_once __DIR__ . "/entities/users/get_recette.php";
 ?>
 
 <!DOCTYPE html>
@@ -20,7 +20,7 @@ require_once __DIR__ . "/entities/users/get_materiels.php";
             <div class="row">
                 <form action="add_cours_materiel" method="POST">
                     <h1 class="text-center">Ajouter un Cours</h1>
-                    <h2 class="text-center mt-3">Selectionner le(s) matériel(s) nécessaire</h2>
+                    <h2 class="text-center mt-3">Selectionner le(s) recette(s) nécessaire</h2>
 
                     <div class="mt-3">
                         <?php
@@ -28,7 +28,7 @@ require_once __DIR__ . "/entities/users/get_materiels.php";
                         foreach ($results as $recette) {
                             echo '<div class="form-check mt-3">';
                             echo '<input class="form-check-input" type="checkbox" id="check1" name="materiel-' . $counter_recette . '" value="' . $recette['nom_ma'] . '" >';
-                            echo '<label class="form-check-label">' . $recette['nom_ma'] . '</label>';
+                            echo '<label class="form-check-label">' . $recette['nom_re'] . '</label>';
                             echo '</div>';
                             $counter++;
                         };

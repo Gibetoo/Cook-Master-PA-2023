@@ -7,6 +7,8 @@ require_once __DIR__ . "/entities/users/get_metier.php";
 $results_metier = getMetier();
 
 require_once __DIR__ . "/entities/users/get_prest.php";
+require_once __DIR__ . "/entities/users/get_idprest.php";
+
 
 ?>
 
@@ -34,7 +36,8 @@ require_once __DIR__ . "/entities/users/get_prest.php";
                                     <option selected value='null'>Choisir un préstataire</option>
                                     <?php
                                     foreach ($results as $nomPrest) {
-                                        echo '<option value=' . $nomPrest['email_pres'] . '>' . $nomPrest['nom_pres'] . ' ' . $nomPrest['prenom_pres'] . ', ' . $nomPrest['id_metier'] .'</option>';
+                                        $nomMetier = getidPrest($nomPrest['id_metier']);
+                                        echo '<option value=' . $nomPrest['email_pres'] . '>' . $nomPrest['nom_pres'] . ' ' . $nomPrest['prenom_pres'] . ', ' . $nomMetier .'</option>';
                                     } ?>
 
                                 </select>

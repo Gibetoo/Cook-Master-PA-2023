@@ -142,6 +142,19 @@ try {
         }
 
         $message = $materiels;
+    } else if (isset($_GET['demande']) && $_GET['demande'] == 'recettes') {
+
+        $recettes = getRecettes();
+
+        if (isset($materiels["error"])) { // Si l'utilisateur n'existe pas
+            echo jsonResponse(404, [], [
+                "success" => false,
+                "error" => $recettes["error"]
+            ]); // On renvoie un code 404 (Not Found) et l'erreur
+            die();
+        }
+
+        $message = $recettes;
     } else if (isset($_GET['demande']) && $_GET['demande'] == 'formation') {
 
         $formation = getFormation();

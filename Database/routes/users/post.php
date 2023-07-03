@@ -16,6 +16,7 @@ require_once __DIR__ . "/../../entities/users/create-metier.php";
 require_once __DIR__ . "/../../entities/users/create-salle.php";
 require_once __DIR__ . "/../../entities/users/create-adresse-lo.php";
 require_once __DIR__ . "/../../entities/users/create-local.php";
+require_once __DIR__ . "/../../entities/users/create-categorie.php";
 
 try {
     $body = getBody();
