@@ -18,7 +18,7 @@ require_once 'entities/users/verif_connecter.php';
     <main id="hero" class="d-flex align-items-center">
         <div class="shadow-box">
             <div class="row">
-                <form action="entities/users/new_metier" method="POST" enctype="multipart/form-data">
+                <form action="entities/users/new_categorie" method="POST" enctype="multipart/form-data">
                     <h1 class="text-center">Ajouter une Catégorie</h1>
 
                     <div class="d-flex">
@@ -27,10 +27,6 @@ require_once 'entities/users/verif_connecter.php';
                             <div class="mt-3">
                                 <label for="exampleFormControlInput1" class="form-label">Nom de la catégorie</label>
                                 <input type="text" name="nom_cat" class="form-control" id="exampleFormControlInput1" placeholder="Nom de la catégorie">
-                            </div>
-                            <div class="mt-3">
-                                <label for="exampleFormControlInput1" class="form-label">Description</label>
-                                <input type="text" name="description_cat" class="form-control" id="exampleFormControlInput1" placeholder="Description de la catégorie">
                             </div>
                         </div>
 

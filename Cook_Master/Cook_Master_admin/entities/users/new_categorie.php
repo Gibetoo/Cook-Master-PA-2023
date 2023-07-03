@@ -1,19 +1,37 @@
 <?php
-ini_set('display_errors', 1);
 
-if (!isset($_POST['nom_cat']) && !isset($_POST['description_cat'])) {
-    header('Location: https://cook-master.site/Cook_Master_admin/add_prest?message=Veuillez remplir tous les champs&type=warning');
+require_once __DIR__ . '/get_categorie.php';
+
+
+if (!isset($_POST['nom_cat'])) {
+    header('Location: https://cook-master.site/Cook_Master_admin/add_categorie?message=Veuillez remplir tous les champs&type=warning');
     exit;
+    
     
 } // Si les champs email et password ne sont pas remplis, on affiche un message d'erreur
 
-if (isset($_POST['nom_cat']) && !empty($_POST['nom_cat']) && isset($_POST['description_cat']) && !empty($_POST['description_cat'])) {
+
+$nomCategorie = htmlspecialchars($_POST['nom_cat']);
+
+$categorieExists = false;
+foreach ($results as $categorie)
+    if ($categorie['nom_cat'] === $nomCategorie) {
+        $categorieExists = true;
+        break;
+    }
+    if ($categorieExists) {
+        // L'e-mail existe déjà, afficher un message d'erreur
+        header('location: https://cook-master.site/Cook_Master_admin/add_categorie?message=Cette categorie existe déjà !&type=danger');
+        // Vous pouvez également rediriger l'utilisateur vers une autre page ou effectuer une autre action ici
+    }else {
+
+
+    if (isset($_POST['nom_cat']) ) {
     $data = array(
         'nom_cat' => $_POST['nom_cat'],
-        'description_cat' => $_POST['description_cat']
         
     ); // On récupère les données du formulaire
-}
+    }
 
 $data_string = json_encode($data); // On encode les données en JSON
 
@@ -37,7 +55,8 @@ curl_close($ch); // On ferme CURL
 $response = json_decode($result, true); // On décode la réponse JSON
 
 if ($response["success"] == true) { // Si la création de l'utilisateur a réussi
-    header('Location: https://cook-master.site/Cook_Master_admin/gestion_metier?message=Le metier a bien été ajouté&type=success');
+    header('Location: https://cook-master.site/Cook_Master_admin/add_categorie?message=La categorie a bien été ajouté&type=success');
 } else { // Si la création de l'utilisateur a échoué, on affiche un message d'erreur
     echo "Erreur" . $response["error"];
 }
+    }

@@ -2,6 +2,10 @@
 session_start();
 
 require_once 'entities/users/verif_connecter.php';
+require_once __DIR__ . "/entities/users/get_categorie.php";
+$result = getCategorie();
+
+
 
 
 ?>
@@ -26,18 +30,37 @@ require_once 'entities/users/verif_connecter.php';
                         <div class="mt-3 mx-auto">
                             <div class="mt-3">
                                 <label for="exampleFormControlInput1" class="form-label">Nom de la recette</label>
-                                <input type="text" name="nom_metier" class="form-control" id="exampleFormControlInput1" placeholder="Nom de la recette">
+                                <input type="text" name="nom_recette" class="form-control" id="exampleFormControlInput1" placeholder="Nom de la recette">
                             </div>
                             <div class="mt-3">
-                                <label for="exampleFormControlInput1" class="form-label">Nom de la recette</label>
+                                <label for="exampleFormControlInput1" class="form-label">Preparation de la recette</label>
+                                <textarea type="text" name="preparation" class="form-control" placeholder="Preparation" id="exampleFormControlInput1"></textarea>
+                            </div>
+                            <div class="mt-3">
+                                <label for="exampleFormControlInput1" class="form-label">Description de la recette</label>
                                 <textarea type="text" name="description" class="form-control" placeholder="Description" id="exampleFormControlInput1"></textarea>
                             </div>
+                            <div class="mt-3">
+                                <label class="mt-3" for="sel1">Catégorie :</label>
+                                <select class="form-select" id="sel1" name='categorie' required>
+                                    <option selected value='null'>Choisir une catégorie</option>
+                                    <?php
+                                    
+                                    foreach ($result as $nomCategorie) {
+                                        echo '<option value=' . $nomCategorie['id_cat'] . '>' . $nomCategorie['nom_cat'] . '</option>';
+                                    } ?>
+
+                                </select>
+                            </div>
                         </div>
+                        
                     </div>
+                    
 
                     <div class="mt-5 text-center">
                         <button type="submit" class="btn-menu animated fadeInUp scrollto" style="background-color: #cda45e;border-color: #cda45e;">Ajouter</button>
                     </div>
+                    
                 </form>
             </div>
         </div>

@@ -29,7 +29,6 @@ $results = getMetier();
                     <h1 class="text-center">Ajouter un prestataire</h1>
                     
                     <div class="d-flex">
-                    
 
                         <div class="mt-3 me-5">
                             <div class="mt-3">
@@ -55,7 +54,6 @@ $results = getMetier();
 
                                 </select>
                             </div>
-
 
                         </div>
 

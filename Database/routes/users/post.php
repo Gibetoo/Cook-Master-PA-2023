@@ -17,6 +17,7 @@ require_once __DIR__ . "/../../entities/users/create-salle.php";
 require_once __DIR__ . "/../../entities/users/create-adresse-lo.php";
 require_once __DIR__ . "/../../entities/users/create-local.php";
 require_once __DIR__ . "/../../entities/users/create-categorie.php";
+require_once __DIR__ . "/../../entities/users/create-recette.php";
 
 try {
     $body = getBody();
@@ -62,6 +63,15 @@ try {
         createLocal($body["nom_es"], $body["dimension"], $body["nb_salle"], $body["id_adr"]);
 
         $message = "Local créé";
+        
+    }else if (isset($body["nom_cat"])) {
+        createCategorie($body["nom_cat"]);
+
+        $message = "Catégorie créé";
+    }else if (isset($body["nom_recette"]) && isset($body["preparation"]) && isset($body["description"]) && isset($body["categorie"])) {
+        createRecette($body["nom_recette"], $body["preparation"], $body["description"], $body["categorie"]);
+
+        $message = "Recette créé";
     }
 
     echo jsonResponse(200, [], [

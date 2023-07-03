@@ -30,18 +30,12 @@ require_once __DIR__ . "/entities/users/get_adresse_lo.php";
                                 <input type="text" name="nom_cours" class="form-control" id="exampleFormControlInput1" placeholder="Nom">
                             </div>
                             <div class="mt-3">
-                                <label for="disabledSelect" class="form-label">Image pour le cours :</label>
-                                <div class="input-group ">
-                                    <input type="file" class="form-control" name="image_cours" accept="image/jpg, image/gif, image/png, image/jpeg">
-                                </div>
-                            </div>
-                            <div class="mt-3">
                                 <label for="exampleFormControlInput1" class="form-label">Prix</label>
-                                <input type="number" name="prix" min="0" class="form-control" id="exampleFormControlInput1" placeholder="Prix">
+                                <input type="number" name="prix_cours" min="0" class="form-control" id="exampleFormControlInput1" placeholder="Prix">
                             </div>
                             <div class="mt-3">
                                 <label for="exampleFormControlInput1" class="form-label">Description</label>
-                                <textarea type="text" name="description" class="form-control" id="exampleFormControlInput1">Description</textarea>
+                                <textarea type="text" name="description_cours" class="form-control" id="exampleFormControlInput1" placeholder="Description"></textarea>
                             </div>
                         </div>
                     </div>

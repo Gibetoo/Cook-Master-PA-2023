@@ -20,7 +20,7 @@ require_once 'entities/users/verif_connecter.php';
             <div class="row">
                 <h1 class="text-center mb-2">Gestion des Catégories</h1>
                 <h2 class="text-center"><a href="add_categorie" class="color: black;">Ajouter une catégorie de recette</a></h2>
-                <h2 class="text-center"><a href="gestion_formation">Gestion des catégories</a></h2>
+                <h2 class="text-center"><a href="gestion_categorie">Gestion des catégories</a></h2>
             </div>
         </div>
 

@@ -26,7 +26,6 @@ require_once 'entities/users/verif_connecter.php';
                 <h2 class="text-center"><a href="gestion_cours">Gestion des cours</a></h2>
                 <h2 class="text-center"><a href="gestion_recette">Gestion des recettes</a></h2>
                 <h2 class="text-center"><a href="page.categorie">Gestion des catégories de recettes</a></h2>
-
             </div>
         </div>
 

@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+ini_set('display_errors', 1);
+
 require_once 'entities/users/verif_connecter.php';
 require_once __DIR__ . "/entities/users/get_metier.php";
 
@@ -8,6 +10,7 @@ $results_metier = getMetier();
 
 require_once __DIR__ . "/entities/users/get_prest.php";
 require_once __DIR__ . "/entities/users/get_idprest.php";
+require_once __DIR__ . "/entities/users/get_url_image.php";
 
 
 ?>
@@ -32,14 +35,14 @@ require_once __DIR__ . "/entities/users/get_idprest.php";
                         <div class="mt-2 mx-5">
                             <div class="mt-3">
                                 <label for="sel1">Préstataire pour le cours :</label>
-                                <select class="form-select" id="sel1" name='metier' required>
+                                <select class="form-select" id="sel1" name='pres_cours' required>
                                     <option selected value='null'>Choisir un préstataire</option>
                                     <?php
                                     foreach ($results as $nomPrest) {
                                         $nomMetier = getidPrest($nomPrest['id_metier']);
-                                        echo '<option value=' . $nomPrest['email_pres'] . '>' . $nomPrest['nom_pres'] . ' ' . $nomPrest['prenom_pres'] . ', ' . $nomMetier .'</option>';
-                                    } ?>
-
+                                        echo '<option value=' . $nomPrest['email_pres'] . '>' . $nomPrest['nom_pres'] . ' ' . $nomPrest['prenom_pres'] . ', ' . $nomMetier . '</option>';
+                                    }
+                                    ?>
                                 </select>
                             </div>
                         </div>
@@ -48,10 +51,10 @@ require_once __DIR__ . "/entities/users/get_idprest.php";
                     <div class="mt-5 text-center">
                         <button type="submit" class="btn-menu animated fadeInUp scrollto" style="background-color: #cda45e;border-color: #cda45e;">Ajouter</button>
                     </div>
+                    
                     <input type="hidden" name="nom_cours" value="<?= $_POST['nom_cours']; ?>">
-                    <input type="hidden" name="prix" value="<?= $_POST['prix']; ?>">
-                    <input type="hidden" name="description" value="<?= $_POST['description']; ?>">
-                    <input type="hidden" name="image_cours" value="<?= $_FILES['image_cours']; ?>">
+                    <input type="hidden" name="prix_cours" value="<?= $_POST['prix_cours']; ?>">
+                    <input type="hidden" name="description_cours" value="<?= $_POST['description_cours']; ?>">
                 </form>
             </div>
         </div>

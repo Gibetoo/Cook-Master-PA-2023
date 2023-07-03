@@ -2,11 +2,6 @@
 
 require_once __DIR__ . "/get_prest.php";
 
-
-
-
-
-
 if (!isset($_POST['nom_pres']) && !empty($_POST['nom_pres']) || 
 !isset($_POST['prenom_pres']) && !empty($_POST['prenom_pres']) ||
 !isset($_POST['num_tel_pres']) && !empty($_POST['num_tel_pres']) ||
