@@ -29,6 +29,7 @@ require_once __DIR__ . "/../../entities/users/get-cours.php";
 require_once __DIR__ . "/../../entities/users/get-categorie.php";
 require_once __DIR__ . "/../../entities/users/get-recettes.php";
 require_once __DIR__ . "/../../entities/users/get-one-categorie.php";
+require_once __DIR__ . "/../../entities/users/sup_categorie.php";
 
 try {
 
@@ -351,7 +352,7 @@ try {
         $message = $savekey;
     }else if (isset($_GET['demande']) && $_GET['demande'] == 'categorie') {
 
-        $categorie = getcategorie();
+        $categorie = getCategorie();
 
         $message = $categorie;
 
@@ -361,6 +362,18 @@ try {
 
         $message = $oneCategorie;
 
+    }else if (isset($_GET['demande']) && isset($_GET['id_cat']) && $_GET['demande'] == 'supp_categorie') {
+        $supp_categorie = supCategorie($_GET['id_cat']);
+
+        if (isset($supp_categorie["error"])) { // Si l'utilisateur n'existe pas
+            echo jsonResponse(404, [], [
+                "success" => false,
+                "error" => $supp_categorie["error"]
+            ]); // On renvoie un code 404 (Not Found) et l'erreur
+            die();
+        }
+
+        $message = $supp_categorie;
     }else { // Si l'API ne reçoit pas d'email et de mot de passe on récupère tous les utilisateurs
         $users = getUsers();
 

@@ -1,8 +1,5 @@
 <?php
 
-// Récupérer des données depuis le corps de la requête
-// Faire une requête SQL pour créer un utilisateur
-// Renvoyer une réponse (succès, echec) à l'utilisateur de l'API
 ini_set('display_errors', 1);
 
 require_once __DIR__ . "/../../libraries/body.php";
@@ -18,6 +15,7 @@ require_once __DIR__ . "/../../entities/users/create-adresse-lo.php";
 require_once __DIR__ . "/../../entities/users/create-local.php";
 require_once __DIR__ . "/../../entities/users/create-categorie.php";
 require_once __DIR__ . "/../../entities/users/create-recette.php";
+require_once __DIR__ . "/../../entities/users/create-cours.php";
 
 try {
     $body = getBody();
@@ -42,36 +40,38 @@ try {
         $message = "Compte modifié";
     } else if (isset($body["action"]) && ($body["action"]) == "modifier_materiel") {
 
-        updateMateriel($body['id_ma'] ,$body["nom_ma"], $body["description"], $body["prix"], $body["image"]);
+        updateMateriel($body['id_ma'], $body["nom_ma"], $body["description"], $body["prix"], $body["image"]);
 
         $message = "Materiel modifié";
-    }else if (isset($body["nom_metier"])) {
+    } else if (isset($body["nom_metier"])) {
 
         createMetier($body["nom_metier"]);
 
         $message = "Métier créé";
-    }else if (isset($body["nom_salle"]) && isset($body["num_salle"]) && isset($body["nb_presonne"]) && isset($body["prix_salle"]) && isset($body["dimension"]) && isset($body["id_es"])) {
-        createSalle($body["nom_salle"], $body["num_salle"], $body["nb_presonne"], $body["prix_salle"], $body["dimension"] , $body["id_es"]);
+    } else if (isset($body["nom_salle"]) && isset($body["num_salle"]) && isset($body["nb_presonne"]) && isset($body["prix_salle"]) && isset($body["dimension"]) && isset($body["id_es"])) {
+        createSalle($body["nom_salle"], $body["num_salle"], $body["nb_presonne"], $body["prix_salle"], $body["dimension"], $body["id_es"]);
 
         $message = "Salle créé";
-    }
-    else if (isset($body["etage"]) && isset($body["num_bat_es"]) && isset($body["rue_es"]) && isset($body["code_postal_es"]) && isset($body["ville_es"]) && isset($body["pays_es"])) {
+    } else if (isset($body["etage"]) && isset($body["num_bat_es"]) && isset($body["rue_es"]) && isset($body["code_postal_es"]) && isset($body["ville_es"]) && isset($body["pays_es"])) {
         createAdresseLo($body["etage"], $body["num_bat_es"], $body["rue_es"], $body["code_postal_es"], $body["ville_es"], $body["pays_es"]);
 
         $message = "Adresse créé";
-    }else if (isset($body["nom_es"]) && isset($body["dimension"]) && isset($body["nb_salle"]) && isset($body["id_adr"])) {
+    } else if (isset($body["nom_es"]) && isset($body["dimension"]) && isset($body["nb_salle"]) && isset($body["id_adr"])) {
         createLocal($body["nom_es"], $body["dimension"], $body["nb_salle"], $body["id_adr"]);
 
         $message = "Local créé";
-        
-    }else if (isset($body["nom_cat"])) {
+    } else if (isset($body["nom_cat"])) {
         createCategorie($body["nom_cat"]);
 
         $message = "Catégorie créé";
-    }else if (isset($body["nom_recette"]) && isset($body["preparation"]) && isset($body["description"]) && isset($body["categorie"])) {
+    } else if (isset($body["nom_recette"]) && isset($body["preparation"]) && isset($body["description"]) && isset($body["categorie"])) {
         createRecette($body["nom_recette"], $body["preparation"], $body["description"], $body["categorie"]);
 
         $message = "Recette créé";
+    } else if (isset($_POST['nom_cours']) && isset($_POST['prix_cours']) && isset($_POST['description_cours']) && isset($_POST['recettes']) && isset($_POST['materiels'])) {
+        createCours($_POST['nom_cours'], $_POST['prix_cours'], $_POST['description_cours'], $_POST['recettes'], $_POST['materiels']);
+
+        $message = "Cours créé";
     }
 
     echo jsonResponse(200, [], [

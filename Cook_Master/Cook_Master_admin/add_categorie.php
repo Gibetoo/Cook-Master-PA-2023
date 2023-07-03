@@ -20,6 +20,9 @@ require_once 'entities/users/verif_connecter.php';
             <div class="row">
                 <form action="entities/users/new_categorie" method="POST" enctype="multipart/form-data">
                     <h1 class="text-center">Ajouter une Catégorie</h1>
+                    <?php 
+                        include "forms/message.php";
+                    ?>
 
                     <div class="d-flex">
 

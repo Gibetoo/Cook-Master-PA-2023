@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/get_categorie.php';
+$result = getCategorie();
 
 
 if (!isset($_POST['nom_cat'])) {
@@ -14,7 +15,7 @@ if (!isset($_POST['nom_cat'])) {
 $nomCategorie = htmlspecialchars($_POST['nom_cat']);
 
 $categorieExists = false;
-foreach ($results as $categorie)
+foreach ($result as $categorie)
     if ($categorie['nom_cat'] === $nomCategorie) {
         $categorieExists = true;
         break;
@@ -55,7 +56,7 @@ curl_close($ch); // On ferme CURL
 $response = json_decode($result, true); // On décode la réponse JSON
 
 if ($response["success"] == true) { // Si la création de l'utilisateur a réussi
-    header('Location: https://cook-master.site/Cook_Master_admin/add_categorie?message=La categorie a bien été ajouté&type=success');
+    header('Location: https://cook-master.site/Cook_Master_admin/gestion_categorie?message=La categorie a bien été ajouté&type=success');
 } else { // Si la création de l'utilisateur a échoué, on affiche un message d'erreur
     echo "Erreur" . $response["error"];
 }

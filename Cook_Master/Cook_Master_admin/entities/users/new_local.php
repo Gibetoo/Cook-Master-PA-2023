@@ -1,5 +1,4 @@
 <?php
-ini_set('display_errors', 1);
 
 if (!isset($_POST['nom_es']) || !isset($_POST['dimension'])|| !isset($_POST['nb_salle']) || !isset($_POST['id_adr']) ) {
     echo "y'a r ici";
@@ -39,7 +38,7 @@ curl_close($ch); // On ferme CURL
 $response = json_decode($result, true); // On décode la réponse JSON
 
 if ($response["success"] == true) { // Si la création de l'utilisateur a réussi
-    header('Location: http://51.210.241.29/Projet-Annuel/Cook_Master_admin/gestion_local?message=Le local a bien été ajouté&type=success');
+    header('Location: https://cook-master.site/Cook_Master_admin/gestion_local?message=Le local a bien été ajouté&type=success');
 } else { // Si la création de l'utilisateur a échoué, on affiche un message d'erreur
     echo "Erreur" . $response["error"];
 }
