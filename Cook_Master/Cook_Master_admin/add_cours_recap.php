@@ -3,8 +3,11 @@ session_start();
 
 require_once 'entities/users/verif_connecter.php';
 require_once __DIR__ . "/entities/users/get_one_prest.php";
+require_once __DIR__ . "/entities/users/get_one_adresse_lo.php";
+
 
 $pres = getOnePres($_GET['pres_cours']);
+$adresse = getOneAdresse($_GET['id_adr']);
 
 ini_set('display_errors', 1);
 
@@ -67,13 +70,27 @@ require_once 'forms/head.php';
                                 }
                                 ?>
                             </div>
-                            <div>
+                            <div class="me-5">
                                 <h3 style="color: #cda45e;">
                                     <NOBR>Prestataire</NOBR>
                                 </h3>
                                 <p><?= $pres['nom'] . ' ' . $pres['prenom'] ?>
                                     <NOBR>Email : <?= $pres['email'] ?></NOBR>
                                 </p>
+                            </div>
+                            <?php if (isset($_GET['id_adr'])) { ?>
+                                <div>
+                                    <h3 style="color: #cda45e;">
+                                        <NOBR>Adresse local Cook Master</NOBR>
+                                    </h3>
+                                    <p><?php echo '<p>' . $adresse['num_bat_es'] . ' ' . $adresse['rue_es']. ', ' . $adresse['code_postal_es']. ', ' .$adresse['ville_es']. ', ' .$adresse['pays_es']. 
+                                    '<br>'.'Etage N° : ' .$adresse['etage'].
+                                    '</p>' ?></p>
+                                    
+                                </div>
+                            <?php } ?>
+                            <div>
+
                             </div>
                         </div>
                     </div>
@@ -91,6 +108,8 @@ require_once 'forms/head.php';
                 <div class="mt-5 text-center">
                     <button type="submit" class="btn btn-secondary mt-3" style="background-color: #cda45e;border-color: #cda45e;border-radius: 50px;font-family: Gabriella;font-size: 20px;">Valider</button>
                 </div>
+
+                <!-- ------------------------------------------------------------------------------------ -->
 
                 <input type="hidden" name="nom_cours" value="<?= $_GET['nom_cours']; ?>">
                 <input type="hidden" name="prix_cours" value="<?= $_GET['prix_cours']; ?>">
@@ -117,6 +136,9 @@ require_once 'forms/head.php';
                 <input type="hidden" name="materiels" value="<?= implode(', ', $materiels); ?>">
 
                 <input type="hidden" name="pres_cours" value="<?= $_GET['pres_cours']; ?>">
+
+                <!-- ------------------------------------------------------------------------------------ -->
+
             </form>
 
         </section>

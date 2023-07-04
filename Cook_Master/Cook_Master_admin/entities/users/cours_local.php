@@ -10,7 +10,14 @@ if (isset($_POST['domicile'])) {
     header("Location: $redirectUrl");
     exit;
 } else if (isset($_POST['local'])) {
-    header('Location: ../../add_cours_locaux');
+    $data = $_POST;
+
+    $redirectUrl = '../../add_cours_locaux';
+
+    $redirectUrl .= '?' . http_build_query($data);
+
+    header("Location: $redirectUrl");
+    exit;
 } else {
     header('Location: ../../add_cours_materiel');
 }

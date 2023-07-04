@@ -35,8 +35,7 @@ require_once __DIR__ . "/entities/users/get_url_image.php";
                         <div class="mt-2 mx-5">
                             <div class="mt-3">
                                 <label for="sel1">Préstataire pour le cours :</label>
-                                <select class="form-select" id="sel1" name='pres_cours' required>
-                                    <option selected value='null'>Choisir un préstataire</option>
+                                <select class="form-select mt-1" id="sel1" name='pres_cours' required>
                                     <?php
                                     foreach ($results as $nomPrest) {
                                         $nomMetier = getidPrest($nomPrest['id_metier']);

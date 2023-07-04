@@ -27,15 +27,15 @@ require_once __DIR__ . "/entities/users/get_adresse_lo.php";
                         <div class="mt-3 mx-5">
                             <div class="mt-3">
                                 <label for="exampleFormControlInput1" class="form-label">Titre du Cours</label>
-                                <input type="text" name="nom_cours" class="form-control" id="exampleFormControlInput1" placeholder="Nom">
+                                <input type="text" name="nom_cours" class="form-control" id="exampleFormControlInput1" placeholder="Nom" required>
                             </div>
                             <div class="mt-3">
                                 <label for="exampleFormControlInput1" class="form-label">Prix</label>
-                                <input type="number" name="prix_cours" min="0" class="form-control" id="exampleFormControlInput1" placeholder="Prix">
+                                <input type="number" name="prix_cours" min="0" class="form-control" id="exampleFormControlInput1" placeholder="Prix" required>
                             </div>
                             <div class="mt-3">
                                 <label for="exampleFormControlInput1" class="form-label">Description</label>
-                                <textarea type="text" name="description_cours" class="form-control" id="exampleFormControlInput1" placeholder="Description"></textarea>
+                                <textarea type="text" name="description_cours" class="form-control" id="exampleFormControlInput1" placeholder="Description" required></textarea>
                             </div>
                         </div>
                     </div>

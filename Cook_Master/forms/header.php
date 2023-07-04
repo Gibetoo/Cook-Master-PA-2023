@@ -20,7 +20,10 @@
       <i class="bi bi-list mobile-nav-toggle"></i>
     </nav><!-- .navbar -->
     <?php if (isset($_SESSION['user']) && !empty($_SESSION['user'])) { ?>
-      <a href="page.profil" class="book-a-table-btn scrollto d-none d-lg-flex">Profil</a>
+      <div class="d-none d-lg-flex">
+        <a class="me-2 align-self-center" href="page.panier"><img src="assets/img/Shopping-cart.png" alt=""></a>
+        <a href="page.profil" class="book-a-table-btn scrollto">Profil</a>
+      </div>
     <?php } else { ?>
       <a href="page.connexion" class="book-a-table-btn scrollto d-none d-lg-flex">Connexion</a>
     <?php } ?>

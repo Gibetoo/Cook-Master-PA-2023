@@ -9,8 +9,9 @@ require_once 'entities/users/verif_connecter.php';
 
 <?php
 
-require_once 'forms/head.php';
-require_once 'entities/users/get_materiels.php';
+require_once __DIR__ . '/forms/head.php';
+require_once __DIR__ . '/entities/users/get_materiels.php';
+require_once __DIR__ . '/entities/users/fonction_panier.php';
 
 ?>
 
@@ -56,7 +57,10 @@ require_once 'entities/users/get_materiels.php';
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
             <?php if (isset($_SESSION['user']) && !empty($_SESSION['user'])) { ?>
-                <a href="page.profil" class="book-a-table-btn scrollto d-none d-lg-flex">Profil</a>
+                <div class="d-none d-lg-flex">
+                <a class="me-2 align-self-center" href="page.panier"><img src="assets/img/Shopping-cart.png" alt=""></a>
+                    <a href="page.profil" class="book-a-table-btn scrollto">Profil</a>
+                </div>
             <?php } else { ?>
                 <a href="page.connexion" class="book-a-table-btn scrollto d-none d-lg-flex">Connexion</a>
             <?php } ?>
@@ -101,14 +105,30 @@ require_once 'entities/users/get_materiels.php';
                         echo '<div class="mt-auto">';
                         echo '<div class="container px-5">';
                         echo '<form action="" method="POST">';
-                        echo '<button class="btn btn-secondary mt-3" style="background-color: grey;color: white;font-family: Gabriella;">Selectionner</button>';
+                        echo '<input type="hidden" name="produitId" value="' . $materiel['id_ma'] . '">';
+                        echo '<input type="hidden" name="nom" value="' . $materiel['nom_ma'] . '">';
+                        echo '<input type="hidden" name="prix" value="' . $materiel['prix'] . '">';
+                        echo '<input type="hidden" name="description" value="' . $materiel['description'] . '">';
+                        echo '<input type="number" name="quantite" value="1" min="1">';
+                        echo '<button class="btn btn-secondary mt-3" type="submit" name="ajouterAuPanier" style="background-color: grey;color: white;font-family: Gabriella;">Ajouter au panier</button>';
                         echo '</form>';
                         echo '</div>';
                         echo '</div>';
                         echo '</div>';
                         echo '</div>';
                         echo '</div>';
-                    }; ?>
+                    };
+
+                    if (isset($_POST['ajouterAuPanier'])) {
+                        $produitId = $_POST['produitId'];
+                        $nom = $_POST['nom'];
+                        $prix = $_POST['prix'];
+                        $description = $_POST['description'];
+                        $quantite = $_POST['quantite']; // Vous pouvez ajuster la quantité selon vos besoins
+
+                        ajouterAuPanier($produitId, $nom, $prix, $description, $quantite);
+                    }
+                    ?>
 
                 </div>
             </div>
