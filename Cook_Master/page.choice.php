@@ -20,15 +20,15 @@ require_once 'entities/users/verif_connecter.php';
                 <h1 class="text-center">Formulaire de Paiement</h1>
                 <div class="d-flex mt-4">
                     <div class="me-4 text-center">
-                        <form action="page.paiement" method="POST">
+                        <form action="/entities/users/exe-payement_abonnement" method="POST">
                             <input type="hidden" name="abonnement" value="<?= $_POST['abonnement'] ?>">
                             <input type="hidden" name="mode" value="mensuel">
                             <h2>
                                 <NOBR>Choisir l'abonnement mensuel</NOBR>
                             </h2>
                             <?php
-                            if ($_POST['abonnement'] == 'junior') {
-                                echo '<input type="hidden" name="prix" value="9,90">';
+                            if ($_POST['abonnement'] == 'Junior') {
+                                echo '<input type="hidden" name="prix" value="9.90">';
                                 echo '<h2>9,90€/mois</h2>';
                             } else {
                                 echo '<input type="hidden" name="prix" value="19">';
@@ -39,14 +39,14 @@ require_once 'entities/users/verif_connecter.php';
                         </form>
                     </div>
                     <div class="text-center">
-                        <form action="page.paiement" method="POST">
+                        <form action="/entities/users/exe-payement_abonnement" method="POST">
                             <input type="hidden" name="abonnement" value="<?= $_POST['abonnement'] ?>">
                             <input type="hidden" name="mode" value="annuel">
                             <h2>
                                 <NOBR>Choisir l'abonnement annuel</NOBR>
                             </h2>
                             <?php
-                            if ($_POST['abonnement'] == 'junior') {
+                            if ($_POST['abonnement'] == 'Junior') {
                                 echo '<input type="hidden" name="prix" value="113">';
                                 echo '<h2>113€/an</h2>';
                             } else {

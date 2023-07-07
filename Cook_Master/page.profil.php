@@ -56,7 +56,7 @@ require_once __DIR__ . '/forms/fonction.php';
                         <a href="page.messagerie" class="btn-menu animated fadeInUp scrollto">Messagerie</a>
                     </div>
                     <div class="text-center me-2">
-                        <a href="entities/users/deconnexion" class="btn-menu animated fadeInUp scrollto">Déconnexion</a>*
+                        <a href="entities/users/deconnexion" class="btn-menu animated fadeInUp scrollto">Déconnexion</a>
                     </div>
                 </div>
                 <?php } ?>

@@ -59,11 +59,11 @@ require_once __DIR__ . '/forms/head.php';
                     
                         echo '<div class="text-center mt-5">';
                         echo '<a href="page.materiels" class="btn-menu animated fadeInUp scrollto me-2 p-2 px-3" style="color: white;border-radius: 30px;background-color: #cda45e;border-color: #cda45e;">Page matériel</a>';
-                        echo '<a href="page.panier" class="btn-menu animated fadeInUp scrollto p-2 px-3" style="color: white;border-radius: 30px;background-color: #cda45e;border-color: #cda45e;">Vider le panier</a>';
+                        echo '<a href="/entities/users/sup.panier" class="btn-menu animated fadeInUp scrollto p-2 px-3" style="color: white;border-radius: 30px;background-color: #cda45e;border-color: #cda45e;">Vider le panier</a>';
                         echo '</div>';
                     
                         echo '<div class="text-center mt-5">';
-                        echo '<a href="page.panier" class="btn-menu animated fadeInUp scrollto p-2 px-3" style="color: white;border-radius: 30px;background-color: #cda45e;border-color: #cda45e;">Commander</a>';
+                        echo '<a href="/entities/users/exe-payement_achat" class="btn-menu animated fadeInUp scrollto p-2 px-3" style="color: white;border-radius: 30px;background-color: #cda45e;border-color: #cda45e;">Commander</a>';
                         echo '</div>';
                     }
                      else { ?>

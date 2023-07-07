@@ -39,7 +39,7 @@ if (!isset($_SESSION['user'])) {
                                 <img src="assets/img/Cook_Junior.png" alt="">
                                 <h1 class="mt-5 mb-2" style="color: #cda45e;">Grade Junior</h1>
                                 <form action="page.choice" method="POST">
-                                    <input type="hidden" name="abonnement" value="junior">
+                                    <input type="hidden" name="abonnement" value="Junior">
                                     <button type="submit" class="mt-5 btn btn-primary btn-lg btn-block" style="background-color: #cda45e;border-color: #cda45e;">S'abonner</button>
                                 </form>
                             </div>
@@ -49,7 +49,7 @@ if (!isset($_SESSION['user'])) {
                                 <img src="assets/img/Cook_Senior.png" alt="">
                                 <h1 class="mt-5 mb-2" style="color: #cda45e;">Grade Senior</h1>
                                 <form action="page.choice" method="POST">
-                                    <input type="hidden" name="abonnement" value="senior">
+                                    <input type="hidden" name="abonnement" value="Senior">
                                     <button type="submit" class="mt-5 btn btn-primary btn-lg btn-block" style="background-color: #cda45e;border-color: #cda45e;">S'abonner</button>
                                 </form>
                             </div>

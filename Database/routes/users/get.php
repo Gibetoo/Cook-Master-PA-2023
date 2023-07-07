@@ -31,6 +31,7 @@ require_once __DIR__ . "/../../entities/users/get-recettes.php";
 require_once __DIR__ . "/../../entities/users/get-one-categorie.php";
 require_once __DIR__ . "/../../entities/users/sup_categorie.php";
 require_once __DIR__ . "/../../entities/users/get-all-salle.php";
+require_once __DIR__ . "/../../entities/users/update-abonnement.php";
 
 try {
 
@@ -94,7 +95,6 @@ try {
         }
 
         $message = $users;
-    
     } else if (isset($_GET["email"]) && isset($_GET["password"])) { // Si l'API reçoit un email on récupère l'utilisateur
         $users = getOneUserPass($_GET["email"], $_GET["password"]);
 
@@ -107,6 +107,11 @@ try {
         }
 
         $message = $users;
+    } else if (isset($_GET['demande']) && isset($_GET['email'])  && isset($_GET['abonnement']) && $_GET['demande'] == 'change_abo') {
+        
+        UpdateAbonnement($_GET['abonnement'], $_GET['email']);
+
+        $message = "Abonnement changé";
     } else if (isset($_GET["email"])) {
         $users = getOneUser($_GET["email"]);
 
@@ -171,7 +176,6 @@ try {
         }
 
         $message = $formation;
-
     } else if (isset($_GET['demande']) && $_GET['demande'] == 'cours') {
 
         $Cours = getCours();
@@ -185,26 +189,22 @@ try {
         }
 
         $message = $Cours;
-
     } else if (isset($_GET['demande']) && $_GET['demande'] == 'prestataires') {
 
         $prest = getPrest();
 
         $message = $prest;
-
     } else if (isset($_GET['demande']) && isset($_GET['id_metier']) && $_GET['demande'] == 'prestataire') {
 
         $prestid = getIdPrest($_GET['id_metier']);
 
         $message = $prestid;
-
-    }else if (isset($_GET['demande']) && $_GET['demande'] == 'metier') {
+    } else if (isset($_GET['demande']) && $_GET['demande'] == 'metier') {
 
         $metier = getMetier();
 
         $message = $metier;
-
-    }else if (isset($_GET['demande']) && isset($_GET['id_metier']) && $_GET['demande'] == 'supp_metier') {
+    } else if (isset($_GET['demande']) && isset($_GET['id_metier']) && $_GET['demande'] == 'supp_metier') {
         $supp_metier = supMetier($_GET['id_metier']);
 
         if (isset($supp_metier["error"])) { // Si l'utilisateur n'existe pas
@@ -265,7 +265,7 @@ try {
         }
 
         $message = $adresse;
-    }else if (isset($_GET['demande']) && isset($_GET['id_adr']) && $_GET['demande'] == 'supp_adresse_lo') {
+    } else if (isset($_GET['demande']) && isset($_GET['id_adr']) && $_GET['demande'] == 'supp_adresse_lo') {
         $supp_adresse = supAdresselo($_GET['id_adr']);
 
         if (isset($supp_adresse["error"])) { // Si l'utilisateur n'existe pas
@@ -277,7 +277,7 @@ try {
         }
 
         $message = $supp_adresse;
-    }else if (isset($_GET['demande']) && $_GET['demande'] == 'local') {
+    } else if (isset($_GET['demande']) && $_GET['demande'] == 'local') {
 
         $local = getLocal();
 
@@ -295,8 +295,7 @@ try {
         $oneAdresse = getOneAdresseLo($_GET['id_adr']);
 
         $message = $oneAdresse;
-
-    }else if (isset($_GET['demande']) && isset($_GET['id_es']) && $_GET['demande'] == 'supp_local') {
+    } else if (isset($_GET['demande']) && isset($_GET['id_es']) && $_GET['demande'] == 'supp_local') {
         $supp_local = supLocal($_GET['id_es']);
 
         if (isset($supp_local["error"])) { // Si l'utilisateur n'existe pas
@@ -308,7 +307,7 @@ try {
         }
 
         $message = $supp_local;
-    }else if (isset($_GET['demande']) && $_GET['demande'] == 'salle') {
+    } else if (isset($_GET['demande']) && $_GET['demande'] == 'salle') {
 
         $salle = getsalle();
 
@@ -321,13 +320,12 @@ try {
         }
 
         $message = $salle;
-    }else if (isset($_GET['demande']) && isset($_GET['id_es']) && $_GET['demande'] == 'one_local') {
+    } else if (isset($_GET['demande']) && isset($_GET['id_es']) && $_GET['demande'] == 'one_local') {
 
         $oneLocal = getOnelocal($_GET['id_es']);
 
         $message = $oneLocal;
-
-    }else if (isset($_GET['demande']) && isset($_GET['id_salle']) && $_GET['demande'] == 'supp_salle') {
+    } else if (isset($_GET['demande']) && isset($_GET['id_salle']) && $_GET['demande'] == 'supp_salle') {
         $supp_salle = supSalle($_GET['id_salle']);
 
         if (isset($supp_salle["error"])) { // Si l'utilisateur n'existe pas
@@ -351,19 +349,17 @@ try {
         }
 
         $message = $savekey;
-    }else if (isset($_GET['demande']) && $_GET['demande'] == 'categorie') {
+    } else if (isset($_GET['demande']) && $_GET['demande'] == 'categorie') {
 
         $categorie = getCategorie();
 
         $message = $categorie;
-
-    }else if (isset($_GET['demande']) && isset($_GET['id_cat']) && $_GET['demande'] == 'one_categorie') {
+    } else if (isset($_GET['demande']) && isset($_GET['id_cat']) && $_GET['demande'] == 'one_categorie') {
 
         $oneCategorie = getOneCategorie($_GET['id_cat']);
 
         $message = $oneCategorie;
-
-    }else if (isset($_GET['demande']) && isset($_GET['id_cat']) && $_GET['demande'] == 'supp_categorie') {
+    } else if (isset($_GET['demande']) && isset($_GET['id_cat']) && $_GET['demande'] == 'supp_categorie') {
         $supp_categorie = supCategorie($_GET['id_cat']);
 
         if (isset($supp_categorie["error"])) { // Si l'utilisateur n'existe pas
@@ -375,13 +371,12 @@ try {
         }
 
         $message = $supp_categorie;
-    }else if (isset($_GET['demande']) && isset($_GET['heure_debut']) && isset($_GET['heure_fin']) && isset($_GET['date']) && isset($_GET['id_es']) && $_GET['demande'] == 'get_salle') {
+    } else if (isset($_GET['demande']) && isset($_GET['heure_debut']) && isset($_GET['heure_fin']) && isset($_GET['date']) && isset($_GET['id_es']) && $_GET['demande'] == 'get_salle') {
 
         $AllSalle = getAllSalle($_GET['heure_debut'], $_GET['heure_fin'], $_GET['date'], $_GET['id_es']);
 
         $message = $AllSalle;
-
-    }else { // Si l'API ne reçoit pas d'email et de mot de passe on récupère tous les utilisateurs
+    } else { // Si l'API ne reçoit pas d'email et de mot de passe on récupère tous les utilisateurs
         $users = getUsers();
 
         $message = $users;

@@ -6,9 +6,6 @@ require_once __DIR__ . "/savekey.php";
 
 ini_set('display_errors', 1);
 
-
-
-
 if (!isset($_POST['email']) || !isset($_POST['password']) || !isset($_POST['nom']) || !isset($_POST['prenom'])|| !isset($_POST['conf_password'])) {
     header('location: /page.inscription.php?message=Veuillez remplir tous les champs.&type=danger');
     exit;

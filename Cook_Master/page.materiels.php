@@ -11,7 +11,7 @@ require_once 'entities/users/verif_connecter.php';
 
 require_once __DIR__ . '/forms/head.php';
 require_once __DIR__ . '/entities/users/get_materiels.php';
-require_once __DIR__ . '/entities/users/fonction_panier.php';
+require_once __DIR__ . '/entities/users/fonction.php';
 
 ?>
 
