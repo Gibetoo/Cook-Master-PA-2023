@@ -21,7 +21,7 @@ $results = getAdresseLo();
     <main id="hero" class="d-flex align-items-center">
         <div class="shadow-box">
             <div class="row">
-                <form action="add_cours_recap" method="GET">
+                <form action="add_cours_salle" method="GET">
                     <h1 class="text-center">Ajouter un Cours</h1>
                     <h2 class="text-center mt-4">Selectionner le local pour le cours</h2>
 

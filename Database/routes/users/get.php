@@ -30,6 +30,7 @@ require_once __DIR__ . "/../../entities/users/get-categorie.php";
 require_once __DIR__ . "/../../entities/users/get-recettes.php";
 require_once __DIR__ . "/../../entities/users/get-one-categorie.php";
 require_once __DIR__ . "/../../entities/users/sup_categorie.php";
+require_once __DIR__ . "/../../entities/users/get-all-salle.php";
 
 try {
 
@@ -374,6 +375,12 @@ try {
         }
 
         $message = $supp_categorie;
+    }else if (isset($_GET['demande']) && isset($_GET['heure_debut']) && isset($_GET['heure_fin']) && isset($_GET['date']) && isset($_GET['id_es']) && $_GET['demande'] == 'get_salle') {
+
+        $AllSalle = getAllSalle($_GET['heure_debut'], $_GET['heure_fin'], $_GET['date'], $_GET['id_es']);
+
+        $message = $AllSalle;
+
     }else { // Si l'API ne reçoit pas d'email et de mot de passe on récupère tous les utilisateurs
         $users = getUsers();
 

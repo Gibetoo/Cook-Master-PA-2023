@@ -42,7 +42,7 @@ Var_dump($result);
 $response = json_decode($result, true); // On décode la réponse JSON
 var_dump($response);
 if ($response["success"] == true) { // Si la création de l'utilisateur a réussi
-    header('Location: http://51.210.241.29/Projet-Annuel/Cook_Master_admin/');
+    header('Location: https://cook-master.site/Cook_Master_admin/gestion_salle?message=La salle a bien été ajouté&type=success');
 } else { // Si la création de l'utilisateur a échoué, on affiche un message d'erreur
     echo "Erreur" . $response["error"];
 }

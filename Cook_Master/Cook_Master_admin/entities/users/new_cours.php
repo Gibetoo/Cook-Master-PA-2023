@@ -7,7 +7,7 @@ foreach ($_POST as $key => $value) {
 
 exit();
 
-if (isset($_POST['nom_cours']) && isset($_POST['prix_cours']) && isset($_POST['description_cours']) && isset($_POST['recettes']) && isset($_POST['materiels'])) {
+if (isset($_POST['nom_cours']) && isset($_POST['prix_cours']) && isset($_POST['description_cours']) && isset($_POST['recettes']) && isset($_POST['materiels']) && isset($_GET['pres_cours']) && isset($_GET['id_adr']) && isset($_GET['id_cuis'])) {
     $data = array(
         'nom_cours' => $_POST['nom_cours'],
         'prix_cours' => $_POST['prix_cours'],

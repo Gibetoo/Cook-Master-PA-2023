@@ -23,7 +23,9 @@ require_once 'forms/head.php';
         <div class="shadow-box">
 
             <h1 class="text-center">Gestion des Adresses</h1>
-
+            <?php 
+                include "forms/message.php";
+            ?>
             <table class="text-white text-center table table-striped mt-4">
                 <thead>
                     <tr>

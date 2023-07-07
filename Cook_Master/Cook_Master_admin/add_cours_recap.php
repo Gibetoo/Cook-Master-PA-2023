@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+
+
 require_once 'entities/users/verif_connecter.php';
 require_once __DIR__ . "/entities/users/get_one_prest.php";
 require_once __DIR__ . "/entities/users/get_one_adresse_lo.php";
@@ -9,7 +11,6 @@ require_once __DIR__ . "/entities/users/get_one_adresse_lo.php";
 $pres = getOnePres($_GET['pres_cours']);
 $adresse = getOneAdresse($_GET['id_adr']);
 
-ini_set('display_errors', 1);
 
 ?>
 

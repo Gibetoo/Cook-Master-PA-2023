@@ -6,6 +6,31 @@ function createSalle(string $nom_salle, int $num_salle, int $nb_presonne, float 
 
     $databaseConnection = getDatabaseConnection();
 
+    /* $sql = "SELECT COUNT(*) AS nombre_salles FROM Salle WHERE id_es = :id_es";
+    $result = $databaseConnection->query($sql);
+
+if ($result !== false) {
+    $rows = $result->fetchAll();
+    $nombre_salles_actuel = count($rows);
+} else {
+    $nombre_salles_actuel = 0;
+}
+
+$sql = "SELECT nb_salle FROM Espaces_louer_ WHERE id_es = :id_es";
+$result = $databaseConnection->query($sql);
+
+if ($result !== false) {
+    
+    $rows = $result->fetchAll();
+    $nombre_salles_max = count($rows);
+} else {
+    $nombre_salles_max = 0;
+}
+
+
+if ($nombre_salles_actuel >= $nombre_salles_max) {
+    echo "Vous avez atteint le nombre maximum de salles pour cet espace";
+} else { */
     $createSalleQuery = $databaseConnection->prepare("
         INSERT INTO Salle(
             nom_salle,
@@ -37,3 +62,4 @@ function createSalle(string $nom_salle, int $num_salle, int $nb_presonne, float 
 
     ]);
 }
+/* } */
