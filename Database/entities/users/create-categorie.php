@@ -9,15 +9,12 @@ function createCategorie(string $nom_cat): void
     $createCategorieQuery = $databaseConnection->prepare("
         INSERT INTO Categorie(
             nom_cat
-
         ) VALUES (
             :nom_cat
-            
         );
     ");
 
     $createCategorieQuery->execute([
         "nom_cat" => htmlspecialchars($nom_cat)
-
     ]);
 }

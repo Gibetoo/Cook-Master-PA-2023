@@ -56,6 +56,13 @@ session_start();
 
   <main id="main">
 
+    <div id="modal" class="modal">
+      <div class="">
+        <h2 class="mb-2">Message</h2>
+        <p id="modal-message"></p>
+      </div>
+    </div>
+
     <!-- ======= About Section ======= -->
     <section id="about" class="about">
       <div class="container" data-aos="fade-up">
@@ -672,6 +679,20 @@ session_start();
   </main><!-- End #main -->
 
   <?php require_once 'forms/footer.php'; ?>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var message = "<?php echo isset($_GET['message']) ? $_GET['message'] : ''; ?>";
+      if (message) {
+        document.getElementById('modal-message').innerText = message;
+        document.getElementById('modal').style.display = 'flex';
+
+        setTimeout(function() {
+          document.getElementById('modal').style.display = 'none';
+        }, 4000);
+      }
+    });
+  </script>
 
 </body>
 

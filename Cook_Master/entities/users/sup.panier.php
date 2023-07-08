@@ -1,8 +1,6 @@
 <?php
 session_start(); // Assurez-vous que la session est démarrée
 
-ini_set('display_errors', 1);
-
 require_once "../../Cook_Master_admin/entities/users/mail.php";
 
 $_SESSION['user']['panier'] = array();

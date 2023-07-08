@@ -1,7 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php require_once 'forms/head.php'; ?>
+<?php
+
+require_once __DIR__ . '/forms/head.php';
+require_once __DIR__ . '/entities/users/get_one_users.php';
+require_once __DIR__ . '/entities/users/change_verif_email.php';
+
+$user = get_one_users($_GET['email']);
+
+?>
 
 <body>
     <?php require_once 'forms/header_base.php'; ?>
@@ -17,13 +25,10 @@
                     // Récupérer l'e-mail et le code de l'URL
                     $email = $_GET['email'];
                     $code = $_GET['code'];
-
-                    // Vérifier si l'e-mail et le code sont valides et correspondent à un compte utilisateur
-                    // Effectuez vos vérifications et traitements ici
                     
-                    // Exemple de vérification basique pour afficher un message de réussite
-                    if ($email === 'exemple@domaine.com' && $code === '123456') {
+                    if ($code === $user['verification_email']) {
                         echo '<p class="text-center">Votre compte a été activé avec succès !</p>';
+                        $result = change_status($email, 'oui');
                     } else {
                         echo '<p class="text-center">Le lien d\'activation est invalide.</p>';
                     }

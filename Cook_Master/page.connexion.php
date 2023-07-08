@@ -17,6 +17,9 @@ session_start();
             <div class="row m-4">
                 <form action="entities/users/connexion.php" method="POST">
                     <h1 class="text-center">Connectez-vous</h1>
+                    
+                    <?php require_once "forms/message.php"; ?>
+
                     <div class="mt-3">
                         <label for="exampleFormControlInput1" class="form-label">Adresse email</label>
                         <input type="email" name="email" class="form-control <?= isset($_GET['validmail']) ? $_GET['validmail'] : (isset($_GET['valid']) ? $_GET['valid'] : "") ?>" id="exampleFormControlInput1" placeholder="name@example.com" required>
@@ -33,7 +36,7 @@ session_start();
                     <a href="page.inscription" class="text-center mt-2">Pas encore inscrit ?</a>
                 </div>
                 <div class="lien text-center">
-                        <a href="page.connexion-prestataire" class="text-center mt-2">Prestataire ?</a>
+                    <a href="page.connexion-prestataire" class="text-center mt-2">Prestataire ?</a>
                 </div>
             </div>
         </div>

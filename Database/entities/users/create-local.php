@@ -20,8 +20,6 @@ function createLocal(string $nom_es, float $dimension, int $nb_salle, int $id_ad
             :nb_salle,
             :id_adr
         );
-            
-        
     ");
 
     $createLocalQuery->execute([
@@ -29,7 +27,5 @@ function createLocal(string $nom_es, float $dimension, int $nb_salle, int $id_ad
         "dimension" => htmlspecialchars($dimension),
         "nb_salle" => htmlspecialchars($nb_salle),
         "id_adr" => intval($id_adr)
-        
-
     ]);
 }

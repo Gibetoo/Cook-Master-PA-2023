@@ -91,10 +91,10 @@ if ($response["success"] == true) { // Si la création de l'utilisateur a réuss
 
     require_once "message_inscrit.php";
 
-    header('Location: https://cook-master.site/');
+    header('Location: https://cook-master.site/?message=Votre compte à bien été enregistrée, vous allez recevoir un mail pour valider votre compte et pouvoir vous connecter&type=success');
     sendmail($sujet, $message, $_POST['email']);
     exit();
-} else { // Si la création de l'utilisateur a échoué, on affiche un message d'erreur
+} else {
     echo "Erreur " . $response["error"];
     exit();
 }

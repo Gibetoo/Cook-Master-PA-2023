@@ -12,13 +12,11 @@ function createRecette(string $nom_recette, string $preparation, string $descrip
             preparation,
             description_recette,
             id_cat
-
         ) VALUES (
             :nom_recette,
             :preparation,
             :description_recette,
             :id_cat
-            
         );
     ");
 

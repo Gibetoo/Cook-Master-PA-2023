@@ -22,15 +22,19 @@ curl_close($ch); // On ferme CURL
 $response = json_decode($result, true); // On décode la réponse JSON
 
 if ($response["success"] == true) { // Si la création de l'utilisateur a réussi
+    if ($response["message"]["verification_email"] != "oui") {
+        header('location: ../../page.connexion?message=Votre compte n\'est pas activé, veuillez vérifier vos mails&type=danger');
+        exit;
+    }
     session_start(); // On démarre la session
     $_SESSION['user'] = $response["message"]; // On stocke les données de l'utilisateur dans la session
     header('Location: ../../');
 } else { // Si la création de l'utilisateur a échoué, on affiche un message d'erreur
     if ($response["error"] == "Utilisateur non trouvé") {
-        header('location: ../../page.connexion?validmail=is-invalid');
+        header('location: ../../page.connexion?validmail=is-invalid&validpasswd=is-invalid&message=Identifiant ou mot de passe incorrect&type=danger');
         exit;
     } else if ($response["error"] == "Mot de passe incorrect") {
-        header('location: ../../page.connexion?validpasswd=is-invalid');
+        header('location: ../../page.connexion?validmail=is-invalid&validpasswd=is-invalid&message=Identifiant ou mot de passe incorrect&type=danger');
         exit;
     } else {
         echo "Une erreur est survenue";

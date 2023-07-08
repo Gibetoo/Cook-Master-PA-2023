@@ -39,8 +39,6 @@ if ($nombre_salles_actuel >= $nombre_salles_max) {
             prix_salle,
             dimension,
             id_es
-            
-
         ) VALUES (
             :nom_salle,
             :num_salle,
@@ -58,8 +56,6 @@ if ($nombre_salles_actuel >= $nombre_salles_max) {
         "prix_salle" => htmlspecialchars($prix_salle),
         "dimension" => htmlspecialchars($dimension),
         "id_es" => htmlspecialchars($id_es)
-        
-
     ]);
 }
 /* } */

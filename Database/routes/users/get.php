@@ -38,11 +38,11 @@ try {
     if (isset($_GET['demande']) && isset($_GET['email']) && isset($_GET['droit']) && $_GET['demande'] == 'change_mod') {
         $change = changeDroit($_GET['email'], $_GET['droit']);
 
-        if (isset($change["error"])) { // Si l'utilisateur n'existe pas
+        if (isset($change["error"])) {
             echo jsonResponse(404, [], [
                 "success" => false,
                 "error" => $change["error"]
-            ]); // On renvoie un code 404 (Not Found) et l'erreur
+            ]);
             die();
         }
 
@@ -50,11 +50,11 @@ try {
     } else if (isset($_GET['demande']) && isset($_GET['email']) && isset($_GET['ban']) && $_GET['demande'] == 'change_ban') {
         $ban = changeBan($_GET['ban'], $_GET['email']);
 
-        if (isset($change["error"])) { // Si l'utilisateur n'existe pas
+        if (isset($change["error"])) {
             echo jsonResponse(404, [], [
                 "success" => false,
                 "error" => $ban["error"]
-            ]); // On renvoie un code 404 (Not Found) et l'erreur
+            ]);
             die();
         }
 
@@ -62,11 +62,11 @@ try {
     } else if (isset($_GET['demande']) && isset($_GET['email']) && $_GET['demande'] == 'supp') {
         $supp = supUser($_GET['email']);
 
-        if (isset($supp["error"])) { // Si l'utilisateur n'existe pas
+        if (isset($supp["error"])) {
             echo jsonResponse(404, [], [
                 "success" => false,
                 "error" => $supp["error"]
-            ]); // On renvoie un code 404 (Not Found) et l'erreur
+            ]);
             die();
         }
 
@@ -74,52 +74,52 @@ try {
     } else if (isset($_GET['demande']) && isset($_GET['id_ma']) && $_GET['demande'] == 'supp') {
         $supp = supMateriel($_GET['id_ma']);
 
-        if (isset($supp["error"])) { // Si l'utilisateur n'existe pas
+        if (isset($supp["error"])) {
             echo jsonResponse(404, [], [
                 "success" => false,
                 "error" => $supp["error"]
-            ]); // On renvoie un code 404 (Not Found) et l'erreur
+            ]);
             die();
         }
 
         $message = $supp;
-    } else if (isset($_GET["email"]) && isset($_GET["password"]) && isset($_GET["droit"])) { // Si l'API reçoit un email on récupère l'utilisateur
+    } else if (isset($_GET["email"]) && isset($_GET["password"]) && isset($_GET["droit"])) {
         $users = getOneUserPass($_GET["email"], $_GET["password"]);
 
-        if (isset($users["error"])) { // Si l'utilisateur n'existe pas
+        if (isset($users["error"])) {
             echo jsonResponse(404, [], [
                 "success" => false,
                 "error" => $users["error"]
-            ]); // On renvoie un code 404 (Not Found) et l'erreur
+            ]);
             die();
         }
 
         $message = $users;
-    } else if (isset($_GET["email"]) && isset($_GET["password"])) { // Si l'API reçoit un email on récupère l'utilisateur
+    } else if (isset($_GET["email"]) && isset($_GET["password"])) {
         $users = getOneUserPass($_GET["email"], $_GET["password"]);
 
-        if (isset($users["error"])) { // Si l'utilisateur n'existe pas
+        if (isset($users["error"])) {
             echo jsonResponse(404, [], [
                 "success" => false,
                 "error" => $users["error"]
-            ]); // On renvoie un code 404 (Not Found) et l'erreur
+            ]);
             die();
         }
 
         $message = $users;
     } else if (isset($_GET['demande']) && isset($_GET['email'])  && isset($_GET['abonnement']) && $_GET['demande'] == 'change_abo') {
-        
+
         UpdateAbonnement($_GET['abonnement'], $_GET['email']);
 
         $message = "Abonnement changé";
-    } else if (isset($_GET["email"])) {
+    } else if (isset($_GET["email"]) && isset($_GET['demande']) && $_GET['demande'] == 'user') {
         $users = getOneUser($_GET["email"]);
 
-        if (isset($users["error"])) { // Si l'utilisateur n'existe pas
+        if (isset($users["error"])) {
             echo jsonResponse(404, [], [
                 "success" => false,
                 "error" => $users["error"]
-            ]); // On renvoie un code 404 (Not Found) et l'erreur
+            ]);
             die();
         }
 
@@ -128,11 +128,11 @@ try {
 
         $materiels = getMaterielById($_GET['id_ma']);
 
-        if (isset($materiels["error"])) { // Si l'utilisateur n'existe pas
+        if (isset($materiels["error"])) {
             echo jsonResponse(404, [], [
                 "success" => false,
                 "error" => $materiels["error"]
-            ]); // On renvoie un code 404 (Not Found) et l'erreur
+            ]);
             die();
         }
 
@@ -141,11 +141,11 @@ try {
 
         $materiels = getMateriel();
 
-        if (isset($materiels["error"])) { // Si l'utilisateur n'existe pas
+        if (isset($materiels["error"])) {
             echo jsonResponse(404, [], [
                 "success" => false,
                 "error" => $materiels["error"]
-            ]); // On renvoie un code 404 (Not Found) et l'erreur
+            ]);
             die();
         }
 
@@ -154,11 +154,11 @@ try {
 
         $recettes = getRecettes();
 
-        if (isset($materiels["error"])) { // Si l'utilisateur n'existe pas
+        if (isset($materiels["error"])) {
             echo jsonResponse(404, [], [
                 "success" => false,
                 "error" => $recettes["error"]
-            ]); // On renvoie un code 404 (Not Found) et l'erreur
+            ]);
             die();
         }
 
@@ -167,11 +167,11 @@ try {
 
         $formation = getFormation();
 
-        if (isset($formation["error"])) { // Si l'utilisateur n'existe pas
+        if (isset($formation["error"])) {
             echo jsonResponse(404, [], [
                 "success" => false,
                 "error" => $formation["error"]
-            ]); // On renvoie un code 404 (Not Found) et l'erreur
+            ]);
             die();
         }
 
@@ -180,11 +180,11 @@ try {
 
         $Cours = getCours();
 
-        if (isset($Cours["error"])) { // Si l'utilisateur n'existe pas
+        if (isset($Cours["error"])) {
             echo jsonResponse(404, [], [
                 "success" => false,
                 "error" => $Cours["error"]
-            ]); // On renvoie un code 404 (Not Found) et l'erreur
+            ]);
             die();
         }
 
@@ -207,11 +207,11 @@ try {
     } else if (isset($_GET['demande']) && isset($_GET['id_metier']) && $_GET['demande'] == 'supp_metier') {
         $supp_metier = supMetier($_GET['id_metier']);
 
-        if (isset($supp_metier["error"])) { // Si l'utilisateur n'existe pas
+        if (isset($supp_metier["error"])) {
             echo jsonResponse(404, [], [
                 "success" => false,
                 "error" => $supp_metier["error"]
-            ]); // On renvoie un code 404 (Not Found) et l'erreur
+            ]);
             die();
         }
 
@@ -219,11 +219,11 @@ try {
     } else if (isset($_GET['demande']) && isset($_GET['email_pres']) && $_GET['demande'] == 'supp_pres') {
         $supp_pres = supPres($_GET['email_pres']);
 
-        if (isset($supp_pres["error"])) { // Si l'utilisateur n'existe pas
+        if (isset($supp_pres["error"])) {
             echo jsonResponse(404, [], [
                 "success" => false,
                 "error" => $supp_pres["error"]
-            ]); // On renvoie un code 404 (Not Found) et l'erreur
+            ]);
             die();
         }
 
@@ -231,11 +231,11 @@ try {
     } else if (isset($_GET["email_pres"])) {
         $users = getOnePres($_GET["email_pres"]);
 
-        if (isset($users["error"])) { // Si l'utilisateur n'existe pas
+        if (isset($users["error"])) {
             echo jsonResponse(404, [], [
                 "success" => false,
                 "error" => $users["error"]
-            ]); // On renvoie un code 404 (Not Found) et l'erreur
+            ]);
             die();
         }
 
@@ -243,11 +243,11 @@ try {
     } else if (isset($_GET['demande']) && isset($_GET['email_prest']) && isset($_GET['ban']) && $_GET['demande'] == 'change_ban_prest') {
         $ban = changeBanPrest($_GET['ban'], $_GET['email_prest']);
 
-        if (isset($ban["error"])) { // Si l'utilisateur n'existe pas
+        if (isset($ban["error"])) {
             echo jsonResponse(404, [], [
                 "success" => false,
                 "error" => $ban["error"]
-            ]); // On renvoie un code 404 (Not Found) et l'erreur
+            ]);
             die();
         }
 
@@ -256,11 +256,11 @@ try {
 
         $adresse = getAdresse();
 
-        if (isset($adresse["error"])) { // Si l'utilisateur n'existe pas
+        if (isset($adresse["error"])) {
             echo jsonResponse(404, [], [
                 "success" => false,
                 "error" => $adresse["error"]
-            ]); // On renvoie un code 404 (Not Found) et l'erreur
+            ]);
             die();
         }
 
@@ -268,11 +268,11 @@ try {
     } else if (isset($_GET['demande']) && isset($_GET['id_adr']) && $_GET['demande'] == 'supp_adresse_lo') {
         $supp_adresse = supAdresselo($_GET['id_adr']);
 
-        if (isset($supp_adresse["error"])) { // Si l'utilisateur n'existe pas
+        if (isset($supp_adresse["error"])) {
             echo jsonResponse(404, [], [
                 "success" => false,
                 "error" => $supp_adresse["error"]
-            ]); // On renvoie un code 404 (Not Found) et l'erreur
+            ]);
             die();
         }
 
@@ -281,11 +281,11 @@ try {
 
         $local = getLocal();
 
-        if (isset($local["error"])) { // Si l'utilisateur n'existe pas
+        if (isset($local["error"])) {
             echo jsonResponse(404, [], [
                 "success" => false,
                 "error" => $local["error"]
-            ]); // On renvoie un code 404 (Not Found) et l'erreur
+            ]);
             die();
         }
 
@@ -298,11 +298,11 @@ try {
     } else if (isset($_GET['demande']) && isset($_GET['id_es']) && $_GET['demande'] == 'supp_local') {
         $supp_local = supLocal($_GET['id_es']);
 
-        if (isset($supp_local["error"])) { // Si l'utilisateur n'existe pas
+        if (isset($supp_local["error"])) {
             echo jsonResponse(404, [], [
                 "success" => false,
                 "error" => $supp_local["error"]
-            ]); // On renvoie un code 404 (Not Found) et l'erreur
+            ]);
             die();
         }
 
@@ -311,11 +311,11 @@ try {
 
         $salle = getsalle();
 
-        if (isset($salle["error"])) { // Si l'utilisateur n'existe pas
+        if (isset($salle["error"])) {
             echo jsonResponse(404, [], [
                 "success" => false,
                 "error" => $salle["error"]
-            ]); // On renvoie un code 404 (Not Found) et l'erreur
+            ]);
             die();
         }
 
@@ -328,11 +328,11 @@ try {
     } else if (isset($_GET['demande']) && isset($_GET['id_salle']) && $_GET['demande'] == 'supp_salle') {
         $supp_salle = supSalle($_GET['id_salle']);
 
-        if (isset($supp_salle["error"])) { // Si l'utilisateur n'existe pas
+        if (isset($supp_salle["error"])) {
             echo jsonResponse(404, [], [
                 "success" => false,
                 "error" => $supp_salle["error"]
-            ]); // On renvoie un code 404 (Not Found) et l'erreur
+            ]);
             die();
         }
 
@@ -340,15 +340,27 @@ try {
     } else if (isset($_GET['demande']) && isset($_GET['email']) && isset($_GET['code']) && $_GET['demande'] == 'savekey') {
         $savekey = savekey($_GET['email'], $_GET['code']);
 
-        if (isset($savekey["error"])) { // Si l'utilisateur n'existe pas
+        if (isset($savekey["error"])) {
             echo jsonResponse(404, [], [
                 "success" => false,
                 "error" => $savekey["error"]
-            ]); // On renvoie un code 404 (Not Found) et l'erreur
+            ]);
             die();
         }
 
         $message = $savekey;
+    } else if (isset($_GET['demande']) && isset($_GET['email']) && isset($_GET['verif']) && $_GET['demande'] == 'change_verif') {
+        $verif = change_status($_GET['email'], $_GET['verif']);
+
+        if (isset($verif["error"])) {
+            echo jsonResponse(404, [], [
+                "success" => false,
+                "error" => $verif["error"]
+            ]);
+            die();
+        }
+
+        $message = $verif;
     } else if (isset($_GET['demande']) && $_GET['demande'] == 'categorie') {
 
         $categorie = getCategorie();
@@ -362,11 +374,11 @@ try {
     } else if (isset($_GET['demande']) && isset($_GET['id_cat']) && $_GET['demande'] == 'supp_categorie') {
         $supp_categorie = supCategorie($_GET['id_cat']);
 
-        if (isset($supp_categorie["error"])) { // Si l'utilisateur n'existe pas
+        if (isset($supp_categorie["error"])) {
             echo jsonResponse(404, [], [
                 "success" => false,
                 "error" => $supp_categorie["error"]
-            ]); // On renvoie un code 404 (Not Found) et l'erreur
+            ]);
             die();
         }
 
@@ -376,7 +388,7 @@ try {
         $AllSalle = getAllSalle($_GET['heure_debut'], $_GET['heure_fin'], $_GET['date'], $_GET['id_es']);
 
         $message = $AllSalle;
-    } else { // Si l'API ne reçoit pas d'email et de mot de passe on récupère tous les utilisateurs
+    } else {
         $users = getUsers();
 
         $message = $users;
@@ -385,11 +397,10 @@ try {
     echo jsonResponse(200, [], [
         "success" => true,
         "message" => $message
-    ]); // On renvoie un code 200 (OK) et l'utilisateur
-
-} catch (Exception $exception) { // Si une erreur survient on renvoie l'exception
+    ]);
+} catch (Exception $exception) {
     echo jsonResponse(500, [], [
         "success" => false,
         "error" => $exception->getMessage()
-    ]); // On renvoie un code 500 (Internal Server Error) et l'erreur
+    ]);
 }
