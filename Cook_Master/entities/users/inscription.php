@@ -1,10 +1,11 @@
 <?php
 
+ini_set('display_errors', 1);
+
 require_once __DIR__ . "/../../Cook_Master_admin/entities/users/get_users.php";
 require_once __DIR__ . "/savekey.php";
+require_once "../../Cook_Master_admin/entities/users/mail.php";
 
-
-ini_set('display_errors', 1);
 
 if (!isset($_POST['email']) || !isset($_POST['password']) || !isset($_POST['nom']) || !isset($_POST['prenom'])|| !isset($_POST['conf_password'])) {
     header('location: /page.inscription.php?message=Veuillez remplir tous les champs.&type=danger');
@@ -26,9 +27,6 @@ if ($_POST['conf_password'] != $_POST['password']) {
     header('location: /page.inscription.php?message=Merci de vérifier la saisie de votre mot de passes.&type=danger');
     exit;
 }
-
-
-
 
 $email = htmlspecialchars($_POST['email']);
 
@@ -88,16 +86,13 @@ if ($response["success"] == true) { // Si la création de l'utilisateur a réuss
 
     $code = getRandomKey(25);
     $reponse = savekey($_POST['email'],$code);
-    var_dump($reponse);
 
     $sujet = 'Activation de votre compte';
 
-    $message = 'Bonjour ' . $_POST['nom'] . ' ' . $_POST['prenom'] . '<br>Voici le lien pour activer votre compte: <a href=https://cook-master.site/activation.php?email=' . $_POST['email'] . '&code=' . $code . '">Cliquer ici</a>';
-    
-    require "../../Cook_Master_admin/entities/users/mail.php";
-    sendmail($sujet, $message, $_POST['email']);
+    require_once "message_inscrit.php";
 
     header('Location: https://cook-master.site/');
+    sendmail($sujet, $message, $_POST['email']);
     exit();
 } else { // Si la création de l'utilisateur a échoué, on affiche un message d'erreur
     echo "Erreur " . $response["error"];

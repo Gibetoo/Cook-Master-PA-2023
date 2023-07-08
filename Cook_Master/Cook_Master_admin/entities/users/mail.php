@@ -26,26 +26,50 @@ function sendmail($s, $m, $e)
         //Recipients
         $mail->setFrom('cook-master-gti@hotmail.com', 'Cook Master');
         $mail->addAddress($e);       //Add a recipient
-        //$mail->addAddress('ellen@example.com');                //Name is optional
-        //$mail->addReplyTo('info@example.com', 'Information');
-        //$mail->addCC('cc@example.com');
-        //$mail->addBCC('bcc@example.com');
-
-        //Attachments
-        //$mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
-        //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
 
         //Content
         $mail->isHTML(true);                                    //Set email format to HTML
         $mail->Subject = $s;
         $mail->Body    = $m;
-        //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
         $mail->send();
-        echo 'Message has been sent';
+
+        // echo 'Message has been sent';
     } catch (Exception $e) {
         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     }
 }
 
-?>
+function sendmailpdf($html, $recipientEmail, $recipientName)
+{
+
+    $mail = new PHPMailer(true);
+
+    try {
+        //Server settings
+        $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      
+        $mail->isSMTP();                                            
+        $mail->Host       = 'smtp.outlook.com';                
+        $mail->SMTPAuth   = true;                                   
+        $mail->Username   = 'cook-master-gti@hotmail.com';          
+        $mail->Password   = 'Esgi2023';                             
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         
+        $mail->Port       = 587;                                 
+
+        // Destinataire
+        $mail->setFrom('cook-master-gti@hotmail.com', 'Cook Master');
+        $mail->addAddress($recipientEmail, $recipientName); 
+
+        $mail->isHTML(true);
+        $mail->Subject = 'Facture Cook Master';
+        $mail->Body = $html;
+        $mail->AltBody = 'Veuillez consulter le contenu HTML de votre facture Cook Master.';
+
+        $mail->send();
+
+        // Message de confirmation
+        // echo 'Le courrier électronique a été envoyé avec succès.';
+    } catch (Exception $e) {
+        echo "Une erreur s'est produite lors de l'envoi du courrier électronique : {$mail->ErrorInfo}";
+    }
+}

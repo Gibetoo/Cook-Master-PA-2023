@@ -21,7 +21,6 @@ function savekey($email, $code)
     if ($response["success"] == true) { // Si la création de l'utilisateur a réussi, on affecte la réponse à $results
         return $response["message"];
     } else { // Si la création de l'utilisateur a échoué, on affecte un tableau vide à $results
-        echo "Ntm y'a rien la " . $response["error"];
-        exit();
+        return $response["error"];
     }
 }
