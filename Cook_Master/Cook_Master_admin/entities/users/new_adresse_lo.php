@@ -1,5 +1,4 @@
 <?php
-ini_set('display_errors', 1);
 
 if (!isset($_POST['etage']) || !isset($_POST['num_bat_es'])|| !isset($_POST['rue_es']) || !isset($_POST['code_postal_es']) || !isset($_POST['ville_es']) || !isset($_POST['pays_es']) ) {
     echo "erreur";
