@@ -32,6 +32,7 @@ require_once __DIR__ . "/../../entities/users/get-one-categorie.php";
 require_once __DIR__ . "/../../entities/users/sup_categorie.php";
 require_once __DIR__ . "/../../entities/users/get-all-salle.php";
 require_once __DIR__ . "/../../entities/users/update-abonnement.php";
+require_once __DIR__ . "/../../entities/users/get-date-salle.php";
 
 try {
 
@@ -388,6 +389,11 @@ try {
         $AllSalle = getAllSalle($_GET['heure_debut'], $_GET['heure_fin'], $_GET['date'], $_GET['id_es']);
 
         $message = $AllSalle;
+    }else if (isset($_GET['demande']) && isset($_GET['date']) && $_GET['demande'] == 'get_date') {
+
+        $date = getHeure($_GET['date']);
+
+        $message = $date;
     } else {
         $users = getUsers();
 

@@ -16,6 +16,7 @@ require_once __DIR__ . "/../../entities/users/create-local.php";
 require_once __DIR__ . "/../../entities/users/create-categorie.php";
 require_once __DIR__ . "/../../entities/users/create-recette.php";
 require_once __DIR__ . "/../../entities/users/create-cours.php";
+require_once __DIR__ . "/../../entities/users/create-formation.php";
 
 try {
     $body = getBody();
@@ -68,10 +69,14 @@ try {
         createRecette($body["nom_recette"], $body["preparation"], $body["description"], $body["categorie"]);
 
         $message = "Recette créé";
-    } else if (isset($_POST['nom_cours']) && isset($_POST['prix_cours']) && isset($_POST['description_cours']) && isset($_POST['recettes']) && isset($_POST['materiels'])) {
-        createCours($_POST['nom_cours'], $_POST['prix_cours'], $_POST['description_cours'], $_POST['recettes'], $_POST['materiels']);
+    } else if (isset($body['nom_cours']) && isset($body['prix_cours']) && isset($body['description_cours']) && isset($body['recettes']) && isset($body['materiels'])) {
+        createCours($body['nom_cours'], $body['prix_cours'], $body['description_cours'], $body['recettes'], $body['materiels']);
 
         $message = "Cours créé";
+    } else if (isset($body['nom_fo']) && isset($body['description']) && isset($body['cours']) && isset($body['prix'])) {
+        createFormation($body['nom_fo'], $body['description'], $body['cours'], $body['prix']);
+
+        $message = "Formation créé";
     }
 
     echo jsonResponse(200, [], [

@@ -3,8 +3,6 @@ session_start();
 
 require_once 'entities/users/verif_connecter.php';
 
-ini_set('display_errors', 1);
-
 ?>
 
 <!DOCTYPE html>
@@ -29,11 +27,7 @@ require_once 'entities/users/get_formation.php';
 
                 <div class="row">
 
-                    <div class="text-center my-5">
-                        <a type="submit" href="page.creer_formation" class="btn bg-white btn-bg">Ajouter une nouvelle Formation</a>
-                    </div>
                     <?php
-
                     foreach ($results as $formation) {
                         echo '<div class="col-lg-4 mt-4">';
                         echo '<div class="card" style="background-color: #404040;">';

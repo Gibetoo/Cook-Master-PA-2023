@@ -23,7 +23,7 @@ require_once 'forms/head.php';
     <main id="hero" class="d-flex align-items-center">
         <div class="shadow-box">
 
-            <h1 class="text-center">Gestion des locaux</h1>
+            <h1 class="text-center">Gestion des cours</h1>
             <?php
             include "forms/message.php";
             ?>
@@ -33,8 +33,7 @@ require_once 'forms/head.php';
                     <tr>
                         <th scope="col"></th>
                         <th scope="col">Nom du cours</th>
-                        <th scope="col">Dimension</th>
-                        <th scope="col">Nombre de salles</th>
+                        <th scope="col">prix</th>
                         <th scope="col">Supprimer</th>
                     </tr>
                 </thead>
@@ -50,11 +49,10 @@ require_once 'forms/head.php';
                         echo '<tr>';
                         echo '<td></td>';
                         echo '<td class="text-white"><NOBR>' . $cours['nom_cours'] . '</NOBR></td>';
-                        echo '<td class="text-white"><NOBR>' . $cours['dimension'] . '</NOBR></td>';
-                        echo '<td class="text-white"><NOBR>' . $cours['nb_salle'] . '</NOBR></td>';
+                        echo '<td class="text-white"><NOBR>' . $cours['prix'] . '</NOBR></td>';
                         echo '<td><NOBR>';
                         echo '<form action="sup_local.php" method="POST">';
-                        echo '<button type="submit" value="' . $cours['id_es'] . '" name="id_es" class="btn btn-danger btn-sm">Supprimer</button>';
+                        echo '<button type="submit" value="' . $cours['id_cours'] . '" name="id_es" class="btn btn-danger btn-sm">Supprimer</button>';
                         echo '</form>';
                         echo '</NOBR></td>';
                     }  ?>
