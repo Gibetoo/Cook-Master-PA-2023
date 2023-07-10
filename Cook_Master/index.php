@@ -9,6 +9,7 @@ session_start();
 
 require_once 'forms/head.php';
 require_once 'entities/users/get_formation.php';
+require_once 'entities/users/get_recette.php'
 
 ?>
 
@@ -185,105 +186,26 @@ require_once 'entities/users/get_formation.php';
             <div class="col-lg-12 d-flex justify-content-center">
               <ul id="menu-flters">
                 <li data-filter="*" class="filter-active">Tout</li>
-                <li data-filter=".filter-starters">Pour Débuter</li>
-                <li data-filter=".filter-salads">Salades</li>
-                <li data-filter=".filter-specialty">Specialté</li>
+                <li data-filter=".filter-1">Entrées</li>
+                <li data-filter=".filter-2">Plats</li>
+                <li data-filter=".filter-3">Desserts</li>
               </ul>
             </div>
           </div>
 
           <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
+            <?php foreach ($recettes as $recette) { ?>
+              <div class="col-lg-6 menu-item filter-<?= $recette['id_cat'] ?>">
+                <img src="assets/img/menu/<?= $recette['image'] ?>" class="menu-img" alt="">
+                <div class="menu-content">
+                  <a href="#"><?= $recette['nom_recette'] ?></a>
+                </div>
+                <div class="menu-ingredients">
+                  <?= $recette['description_recette'] ?>
+                </div>
+              </div>
 
-            <div class="col-lg-6 menu-item filter-starters">
-              <img src="assets/img/menu/lobster-bisque.jpg" class="menu-img" alt="">
-              <div class="menu-content">
-                <a href="#">Lobster Bisque</a>
-              </div>
-              <div class="menu-ingredients">
-                Lorem, deren, trataro, filede, nerada
-              </div>
-            </div>
-
-            <div class="col-lg-6 menu-item filter-specialty">
-              <img src="assets/img/menu/bread-barrel.jpg" class="menu-img" alt="">
-              <div class="menu-content">
-                <a href="#">Bread Barrel</a>
-              </div>
-              <div class="menu-ingredients">
-                Lorem, deren, trataro, filede, nerada
-              </div>
-            </div>
-
-            <div class="col-lg-6 menu-item filter-starters">
-              <img src="assets/img/menu/cake.jpg" class="menu-img" alt="">
-              <div class="menu-content">
-                <a href="#">Crab Cake</a>
-              </div>
-              <div class="menu-ingredients">
-                A delicate crab cake served on a toasted roll with lettuce and tartar sauce
-              </div>
-            </div>
-
-            <div class="col-lg-6 menu-item filter-salads">
-              <img src="assets/img/menu/caesar.jpg" class="menu-img" alt="">
-              <div class="menu-content">
-                <a href="#">Caesar Selections</a>
-              </div>
-              <div class="menu-ingredients">
-                Lorem, deren, trataro, filede, nerada
-              </div>
-            </div>
-
-            <div class="col-lg-6 menu-item filter-specialty">
-              <img src="assets/img/menu/tuscan-grilled.jpg" class="menu-img" alt="">
-              <div class="menu-content">
-                <a href="#">Tuscan Grilled</a>
-              </div>
-              <div class="menu-ingredients">
-                Grilled chicken with provolone, artichoke hearts, and roasted red pesto
-              </div>
-            </div>
-
-            <div class="col-lg-6 menu-item filter-starters">
-              <img src="assets/img/menu/mozzarella.jpg" class="menu-img" alt="">
-              <div class="menu-content">
-                <a href="#">Mozzarella Stick</a>
-              </div>
-              <div class="menu-ingredients">
-                Lorem, deren, trataro, filede, nerada
-              </div>
-            </div>
-
-            <div class="col-lg-6 menu-item filter-salads">
-              <img src="assets/img/menu/greek-salad.jpg" class="menu-img" alt="">
-              <div class="menu-content">
-                <a href="#">Greek Salad</a>
-              </div>
-              <div class="menu-ingredients">
-                Fresh spinach, crisp romaine, tomatoes, and Greek olives
-              </div>
-            </div>
-
-            <div class="col-lg-6 menu-item filter-salads">
-              <img src="assets/img/menu/spinach-salad.jpg" class="menu-img" alt="">
-              <div class="menu-content">
-                <a href="#">Spinach Salad</a>
-              </div>
-              <div class="menu-ingredients">
-                Fresh spinach with mushrooms, hard boiled egg, and warm bacon vinaigrette
-              </div>
-            </div>
-
-            <div class="col-lg-6 menu-item filter-specialty">
-              <img src="assets/img/menu/lobster-roll.jpg" class="menu-img" alt="">
-              <div class="menu-content">
-                <a href="#">Lobster Roll</a>
-              </div>
-              <div class="menu-ingredients">
-                Plump lobster meat, mayo and crisp lettuce on a toasted bulky roll
-              </div>
-            </div>
-
+            <?php } ?>
           </div>
 
         </div>
@@ -318,9 +240,7 @@ require_once 'entities/users/get_formation.php';
                       <?= $formation['description'] ?>
                     </p>
                     <ul>
-                      <li><i class="bi bi-check-circled"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-                      <li><i class="bi bi-check-circled"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-                      <li><i class="bi bi-check-circled"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+                      <li><i class="bi bi-check-circled"></i> - <?= $formation['cours'] ?></li>
                     </ul>
                     <p>
                       Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate

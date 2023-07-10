@@ -33,6 +33,10 @@ require_once __DIR__ . "/../../entities/users/sup_categorie.php";
 require_once __DIR__ . "/../../entities/users/get-all-salle.php";
 require_once __DIR__ . "/../../entities/users/update-abonnement.php";
 require_once __DIR__ . "/../../entities/users/get-date-salle.php";
+require_once __DIR__ . "/../../entities/users/calendar.php";
+require_once __DIR__ . "/../../entities/users/get-one-salle.php";
+
+
 
 try {
 
@@ -229,7 +233,7 @@ try {
         }
 
         $message = $supp_pres;
-    } else if (isset($_GET["email_pres"])) {
+    } else if (isset($_GET['demande']) && isset($_GET["email_pres"]) && $_GET['demande'] == 'one-prestataires') {
         $users = getOnePres($_GET["email_pres"]);
 
         if (isset($users["error"])) {
@@ -384,17 +388,21 @@ try {
         }
 
         $message = $supp_categorie;
-    } else if (isset($_GET['demande']) && isset($_GET['heure_debut']) && isset($_GET['heure_fin']) && isset($_GET['date']) && isset($_GET['id_es']) && $_GET['demande'] == 'get_salle') {
+    } else if (isset($_GET['demande'])  && isset($_GET['id_salle']) && $_GET['demande'] == 'one_salle') {
 
-        $AllSalle = getAllSalle($_GET['heure_debut'], $_GET['heure_fin'], $_GET['date'], $_GET['id_es']);
+        $oneSalle = getOneSalle($_GET['id_salle']);
 
-        $message = $AllSalle;
-    }else if (isset($_GET['demande']) && isset($_GET['date']) && $_GET['demande'] == 'get_date') {
+        $message = $oneSalle;
+    }else if (isset($_GET['demande'])&& $_GET['demande'] == 'get_date') {
 
         $date = getHeure($_GET['date']);
 
         $message = $date;
-    } else {
+    } else if (isset($_GET['demande']) && isset($_GET['id_salle']) && $_GET['demande'] == 'calendar') {
+        $calendar = calendar($_GET['id_salle']);
+
+        $message = $calendar;
+    }else {
         $users = getUsers();
 
         $message = $users;

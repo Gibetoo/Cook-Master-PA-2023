@@ -1,14 +1,10 @@
 <?php 
 session_start();
-
 require_once 'entities/users/verif_connecter.php';
-
-ini_set('display_errors', 1);
-
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <?php
 require_once 'forms/head.php';

@@ -8,7 +8,7 @@ require_once __DIR__ . "/entities/users/get_adresse_lo.php";
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <?php require_once 'forms/head.php'; ?>
 
@@ -16,7 +16,6 @@ require_once __DIR__ . "/entities/users/get_adresse_lo.php";
 
     <?php require_once 'forms/header_base_admin.php'; ?>
 
-    <!-- ======= Hero Main ======= -->
     <main id="hero" class="d-flex align-items-center">
         <div class="shadow-box">
             <div class="row">
@@ -31,7 +30,7 @@ require_once __DIR__ . "/entities/users/get_adresse_lo.php";
                             </div>
                             <div class="mt-3">
                                 <label for="exampleFormControlInput1" class="form-label">Prix</label>
-                                <input type="number" name="prix_cours" min="0" class="form-control" id="exampleFormControlInput1" placeholder="Prix" required>
+                                <input type="number" name="prix_cours" min="0" value="0" class="form-control" id="exampleFormControlInput1" required>
                             </div>
                             <div class="mt-3">
                                 <label for="exampleFormControlInput1" class="form-label">Description</label>
@@ -47,7 +46,7 @@ require_once __DIR__ . "/entities/users/get_adresse_lo.php";
             </div>
         </div>
 
-    </main><!-- End Main -->
+    </main>
 
     <?php require_once 'forms/footer.php'; ?>
 

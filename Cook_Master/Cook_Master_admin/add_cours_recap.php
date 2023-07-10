@@ -1,16 +1,14 @@
 <?php
 session_start();
 
-
-
 require_once 'entities/users/verif_connecter.php';
 require_once __DIR__ . "/entities/users/get_one_prest.php";
 require_once __DIR__ . "/entities/users/get_one_adresse_lo.php";
+require_once __DIR__ . "/entities/users/get_one_salle.php";
+require_once "../forms/fonction.php";
 
-
-$pres = getOnePres($_GET['pres_cours']);
-$adresse = getOneAdresse($_GET['id_adr']);
-
+$pres = getOnePres($_POST['pres_cours']);
+$salle = getOneSalle($_POST['id_salle']);
 
 ?>
 
@@ -33,12 +31,12 @@ require_once 'forms/head.php';
                 <h1 class="text-center" style="color: #cda45e;">Récapitulatif du cours</h1>
                 <div class="my-5">
                     <h2 class="mt-4" style="color: #cda45e;">Titre du cours</h2>
-                    <h4><?= $_GET['nom_cours'] ?></h4>
+                    <h4><?= $_POST['nom_cours'] ?></h4>
                 </div>
 
                 <div class="my-5">
                     <h3 style="color: #cda45e;">Description</h3>
-                    <h4><?= $_GET['description_cours'] ?></h4>
+                    <h4><?= $_POST['description_cours'] ?></h4>
                 </div>
 
                 <div class="row mt-4">
@@ -50,11 +48,11 @@ require_once 'forms/head.php';
                                     <NOBR>Recette(s) vu lors du cours</NOBR>
                                 </h3>
                                 <?php
-                                for ($i = 0; $i < intval($_GET['nb_recette']); $i++) {
-                                    if (empty($_GET['recette-' . $i])) {
+                                for ($i = 0; $i < intval($_POST['nb_recette']); $i++) {
+                                    if (empty($_POST['recette-' . $i])) {
                                         continue;
                                     }
-                                    echo "<li><i class='icofont-check-circled'></i> " . $_GET['recette-' . $i] . "</li>";
+                                    echo "<li><i class='icofont-check-circled'></i> " . $_POST['recette-' . $i] . "</li>";
                                 }
                                 ?>
                             </div>
@@ -63,11 +61,11 @@ require_once 'forms/head.php';
                                     <NOBR>Les matériels nécéssaires</NOBR>
                                 </h3>
                                 <?php
-                                for ($i = 0; $i < intval($_GET['nb_materiel']); $i++) {
-                                    if (empty($_GET['materiel-' . $i])) {
+                                for ($i = 0; $i < intval($_POST['nb_materiel']); $i++) {
+                                    if (empty($_POST['materiel-' . $i])) {
                                         continue;
                                     }
-                                    echo "<li><i class='icofont-check-circled'></i> " . $_GET['materiel-' . $i] . "</li>";
+                                    echo "<li><i class='icofont-check-circled'></i> " . $_POST['materiel-' . $i] . "</li>";
                                 }
                                 ?>
                             </div>
@@ -75,25 +73,25 @@ require_once 'forms/head.php';
                                 <h3 style="color: #cda45e;">
                                     <NOBR>Prestataire</NOBR>
                                 </h3>
-                                <p><?= $pres['nom'] . ' ' . $pres['prenom'] ?>
-                                    <NOBR>Email : <?= $pres['email'] ?></NOBR>
+                                <p><?= $pres['nom_pres'] . ' ' . $pres['prenom_pres'] ?>
+                                    <NOBR>Email : <?= $pres['email_pres'] ?></NOBR>
                                 </p>
                             </div>
-                            <?php if (isset($_GET['id_adr'])) { ?>
-                                <div>
-                                    <h3 style="color: #cda45e;">
-                                        <NOBR>Adresse local Cook Master</NOBR>
-                                    </h3>
-                                    <p><?php echo '<p>' . $adresse['num_bat_es'] . ' ' . $adresse['rue_es']. ', ' . $adresse['code_postal_es']. ', ' .$adresse['ville_es']. ', ' .$adresse['pays_es']. 
-                                    '<br>'.'Etage N° : ' .$adresse['etage'].
-                                    '</p>' ?></p>
-                                    
-                                </div>
-                            <?php } ?>
                             <div>
-
+                                <h3 style="color: #cda45e;">
+                                    <NOBR>Salle</NOBR>
+                                </h3>
+                                <p><NOBR>Nom : <?= $salle['nom_salle'] ?></NOBR><br>
+                                    Adresse : <?= $salle['adresse_salle'] ?></p>
                             </div>
                         </div>
+
+                    </div>
+                    <div>
+                        <h3 style="color: #cda45e;">
+                            <NOBR>Date et heure</NOBR>
+                        </h3>
+                        <p><?= modif_date($_POST['date'], 'date') . ' à ' . $_POST['heure'] ?></p>
                     </div>
                 </div>
 
@@ -101,7 +99,7 @@ require_once 'forms/head.php';
                     <h3 style="color: #cda45e;">
                         Prix :
                     </h3>
-                    <p><?= $_GET['prix_cours'] ?> €</p>
+                    <p><?= $_POST['prix_cours'] ?> €</p>
                 </h2>
 
             </div>
@@ -112,31 +110,34 @@ require_once 'forms/head.php';
 
                 <!-- ------------------------------------------------------------------------------------ -->
 
-                <input type="hidden" name="nom_cours" value="<?= $_GET['nom_cours']; ?>">
-                <input type="hidden" name="prix_cours" value="<?= $_GET['prix_cours']; ?>">
-                <input type="hidden" name="description_cours" value="<?= $_GET['description_cours']; ?>">
+                <input type="hidden" name="nom_cours" value="<?= $_POST['nom_cours']; ?>">
+                <input type="hidden" name="prix_cours" value="<?= $_POST['prix_cours']; ?>">
+                <input type="hidden" name="description_cours" value="<?= $_POST['description_cours']; ?>">
                 <?php
                 $recettes = array();
-                for ($i = 0; $i < intval($_GET['nb_recette']); $i++) {
-                    if (empty($_GET['recette-' . $i])) {
+                for ($i = 0; $i < intval($_POST['nb_recette']); $i++) {
+                    if (empty($_POST['recette-' . $i])) {
                         continue;
                     }
-                    $recettes[] = $_GET['recette-' . $i];
+                    $recettes[] = $_POST['recette-' . $i];
                 }
                 ?>
                 <input type="hidden" name="recettes" value="<?= implode(', ', $recettes); ?>">
                 <?php
                 $materiels = array();
-                for ($i = 0; $i < intval($_GET['nb_materiel']); $i++) {
-                    if (empty($_GET['materiel-' . $i])) {
+                for ($i = 0; $i < intval($_POST['nb_materiel']); $i++) {
+                    if (empty($_POST['materiel-' . $i])) {
                         continue;
                     }
-                    $materiels[] = $_GET['materiel-' . $i];
+                    $materiels[] = $_POST['materiel-' . $i];
                 }
                 ?>
                 <input type="hidden" name="materiels" value="<?= implode(', ', $materiels); ?>">
 
-                <input type="hidden" name="pres_cours" value="<?= $_GET['pres_cours']; ?>">
+                <input type="hidden" name="pres_cours" value="<?= $_POST['pres_cours']; ?>">
+                <input type="hidden" name="id_salle" value="<?= $_POST['id_salle']; ?>">
+                <input type="hidden" name="date" value="<?= $_POST['date']; ?>">
+                <input type="hidden" name="heure" value="<?= $_POST['heure']; ?>">
 
                 <!-- ------------------------------------------------------------------------------------ -->
 

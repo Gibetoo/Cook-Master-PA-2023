@@ -1,14 +1,12 @@
 <?php
 session_start();
 
-ini_set('display_errors', 1);
-
 require_once 'entities/users/verif_connecter.php';
 require_once __DIR__ . "/entities/users/get_recette.php";
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <?php require_once 'forms/head.php'; ?>
 
@@ -16,7 +14,6 @@ require_once __DIR__ . "/entities/users/get_recette.php";
 
     <?php require_once 'forms/header_base_admin.php'; ?>
 
-    <!-- ======= Hero Main ======= -->
     <main id="hero" class="d-flex align-items-center">
         <div class="shadow-box">
             <div class="row">
@@ -48,7 +45,7 @@ require_once __DIR__ . "/entities/users/get_recette.php";
             </div>
         </div>
 
-    </main><!-- End Main -->
+    </main>
 
     <?php require_once 'forms/footer.php'; ?>
 

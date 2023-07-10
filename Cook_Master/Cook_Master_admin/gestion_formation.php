@@ -16,7 +16,7 @@ require_once 'entities/users/get_formation.php';
 
 <body>
 
-    <?php //require_once 'forms/header_base_admin.php'; ?>
+    <?php require_once 'forms/header_base_admin.php'; ?>
 
 
     <main id="main">

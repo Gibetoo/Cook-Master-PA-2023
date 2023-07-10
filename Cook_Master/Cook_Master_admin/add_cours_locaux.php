@@ -3,13 +3,11 @@ session_start();
 
 require_once 'entities/users/verif_connecter.php';
 require_once __DIR__ . "/entities/users/get_adresse_lo.php";
-
 $results = getAdresseLo();
-
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <?php require_once 'forms/head.php'; ?>
 
@@ -17,11 +15,10 @@ $results = getAdresseLo();
 
     <?php require_once 'forms/header_base_admin.php'; ?>
 
-    <!-- ======= Hero Main ======= -->
     <main id="hero" class="d-flex align-items-center">
         <div class="shadow-box">
             <div class="row">
-                <form action="add_cours_salle" method="GET">
+                <form action="add_cours_salle_dispo" method="GET">
                     <h1 class="text-center">Ajouter un Cours</h1>
                     <h2 class="text-center mt-4">Selectionner le local pour le cours</h2>
 
@@ -85,7 +82,7 @@ $results = getAdresseLo();
                             $counter_materiel = $i;
                             continue;
                         }
-                        echo "<input type='hidden' name='materiel-" . $i ."' value='" . $_GET['materiel-' . $i] . "'>";
+                        echo "<input type='hidden' name='materiel-" . $i . "' value='" . $_GET['materiel-' . $i] . "'>";
                     }
                     ?>
                     <input type="hidden" name="nb_materiel" value="<?= $counter_materiel ?>">
@@ -93,7 +90,7 @@ $results = getAdresseLo();
             </div>
         </div>
 
-    </main><!-- End Main -->
+    </main>
 
     <?php require_once 'forms/footer.php'; ?>
 
