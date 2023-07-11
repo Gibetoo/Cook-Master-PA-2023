@@ -181,6 +181,19 @@ try {
         }
 
         $message = $formation;
+    } else if (isset($_GET['demande']) && isset($_GET['id_fo']) && $_GET['demande'] == 'one_formation') {
+
+        $formation = getFormationById($_GET['id_fo']);
+
+        if (isset($formation["error"])) {
+            echo jsonResponse(404, [], [
+                "success" => false,
+                "error" => $formation["error"]
+            ]);
+            die();
+        }
+
+        $message = $formation;
     } else if (isset($_GET['demande']) && $_GET['demande'] == 'cours') {
 
         $Cours = getCours();

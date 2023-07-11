@@ -229,7 +229,7 @@ require_once 'entities/users/get_recette.php'
               <div class="swiper-slide">
                 <div class="row event-item">
                   <div class="col-lg-6">
-                    <img src="assets/img/event-custom.jpg" class="img-fluid" alt="">
+                    <img src="assets/img/<?= $formation['nom_fo'] ?>.jpg" class="img-fluid" alt="">
                   </div>
                   <div class="col-lg-6 pt-4 pt-lg-0 content">
                     <h3><?= $formation['nom_fo'] ?></h3>
@@ -242,10 +242,6 @@ require_once 'entities/users/get_recette.php'
                     <ul>
                       <li><i class="bi bi-check-circled"></i> - <?= $formation['cours'] ?></li>
                     </ul>
-                    <p>
-                      Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                      velit esse cillum dolore eu fugiat nulla pariatur
-                    </p>
                   </div>
                 </div>
               </div>

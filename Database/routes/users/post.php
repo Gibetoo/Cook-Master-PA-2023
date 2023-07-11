@@ -17,6 +17,7 @@ require_once __DIR__ . "/../../entities/users/create-categorie.php";
 require_once __DIR__ . "/../../entities/users/create-recette.php";
 require_once __DIR__ . "/../../entities/users/create-cours.php";
 require_once __DIR__ . "/../../entities/users/create-formation.php";
+require_once __DIR__ . "/../../entities/users/update-formation.php";
 
 try {
     $body = getBody();
@@ -44,6 +45,11 @@ try {
         updateMateriel($body['id_ma'], $body["nom_ma"], $body["description"], $body["prix"], $body["image"]);
 
         $message = "Materiel modifié";
+    } else if (isset($body["action"]) && ($body["action"]) == "modifier_formation") {
+
+        updateFormation($body['id_fo'], $body["nom_fo"], $body["description"], $body["prix"]);
+
+        $message = "Formation modifié";
     } else if (isset($body["nom_metier"])) {
 
         createMetier($body["nom_metier"]);
