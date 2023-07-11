@@ -1,32 +1,65 @@
-<?php 
+<?php
 
 function supMetier($id_metier) 
 {
     require_once __DIR__ . "/../../database/connection.php";
 
-try {
+    try {
         $databaseConnection = getDatabaseConnection(); // On récupère la connexion à la base de données
-        // Désactiver les contraintes de clés étrangères
-        $databaseConnection->exec("SET FOREIGN_KEY_CHECKS=0");
+        $databaseConnection->beginTransaction();
 
-        // Supprimer les salles associées à l'établissement
-        $requeteSuppressionPrest = $databaseConnection->prepare("DELETE FROM Prestataire WHERE id_metier = :id_metier");
+        // Récupérer les ID des prestataires associés au métier
+        $requetePrestatairesASupprimer = $databaseConnection->prepare("
+            SELECT email_pres FROM Prestataire WHERE id_metier = :id_metier
+        ");
+        $requetePrestatairesASupprimer->execute([
+            'id_metier' => $id_metier
+        ]);
+        $prestatairesASupprimer = $requetePrestatairesASupprimer->fetchAll(PDO::FETCH_COLUMN);
+
+        // Récupérer les ID des cours donnés par les prestataires à supprimer
+        $requeteCoursASupprimer = $databaseConnection->prepare("
+            SELECT id_cours FROM donner_cours WHERE email_pres IN (" . implode(',', array_fill(0, count($prestatairesASupprimer), '?')) . ")
+        ");
+        $requeteCoursASupprimer->execute($prestatairesASupprimer);
+        $coursASupprimer = $requeteCoursASupprimer->fetchAll(PDO::FETCH_COLUMN);
+
+        // Supprimer les entrées correspondantes dans donner_cours
+        if (!empty($coursASupprimer)) {
+            $requeteSuppressionDonnerCours = $databaseConnection->prepare("
+                DELETE FROM donner_cours WHERE id_cours IN (" . implode(',', array_fill(0, count($coursASupprimer), '?')) . ")
+            ");
+            $requeteSuppressionDonnerCours->execute($coursASupprimer);
+        }
+
+        // Supprimer les cours associés aux prestataires
+        $requeteSuppressionCours = $databaseConnection->prepare("
+            DELETE FROM Cours WHERE id_cours IN (" . implode(',', array_fill(0, count($coursASupprimer), '?')) . ")
+        ");
+        $requeteSuppressionCours->execute($coursASupprimer);
+
+        // Supprimer les prestataires associés au métier
+        $requeteSuppressionPrest = $databaseConnection->prepare("
+            DELETE FROM Prestataire WHERE id_metier = :id_metier
+        ");
         $requeteSuppressionPrest->execute([
-            'id_metier' => htmlspecialchars($id_metier)
+            'id_metier' => $id_metier
         ]);
 
-        // Supprimer l'établissement
-        $requeteSuppressionMetier = $databaseConnection->prepare("DELETE FROM Metier WHERE id_metier = :id_metier");
+        // Supprimer le métier
+        $requeteSuppressionMetier = $databaseConnection->prepare("
+            DELETE FROM Metier WHERE id_metier = :id_metier
+        ");
         $requeteSuppressionMetier->execute([
-            'id_metier' => htmlspecialchars($id_metier)
+            'id_metier' => $id_metier
         ]);
 
-        echo "Le local et les salles associées ont été supprimés avec succès.";
+        $databaseConnection->commit();
+
+        echo "Le métier, les prestataires associés et les cours associés ont été supprimés avec succès.";
     } catch (PDOException $e) {
+        $databaseConnection->rollBack();
         // En cas d'erreur, afficher le message d'erreur
-        echo "Erreur lors de la suppression du local : " . $e->getMessage();
-    } finally {
-        // Réactiver les contraintes de clés étrangères
-        $databaseConnection->exec("SET FOREIGN_KEY_CHECKS=1");
+        echo "Erreur lors de la suppression du métier : " . $e->getMessage();
     }
 }

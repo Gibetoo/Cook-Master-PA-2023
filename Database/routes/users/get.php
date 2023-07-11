@@ -168,6 +168,19 @@ try {
         }
 
         $message = $recettes;
+    } else if (isset($_GET['demande']) && isset($_GET['id_recette']) && $_GET['demande'] == 'one_recette') {
+
+        $recette = getOneRecettes($_GET['id_recette']);
+
+        if (isset($recette["error"])) {
+            echo jsonResponse(404, [], [
+                "success" => false,
+                "error" => $recette["error"]
+            ]);
+            die();
+        }
+
+        $message = $recette;
     } else if (isset($_GET['demande']) && $_GET['demande'] == 'formation') {
 
         $formation = getFormation();

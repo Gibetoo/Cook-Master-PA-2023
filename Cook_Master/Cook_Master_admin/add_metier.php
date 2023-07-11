@@ -20,7 +20,9 @@ require_once 'entities/users/verif_connecter.php';
             <div class="row">
                 <form action="entities/users/new_metier" method="POST" enctype="multipart/form-data">
                     <h1 class="text-center">Ajouter un Métier</h1>
-
+                    <?php 
+                        include "forms/message.php";
+                    ?>
                     <div class="d-flex">
 
                         <div class="mt-3 mx-5">

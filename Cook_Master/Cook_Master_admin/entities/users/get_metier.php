@@ -2,7 +2,6 @@
 
 function getMetier(): array
 {
-
     $url = 'http://localhost/Projet-Annuel/Database/index?demande=metier'; // On définit l'URL du serveur
     $ch = curl_init($url); // On initialise CURL
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET"); // On définit la méthode GET

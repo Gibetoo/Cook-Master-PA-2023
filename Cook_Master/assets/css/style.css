@@ -1758,3 +1758,11 @@ section {
   color: #ffffff;
   text-align: center;
 }
+
+#main_recette {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 50px;
+}

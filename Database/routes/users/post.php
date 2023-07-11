@@ -50,6 +50,11 @@ try {
         updateFormation($body['id_fo'], $body["nom_fo"], $body["description"], $body["prix"]);
 
         $message = "Formation modifié";
+    } else if (isset($body["action"]) && ($body["action"]) == "modifier_formation_cours") {
+
+        updateFormationCours($body['id_fo'], $body["cours"]);
+
+        $message = "Formation modifié";
     } else if (isset($body["nom_metier"])) {
 
         createMetier($body["nom_metier"]);
@@ -71,8 +76,8 @@ try {
         createCategorie($body["nom_cat"]);
 
         $message = "Catégorie créé";
-    } else if (isset($body["nom_recette"]) && isset($body["preparation"]) && isset($body["description"]) && isset($body["categorie"])) {
-        createRecette($body["nom_recette"], $body["preparation"], $body["description"], $body["categorie"]);
+    } else if (isset($body["nom_recette"]) && isset($body["preparation"]) && isset($body["description"]) && isset($body["categorie"]) && isset($body["image"])) {
+        createRecette($body["nom_recette"], $body["preparation"], $body["description"], $body["categorie"], $body["image"]);
 
         $message = "Recette créé";
     } else if (isset($body['nom_cours']) && isset($body['prix_cours']) && isset($body['description_cours']) && isset($body['recettes']) && isset($body['materiels']) && isset($body['pres_cours']) && isset($body['id_salle']) && isset($body['date']) && isset($body['heure'])) {

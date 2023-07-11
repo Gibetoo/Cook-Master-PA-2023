@@ -1,13 +1,9 @@
 <?php
 session_start();
 
-ini_set('display_errors', 1);
-
 require_once 'entities/users/verif_connecter.php';
-
 require_once 'entities/users/get_one_formation.php';
-
-$formation = getOneFormation($_GET['id_fo']); 
+$formation = getOneFormation($_GET['id_fo']);
 
 ?>
 
@@ -36,18 +32,21 @@ $formation = getOneFormation($_GET['id_fo']);
                         <input type="text" name="prix" id="inputPassword5" class="form-control" placeholder="Prix en €" value="<?= $formation['prix'] ?>" aria-labelledby="passwordHelpBlock">
                     </div>
                     <div class="mt-3">
+                        <label for="exampleFormControlInput1" class="form-label">Cours</label>
+                        <textarea class="form-control" id="comment" name="description" disabled><?= $formation['cours'] ?></textarea>
+                    </div>
+                    <div class="mt-3">
                         <label for="exampleFormControlInput1" class="form-label">Description</label>
                         <textarea class="form-control" rows="5" id="comment" name="description"><?= $formation['description'] ?></textarea>
                     </div>
-                    <div>
-                        <input type="hidden" name="id_fo" class="form-control" id="exampleFormControlInput1" value="<?= $_GET['id_fo'] ?>" required>
-                    </div>
-
+                    <input type="hidden" name="id_fo" class="form-control" id="exampleFormControlInput1" value="<?= $_GET['id_fo'] ?>" required>
                     <div class="mt-5 text-center">
-                        <button type="submit" class="btn-menu animated fadeInUp scrollto" style="background-color: #cda45e;border-color: #cda45e;">Modifier</button>
+                        <a href="page.modification_formation_cours?id_fo=<?= $_GET['id_fo'] ?>" class="btn-menu animated fadeInUp scrollto" style="background-color: #cda45e;border-color: #cda45e;">Changer les cours</a>
+                    </div>
+                    <div class="mt-2 text-center">
+                        <button type="submit" class="btn-menu animated fadeInUp scrollto" style="background-color: #cda45e;border-color: #cda45e;">Modifier la formation</button>
                     </div>
                 </form>
-
             </div>
         </div>
 

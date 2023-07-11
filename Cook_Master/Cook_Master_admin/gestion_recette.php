@@ -31,7 +31,6 @@ require_once 'forms/head.php';
                         <th scope="col"></th>
                         <th scope="col">Catégorie</th>
                         <th scope="col"><NOBR>Nom de la recette</NOBR></th>
-                        <th scope="col">Métier</th>
                         <th scope="col">Bannir</th>
                         <th scope="col">Supprimer</th>
                     </tr>
@@ -68,8 +67,8 @@ require_once 'forms/head.php';
                             echo '<button type="submit" value="' . $prest['email_pres'] . '" name="email_pres" class="btn btn-danger btn-sm">Supprimer</button>';
                             echo '</form>';
                         echo '</NOBR></td>';
+                        echo '</tr>';
                     }?>
-                    </tr>
                 </tbody>
             </table>
         </div>

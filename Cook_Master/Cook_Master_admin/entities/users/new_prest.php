@@ -14,9 +14,6 @@ if (!isset($_POST['nom_pres']) && !empty($_POST['nom_pres']) ||
     exit;
 } // Si les champs email et password ne sont pas remplis, on affiche un message d'erreur
 
-
-
-
 if (!empty($_FILES['photo_pres'])) {
     if ($_FILES['photo_pres']['error'] == 0) {
 

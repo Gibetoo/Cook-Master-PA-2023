@@ -4,14 +4,10 @@ session_start();
 require_once 'entities/users/verif_connecter.php';
 require_once __DIR__ . "/entities/users/get_categorie.php";
 $result = getCategorie();
-
-
-
-
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <?php require_once 'forms/head.php'; ?>
 
@@ -41,11 +37,17 @@ $result = getCategorie();
                                 <textarea type="text" name="description" class="form-control" placeholder="Description" id="exampleFormControlInput1"></textarea>
                             </div>
                             <div class="mt-3">
+                                <label for="disabledSelect" class="form-label">Image pour la recette :</label>
+                                <div class="input-group ">
+                                    <input type="file" class="form-control" name="image" accept="image/jpg, image/gif, image/png, image/jpeg" required>
+                                </div>
+                            </div>
+                            <div class="mt-3">
                                 <label class="mt-3" for="sel1">Catégorie :</label>
                                 <select class="form-select" id="sel1" name='categorie' required>
                                     <option selected value='null'>Choisir une catégorie</option>
                                     <?php
-                                    
+
                                     foreach ($result as $nomCategorie) {
                                         echo '<option value=' . $nomCategorie['id_cat'] . '>' . $nomCategorie['nom_cat'] . '</option>';
                                     } ?>
@@ -53,14 +55,13 @@ $result = getCategorie();
                                 </select>
                             </div>
                         </div>
-                        
                     </div>
-                    
+
 
                     <div class="mt-5 text-center">
                         <button type="submit" class="btn-menu animated fadeInUp scrollto" style="background-color: #cda45e;border-color: #cda45e;">Ajouter</button>
                     </div>
-                    
+
                 </form>
             </div>
         </div>

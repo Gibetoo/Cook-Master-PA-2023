@@ -8,7 +8,5 @@ if (!isset($_POST['id_metier'])) {
 }
 
 $response = sendsuppMetier($_POST['id_metier']);
-
 header('location: gestion_metier');
-
 exit;

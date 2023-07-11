@@ -1,7 +1,5 @@
 <?php
 
-
-
 function getAllSalle($heure_debut, $heure_fin, $date, $id_es): array{
     require_once __DIR__ . "/../../database/connection.php";
 

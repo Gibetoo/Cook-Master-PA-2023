@@ -1,7 +1,7 @@
 <?php
 
 if (!isset($_POST['nom_es']) || !isset($_POST['dimension'])|| !isset($_POST['nb_salle']) || !isset($_POST['id_adr']) ) {
-    echo "y'a r ici";
+    echo "Erreur";
     return;
 } // Si les champs email et password ne sont pas remplis, on affiche un message d'erreur
 

@@ -3,7 +3,7 @@ session_start();
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <?php
 
@@ -196,9 +196,9 @@ require_once 'entities/users/get_recette.php'
           <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
             <?php foreach ($recettes as $recette) { ?>
               <div class="col-lg-6 menu-item filter-<?= $recette['id_cat'] ?>">
-                <img src="assets/img/menu/<?= $recette['image'] ?>" class="menu-img" alt="">
+                <img src="/entities/users/upload-recette/<?= $recette['image'] ?>" class="menu-img" alt="">
                 <div class="menu-content">
-                  <a href="#"><?= $recette['nom_recette'] ?></a>
+                  <a href="page.menu?id_recette='<?= $recette['id_recette'] ?>'"><?= $recette['nom_recette'] ?></a>
                 </div>
                 <div class="menu-ingredients">
                   <?= $recette['description_recette'] ?>

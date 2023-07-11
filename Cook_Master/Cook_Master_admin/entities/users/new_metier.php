@@ -1,6 +1,6 @@
 <?php
-
-
+require_once __DIR__ . "/get_metier.php";
+$result = getMetier();
 if (!isset($_POST['nom_metier'])) {
     echo "erreur";
     return;
@@ -12,6 +12,22 @@ if (isset($_POST['nom_metier'])) {
         
     ); // On récupère les données du formulaire
 }
+
+$metier = htmlspecialchars($_POST['nom_metier']);
+
+$metierExists = false;
+foreach ($result as $prest)
+    if ($prest['nom_metier'] === $metier) {
+        $metierExists = true;
+        break;
+    }
+
+
+if ($metierExists) {
+    // L'e-mail existe déjà, afficher un message d'erreur
+    header('location: https://cook-master.site/Cook_Master_admin/add_metier?message=Ce metier existe déjà !&type=danger');
+    // Vous pouvez également rediriger l'utilisateur vers une autre page ou effectuer une autre action ici
+} else {
 
 $data_string = json_encode($data); // On encode les données en JSON
 
@@ -38,4 +54,5 @@ if ($response["success"] == true) { // Si la création de l'utilisateur a réuss
     header('Location: https://cook-master.site/Cook_Master_admin/gestion_metier?message=Le metier a bien été ajouté&type=success');
 } else { // Si la création de l'utilisateur a échoué, on affiche un message d'erreur
     echo "Erreur" . $response["error"];
+}
 }

@@ -9,14 +9,14 @@ function getRecettes(): array
     return $getUsersQuery->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function getRecetteById(string $id_ma): array
+function getOneRecettes($id_recette): array
 {
     require_once __DIR__ . "/../../database/connection.php";
 
     $databaseConnection = getDatabaseConnection();
-    $getUsersQuery = $databaseConnection->prepare("SELECT * FROM Recette WHERE id_ma = :id_ma;");
+    $getUsersQuery = $databaseConnection->prepare("SELECT * FROM recette WHERE id_recette = :id_recette;");
     $getUsersQuery->execute([
-        "id_ma" => htmlspecialchars($id_ma)
+        "id_recette" => $id_recette
     ]);
     return $getUsersQuery->fetch(PDO::FETCH_ASSOC);
 }
