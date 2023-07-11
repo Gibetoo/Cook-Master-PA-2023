@@ -1,6 +1,5 @@
 <?php 
 session_start();
-ini_set('display_errors', 1);
 
 require_once 'entities/users/verif_connecter.php';
 
@@ -15,7 +14,6 @@ require_once 'entities/users/verif_connecter.php';
 
     <?php require_once 'forms/header_base_admin.php'; ?>
 
-    <!-- ======= Hero Main ======= -->
     <main id="hero" class="d-flex align-items-center">
         <div class="shadow-box">
             <div class="row">
@@ -27,7 +25,6 @@ require_once 'entities/users/verif_connecter.php';
                 <h2 class="text-center"><a href="#">Gestions des ateliers</a></h2>
                 <h2 class="text-center"><a href="page.cours&recette">Gestion des recettes/cours</a></h2>
                 <h2 class="text-center"><a href="page.formation">Gestion des formations</a></h2>
-                <h2 class="text-center"><a href="#">Administration de la messagerie</a></h2>
                 <h2 class="text-center"><a href="page.materiels">Gestions des matériels</a></h2>
             </div>
             <div class="text-center mt-2">
@@ -35,7 +32,7 @@ require_once 'entities/users/verif_connecter.php';
             </div>
         </div>
 
-    </main><!-- End Main -->
+    </main>
 
     <?php require_once 'forms/footer.php'; ?>
 

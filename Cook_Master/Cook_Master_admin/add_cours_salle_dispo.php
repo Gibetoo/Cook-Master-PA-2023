@@ -46,30 +46,21 @@ require_once __DIR__ . "/entities/users/get_cours.php";
             </tbody>
           </table>
 
-          <input type="hidden" name="nom_cours" value="<?= $_GET['nom_cours']; ?>">
-          <input type="hidden" name="prix_cours" value="<?= $_GET['prix_cours']; ?>">
-          <input type="hidden" name="description_cours" value="<?= $_GET['description_cours']; ?>">
-          <input type="hidden" name="pres_cours" value="<?= $_GET['pres_cours'] ?>">
-          <input type="hidden" name="nb_recette" value="<?= $counter_recette ?>">
+          <input type="hidden" name="nom_cours" value="<?= $_POST['nom_cours']; ?>">
+          <input type="hidden" name="prix_cours" value="<?= $_POST['prix_cours']; ?>">
+          <input type="hidden" name="description_cours" value="<?= $_POST['description_cours']; ?>">
+          <input type="hidden" name="pres_cours" value="<?= $_POST['pres_cours'] ?>">
           <?php
-          $counter_recette = intval($_GET['nb_recette']);
-          for ($i = 0; $i < intval($_GET['nb_recette']); $i++) {
-            if (empty($_GET['recette-' . $i])) {
-              $counter_recette = $i;
-              continue;
-            }
-            echo "<input type='hidden' name='recette-" . $i . "' value='" . $_GET['recette-' . $i] . "'>";
+          $counter_recette = intval($_POST['nb_recette']);
+          for ($i = 0; $i < intval($_POST['nb_recette']); $i++) {
+            echo "<input type='hidden' name='recette-" . $i . "' value='" . $_POST['recette-' . $i] . "'>";
           }
           ?>
           <input type="hidden" name="nb_recette" value="<?= $counter_recette ?>">
           <?php
-          $counter_materiel = intval($_GET['nb_materiel']);
-          for ($i = 0; $i < intval($_GET['nb_materiel']); $i++) {
-            if (empty($_GET['materiel-' . $i])) {
-              $counter_materiel = $i;
-              continue;
-            }
-            echo "<input type='hidden' name='materiel-" . $i . "' value='" . $_GET['materiel-' . $i] . "'>";
+          $counter_materiel = intval($_POST['nb_materiel']);
+          for ($i = 0; $i < intval($_POST['nb_materiel']); $i++) {
+            echo "<input type='hidden' name='materiel-" . $i . "' value='" . $_POST['materiel-' . $i] . "'>";
           }
           ?>
           <input type="hidden" name="nb_materiel" value="<?= $counter_materiel ?>">

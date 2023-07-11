@@ -30,7 +30,7 @@ require_once __DIR__ . "/entities/users/get_adresse_lo.php";
                             </div>
                             <div class="mt-3">
                                 <label for="exampleFormControlInput1" class="form-label">Prix</label>
-                                <input type="number" name="prix_cours" min="0" value="0" class="form-control" id="exampleFormControlInput1" required>
+                                <input type="number" name="prix_cours" min="0" class="form-control" id="exampleFormControlInput1" required>
                             </div>
                             <div class="mt-3">
                                 <label for="exampleFormControlInput1" class="form-label">Description</label>

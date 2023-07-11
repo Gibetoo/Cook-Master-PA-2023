@@ -81,8 +81,10 @@ require_once 'forms/head.php';
                                 <h3 style="color: #cda45e;">
                                     <NOBR>Salle</NOBR>
                                 </h3>
-                                <p><NOBR>Nom : <?= $salle['nom_salle'] ?></NOBR><br>
-                                    Adresse : <?= $salle['adresse_salle'] ?></p>
+                                <p>
+                                    <NOBR>Nom : <?= $salle['nom_salle'] ?></NOBR><br>
+                                    Adresse : <?= $salle['adresse_salle'] ?>
+                                </p>
                             </div>
                         </div>
 

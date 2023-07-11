@@ -18,7 +18,7 @@ $results = getAdresseLo();
     <main id="hero" class="d-flex align-items-center">
         <div class="shadow-box">
             <div class="row">
-                <form action="add_cours_salle_dispo" method="GET">
+                <form action="add_cours_salle_dispo" method="POST">
                     <h1 class="text-center">Ajouter un Cours</h1>
                     <h2 class="text-center mt-4">Selectionner le local pour le cours</h2>
 
@@ -65,27 +65,17 @@ $results = getAdresseLo();
                     <input type="hidden" name="description_cours" value="<?= $_GET['description_cours']; ?>">
                     <input type="hidden" name="pres_cours" value="<?= $_GET['pres_cours'] ?>">
                     <?php
-                    $counter_recette = intval($_GET['nb_recette']);
                     for ($i = 0; $i < intval($_GET['nb_recette']); $i++) {
-                        if (empty($_GET['recette-' . $i])) {
-                            $counter_recette = $i;
-                            continue;
-                        }
                         echo "<input type='hidden' name='recette-" . $i . "' value='" . $_GET['recette-' . $i] . "'>";
                     }
                     ?>
-                    <input type="hidden" name="nb_recette" value="<?= $counter_recette ?>">
+                    <input type="hidden" name="nb_recette" value="<?= $_GET['nb_recette'] ?>">
                     <?php
-                    $counter_materiel = intval($_GET['nb_materiel']);
                     for ($i = 0; $i < intval($_GET['nb_materiel']); $i++) {
-                        if (empty($_GET['materiel-' . $i])) {
-                            $counter_materiel = $i;
-                            continue;
-                        }
                         echo "<input type='hidden' name='materiel-" . $i . "' value='" . $_GET['materiel-' . $i] . "'>";
                     }
                     ?>
-                    <input type="hidden" name="nb_materiel" value="<?= $counter_materiel ?>">
+                    <input type="hidden" name="nb_materiel" value="<?= $_GET['nb_materiel'] ?>">
                 </form>
             </div>
         </div>

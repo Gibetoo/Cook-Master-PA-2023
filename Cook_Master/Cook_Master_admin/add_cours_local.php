@@ -34,27 +34,17 @@ require_once 'entities/users/verif_connecter.php';
                     <input type="hidden" name="description_cours" value="<?= $_POST['description_cours']; ?>">
                     <input type="hidden" name="pres_cours" value="<?= $_POST['pres_cours'] ?>">
                     <?php
-                    $counter_recette = intval($_POST['nb_recette']);
                     for ($i = 0; $i < intval($_POST['nb_recette']); $i++) {
-                        if (empty($_POST['recette-' . $i])) {
-                            $counter_recette = $i;
-                            continue;
-                        }
                         echo "<input type='hidden' name='recette-" . $i . "' value='" . $_POST['recette-' . $i] . "'>";
                     }
                     ?>
-                    <input type="hidden" name="nb_recette" value="<?= $counter_recette ?>">
+                    <input type="hidden" name="nb_recette" value="<?= $_POST['nb_recette'] ?>">
                     <?php
-                    $counter_materiel = intval($_POST['nb_materiel']);
                     for ($i = 0; $i < intval($_POST['nb_materiel']); $i++) {
-                        if (empty($_POST['materiel-' . $i])) {
-                            $counter_materiel = $i;
-                            continue;
-                        }
                         echo "<input type='hidden' name='materiel-" . $i . "' value='" . $_POST['materiel-' . $i] . "'>";
                     }
                     ?>
-                    <input type="hidden" name="nb_materiel" value="<?= $counter_materiel ?>">
+                    <input type="hidden" name="nb_materiel" value="<?= $_POST['nb_materiel'] ?>">
                 </form>
             </div>
         </div>

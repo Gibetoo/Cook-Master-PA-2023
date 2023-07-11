@@ -34,6 +34,9 @@ require_once 'forms/head.php';
                         <th scope="col"></th>
                         <th scope="col">Nom du cours</th>
                         <th scope="col">prix</th>
+                        <th scope="col">date et heure</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">salle</th>
                         <th scope="col">Supprimer</th>
                     </tr>
                 </thead>
@@ -50,6 +53,9 @@ require_once 'forms/head.php';
                         echo '<td></td>';
                         echo '<td class="text-white"><NOBR>' . $cours['nom_cours'] . '</NOBR></td>';
                         echo '<td class="text-white"><NOBR>' . $cours['prix'] . '</NOBR></td>';
+                        echo '<td class="text-white"><NOBR>' . $cours['date'] . '</NOBR></td>';
+                        echo '<td class="text-white"><NOBR>' . $cours['description'] . '</NOBR></td>';
+                        echo '<td class="text-white"><NOBR>' . $cours['id_salle'] . '</NOBR></td>';
                         echo '<td><NOBR>';
                         echo '<form action="sup_local.php" method="POST">';
                         echo '<button type="submit" value="' . $cours['id_cours'] . '" name="id_es" class="btn btn-danger btn-sm">Supprimer</button>';
