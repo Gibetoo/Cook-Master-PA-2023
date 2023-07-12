@@ -16,8 +16,7 @@ function sendsuppCours($id_cours)
 
     $result = curl_exec($ch); // On exécute la requête
     curl_close($ch); // On ferme CURL
-    var_dump($result);
-
+    
     $response = json_decode($result, true); // On décode la réponse JSON
     
     if ($response["success"] == true) { // Si la création de l'utilisateur a réussi, on affecte la réponse à $results

@@ -27,7 +27,7 @@ require_once 'forms/head.php';
     <main id="hero" class="d-flex align-items-center">
         <div class="shadow-box">
 
-            <h1 class="text-center">Gestion des locaux</h1>
+            <h1 class="text-center">Gestion des salles</h1>
 
             <table class="text-white text-center table table-striped mt-4">
                 <thead>

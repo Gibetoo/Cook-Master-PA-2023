@@ -15,8 +15,8 @@ if ($response["success"] == true) { // Si la création de l'utilisateur a réuss
     header('location: gestion_categorie');
     exit;
 } else { // Si la création de l'utilisateur a échoué, on affecte un tableau vide à $results
-    var_dump($response);
-    exit;
+    header('location: index?message=Une erreur est survenue.&type=error');
+exit;
 }
 
 

@@ -18,8 +18,7 @@ function sendsuppPres($email_pres)
     curl_close($ch); // On ferme CURL
 
     $response = json_decode($result, true); // On décode la réponse JSON
-    var_dump($response);
-
+  
     if ($response["success"] == true) { // Si la création de l'utilisateur a réussi, on affecte la réponse à $results
         return $response;
     } else { // Si la création de l'utilisateur a échoué, on affecte un tableau vide à $results

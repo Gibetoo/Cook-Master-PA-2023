@@ -6,18 +6,36 @@ function supCategorie($id_cat)
 
     try {
         $databaseConnection = getDatabaseConnection(); // On récupère la connexion à la base de données
-        $createUserQuery = $databaseConnection->prepare("
-        DELETE FROM Categorie WHERE id_cat = :id_cat
-    ");
 
-        $createUserQuery->execute([
+        $databaseConnection->beginTransaction();
+
+        // Supprimer les recettes liées à la catégorie
+        $deleteRecettesQuery = $databaseConnection->prepare("
+            DELETE FROM recette WHERE id_cat = :id_cat
+        ");
+        $deleteRecettesQuery->execute([
             "id_cat" => htmlspecialchars($id_cat)
         ]);
-        return  [
+
+        // Supprimer la catégorie
+        $deleteCategorieQuery = $databaseConnection->prepare("
+            DELETE FROM Categorie WHERE id_cat = :id_cat
+        ");
+        $deleteCategorieQuery->execute([
+            "id_cat" => htmlspecialchars($id_cat)
+        ]);
+
+        $databaseConnection->commit();
+
+        return [
             "success" => true,
-            "message" => "La catégories a bien été supprimé"
+            "message" => "La catégorie et les recettes liées ont été supprimées avec succès"
         ];
-    } catch (Exception $exception) {
-        return $exception->getMessage();
+    } catch (PDOException $e) {
+        $databaseConnection->rollBack();
+        return [
+            "success" => false,
+            "message" => "Erreur lors de la suppression de la catégorie : " . $e->getMessage()
+        ];
     }
 }

@@ -16,7 +16,7 @@ function sendsuppLocal($id_es)
 
     $result = curl_exec($ch); // On exécute la requête
     curl_close($ch); // On ferme CURL
-    var_dump($result);
+    
 
     $response = json_decode($result, true); // On décode la réponse JSON
     

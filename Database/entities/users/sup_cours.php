@@ -1,29 +1,36 @@
 <?php
 
 function supCours($id_cours) {
+
     require_once __DIR__ . "/../../database/connection.php";
 
     try {
-        $databaseConnection = getDatabaseConnection(); 
+        $databaseConnection = getDatabaseConnection(); // On récupère la connexion à la base de données
         $databaseConnection->beginTransaction();
 
-        
-        $requeteSuppressionSuivre = $databaseConnection->prepare("
+        // Supprimer les réservations liées au cours
+        $requeteSuppressionReservations = $databaseConnection->prepare("
             DELETE FROM suivre WHERE id_cours = :id_cours
         ");
-        $requeteSuppressionSuivre->execute(['id_cours' => $id_cours]);
+        $requeteSuppressionReservations->execute([
+            'id_cours' => $id_cours
+        ]);
 
-        // Supprimer le cours lui-même
+        // Supprimer le cours
         $requeteSuppressionCours = $databaseConnection->prepare("
             DELETE FROM Cours WHERE id_cours = :id_cours
         ");
-        $requeteSuppressionCours->execute(['id_cours' => $id_cours]);
+        $requeteSuppressionCours->execute([
+            'id_cours' => $id_cours
+        ]);
 
         $databaseConnection->commit();
 
-        echo "Le cours et les enregistrements associés ont été supprimés avec succès.";
+        echo "Le cours et les réservations associées ont été supprimés avec succès.";
     } catch (PDOException $e) {
         $databaseConnection->rollBack();
-        echo "Erreur lors de la suppression du cours : " . $e->getMessage();
+        // En cas d'erreur, afficher le message d'erreur
+        echo "Erreur lors de la suppression : " . $e->getMessage();
     }
 }
+

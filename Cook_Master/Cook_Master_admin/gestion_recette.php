@@ -31,7 +31,6 @@ require_once 'forms/head.php';
                         <th scope="col"></th>
                         <th scope="col">Catégorie</th>
                         <th scope="col"><NOBR>Nom de la recette</NOBR></th>
-                        <th scope="col">Bannir</th>
                         <th scope="col">Supprimer</th>
                     </tr>
                 </thead>
@@ -53,18 +52,8 @@ require_once 'forms/head.php';
                         echo '<td class="text-white"><NOBR>' . $cat . '</NOBR></td>';
                         echo '<td class="text-white"><NOBR>' . $recette['nom_recette']. '</NOBR></td>';
                         echo '<td><NOBR>';
-                            echo '<form action="bannir_prest.php" method="POST">';
-                            if ($prest['ban'] == 0) { // Si l'utilisateur n'est pas banni le bouton est rouge 
-                                echo '<button type="submit" value="' . $prest['email_pres'] . '" name="email_pres" class="btn btn-danger btn-sm">Bannir</button>';
-                            } else { // Si l'utilisateur est banni le bouton est orange
-                                echo '<button type="submit" value="' . $prest['email_pres'] . '" name="email_pres" class="btn btn-warning btn-sm">débannir</button>';
-                            }
-                            echo '</form>';
-
-                        echo '</NOBR></td>';
-                        echo '<td><NOBR>';
-                            echo '<form action="sup_prest.php" method="POST">';
-                            echo '<button type="submit" value="' . $prest['email_pres'] . '" name="email_pres" class="btn btn-danger btn-sm">Supprimer</button>';
+                            echo '<form action="sup_recette.php" method="POST">';
+                            echo '<button type="submit" value="' . $recette['id_recette'] . '" name="id_recette" class="btn btn-danger btn-sm">Supprimer</button>';
                             echo '</form>';
                         echo '</NOBR></td>';
                         echo '</tr>';

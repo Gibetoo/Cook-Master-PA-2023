@@ -1,6 +1,6 @@
 <?php
 
-ini_set('display_errors', 1);
+
 
 if (!isset($_POST['nom_fo']) || !isset($_POST['description']) || !isset($_POST['cours']) || !isset($_POST['prix'])) {
     header('Location: ../../page.creer_formation?message=erreur&type=danger');

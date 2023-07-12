@@ -37,6 +37,8 @@ require_once __DIR__ . "/../../entities/users/get-one-salle.php";
 require_once __DIR__ . "/../../entities/users/update-formation.php";
 require_once __DIR__ . "/../../entities/users/sup_cours.php";
 require_once __DIR__ . "/../../entities/users/get-cours-suivi.php";
+require_once __DIR__ . "/../../entities/users/sup_categorie.php";
+require_once __DIR__ . "/../../entities/users/sup_recette.php";
 
 try {
 
@@ -468,7 +470,33 @@ try {
         }
 
         $message = $supp_cours;
-    } else {
+    } else if (isset($_GET['demande']) && isset($_GET['id_cat']) && $_GET['demande'] == 'supp_categorie') {
+        $supcategorie = supCategorie($_GET['id_cat']);
+
+        if (isset($supcategorie["error"])) {
+            echo jsonResponse(404, [], [
+                "success" => false,
+                "error" => $supcategorie["error"]
+            ]);
+            die();
+        }
+
+        $message = $supcategorie;
+
+    }else if (isset($_GET['demande']) && isset($_GET['id_recette']) && $_GET['demande'] == 'supp_recette') {
+        
+        $supp_recette = supRecette($_GET['id_recette']);
+
+        if (isset($supp_recette["error"])) {
+            echo jsonResponse(404, [], [
+                "success" => false,
+                "error" => $supp_recette["error"]
+            ]);
+            die();
+        }
+
+        $message = $supp_recette;
+    }else {
         $users = getUsers();
 
         $message = $users;

@@ -20,7 +20,7 @@ require_once 'entities/users/verif_connecter.php';
     <main id="hero" class="d-flex align-items-center">
         <div class="shadow-box">
             <div class="row">
-                <h1 class="text-center mb-2">Gestion des Espasses</h1>
+                <h1 class="text-center mb-2">Gestion des Espaces</h1>
                 <h2 class="text-center"><a href="add_local" class="color: black;">Ajouter un local</a></h2>
                 <h2 class="text-center"><a href="gestion_local">Gestion des locaux</a></h2>
                 <h2 class="text-center"><a href="add_salle" class="color: black;">Ajouter une salle</a></h2>

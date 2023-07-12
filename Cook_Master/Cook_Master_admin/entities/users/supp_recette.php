@@ -1,8 +1,8 @@
 <?php
 
-function sendsuppAdresseLo($id_adr)
+function sendsuppRecette($id_recette)
 {
-    $url = 'http://127.0.0.1/Projet-Annuel/Database/index?demande=supp_adresse_lo&id_adr=' . $id_adr;// On définit l'URL du serveur
+    $url = 'http://127.0.0.1/Projet-Annuel/Database/index?demande=supp_recette&id_recette=' . $id_recette; // On définit l'URL du serveur
     $ch = curl_init($url); // On initialise CURL
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET"); // On définit la méthode GET
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // On demande à CURL de nous retourner la réponse
@@ -18,7 +18,7 @@ function sendsuppAdresseLo($id_adr)
     curl_close($ch); // On ferme CURL
 
     $response = json_decode($result, true); // On décode la réponse JSON
-
+  
     if ($response["success"] == true) { // Si la création de l'utilisateur a réussi, on affecte la réponse à $results
         return $response;
     } else { // Si la création de l'utilisateur a échoué, on affecte un tableau vide à $results

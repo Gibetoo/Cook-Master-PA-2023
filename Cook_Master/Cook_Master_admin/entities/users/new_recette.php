@@ -37,14 +37,14 @@ if (!empty($_FILES['image'])) {
             mkdir($chemin);
         }
 
-        $chemin2 = '../../../Cook_Master/entities/users/upload-recette';
+        $chemin2 = '../../../entities/users/upload-recette';
         if (!file_exists($chemin2)) {
             mkdir($chemin2);
         }
 
         $array = explode('.', $fileName);
         $extension = end($array);
-        $filename = 'image-' . time() . '.' . $extension;
+        $filename = $_POST['nom_recette'] . '.' . $extension;
         $destination = $chemin . '/' . $filename;
         $destination2 = $chemin2 . '/' . $filename;
         move_uploaded_file($_FILES['image']['tmp_name'], $destination);

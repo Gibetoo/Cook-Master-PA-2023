@@ -1,11 +1,5 @@
 <?php
 
-/* foreach ($_POST as $key => $value) {
-    echo $key . " : " . $value . "<br>";
-}
-
-exit(); */
-ini_set('display_errors', 1);
 if (isset($_POST['nom_cours']) && isset($_POST['prix_cours']) && isset($_POST['description_cours']) && isset($_POST['recettes']) && isset($_POST['materiels']) && isset($_POST['pres_cours']) && isset($_POST['id_salle']) && isset($_POST['date']) && isset($_POST['heure'])) {
     $data = array(
         'nom_cours' => $_POST['nom_cours'],

@@ -7,12 +7,12 @@
       <ul>
         <li><a class="nav-link scrollto active" href="/">Accueil</a></li>
         <li><a class="nav-link scrollto" href="/#Abonnements">Abonnement</a></li>
-        <li><a class="nav-link scrollto" href="/#formation">Formation</a></li>
-        <?php if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
-          if ($_SESSION['user']['abonnement'] != "Cadet") {
+        <?php if (isset($_SESSION['user']) && !empty($_SESSION['user']) && $_SESSION['user']['abonnement'] != "Cadet") {
         ?>
-            <li><a class="nav-link scrollto" href="/#recette">Recette</a></li>
-          <?php } ?>
+          <li><a class="nav-link scrollto" href="/#recette">Recette</a></li>
+        <?php } ?>
+        <li><a class="nav-link scrollto" href="/#formation">Formation</a></li>
+        <?php if (isset($_SESSION['user']) && !empty($_SESSION['user'])) { ?>
           <li><a class="nav-link scrollto" href="/#reservation">Réservations</a></li>
           <li><a class="nav-link scrollto" href="page.materiels">Matériels</a></li>
           <li><a class="nav-link scrollto" href="page.cours">Cours</a></li>
