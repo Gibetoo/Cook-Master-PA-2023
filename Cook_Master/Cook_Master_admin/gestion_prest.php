@@ -3,12 +3,12 @@ session_start();
 
 require_once 'entities/users/verif_connecter.php';
 require_once __DIR__ . "/entities/users/get_idprest.php";
-ini_set('display_errors', 1);
+
 
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <?php
 require_once 'forms/head.php';
@@ -53,17 +53,6 @@ require_once __DIR__ . "/entities/users/get_prest.php";
                         echo '<td class="text-white"><NOBR>' . $prest['nom_pres'] . '</NOBR></td>';
                         $metier = getidPrest($prest['id_metier']);
                         echo '<td class="text-white"><NOBR>' . $metier . '</NOBR></td>';
-
-                        echo '<td><NOBR>';
-                            echo '<form action="bannir_prest.php" method="POST">';
-                            if ($prest['ban'] == 0) { // Si l'utilisateur n'est pas banni le bouton est rouge 
-                                echo '<button type="submit" value="' . $prest['email_pres'] . '" name="email_pres" class="btn btn-danger btn-sm">Bannir</button>';
-                            } else { // Si l'utilisateur est banni le bouton est orange
-                                echo '<button type="submit" value="' . $prest['email_pres'] . '" name="email_pres" class="btn btn-warning btn-sm">débannir</button>';
-                            }
-                            echo '</form>';
-
-                        echo '</NOBR></td>';
                         echo '<td><NOBR>';
                             echo '<form action="sup_prest.php" method="POST">';
                             echo '<button type="submit" value="' . $prest['email_pres'] . '" name="email_pres" class="btn btn-danger btn-sm">Supprimer</button>';

@@ -1,11 +1,12 @@
 <?php
 session_start();
-require_once 'entities/users/verif_connecter.php';
-require_once 'entities/users/get_one_recette.php';
-$recette = getOneRecette($_GET['id_recette']);
-require_once __DIR__ . '/entities/users/fonction.php';
-?>
 
+require_once 'entities/users/verif_connecter.php';
+require_once __DIR__ . '/entities/users/get_cours.php';
+require_once __DIR__ . '/entities/users/fonction.php';
+require_once __DIR__ . '/forms/fonction.php';
+
+?>
 <!DOCTYPE html>
 <html>
 
@@ -43,10 +44,11 @@ require_once __DIR__ . '/forms/head.php';
                     <li><a class="nav-link scrollto" href="/">Accueil</a></li>
                     <li><a class="nav-link scrollto" href="/#Abonnements">Abonnement</a></li>
                     <?php if (isset($_SESSION['user']) && !empty($_SESSION['user'])) { ?>
-                        <li><a class="nav-link scrollto active" href="/#recette">Recette</a></li>
+                        <li><a class="nav-link scrollto" href="/#recette">Recette</a></li>
                         <li><a class="nav-link scrollto" href="/#formation">Formation</a></li>
                         <li><a class="nav-link scrollto" href="/#reservation">Réservations</a></li>
                         <li><a class="nav-link scrollto" href="page.materiels">Matériels</a></li>
+                        <li><a class="nav-link scrollto active" href="page.cours">Cours</a></li>
                     <?php } ?>
                     <li><a class="nav-link scrollto" href="/#gallery">Galerie</a></li>
                     <li><a class="nav-link scrollto" href="/#chefs">Chefs</a></li>
@@ -65,41 +67,57 @@ require_once __DIR__ . '/forms/head.php';
         </div>
     </header>
 
-    <main id="main_recette">
-        <section id="materiels">
-            <div class="container" data-aos="fade-up">
-                <div class="section-title">
-                    <h2>Recette</h2>
+    <section id="hero" class="d-flex align-items-center">
+        <div class="container position-relative text-center text-lg-start" data-aos="zoom-in" data-aos-delay="100">
+            <div class="row">
+                <div class="col-lg-8">
+                    <h1><span>Cook Master</span> Cours</h1>
+                    <h2>Explorez notre sélection de cours de cuisine</h2>
+
                 </div>
+
+            </div>
+        </div>
+    </section>
+
+    <main id="main">
+
+        <section id="materiels" class="why-us">
+            <div class="container" data-aos="fade-up">
+
+                <div class="section-title">
+                    <h2>Nos Cours</h2>
+                </div>
+
                 <div class="row">
-                    <p></p>
-                    <div class="col-lg-4">
-                        <img src="/entities/users/upload-recette/<?= $recette['image'] ?>" style="border: 6px solid #CDA45E;border-radius: 20px;" class="img-fluid" alt="">
-                    </div>
-                    <div class="col-lg-8 pt-4 pt-lg-0 content">
-                        <h3 style="color: #CDA45E;"><?= $recette['nom_recette'] ?></h3>
-                        <p class="mb-4">
-                            <?= $recette['description_recette'] ?>
-                        </p>
-                        <div class="container">
-                            <ul>
-                                <?php
-                                $preparationSteps = explode("ÉTAPE", $recette['preparation']);
-                                foreach ($preparationSteps as $step) {
-                                    $step = trim($step);
-                                    if (!empty($step)) {
-                                        echo "<li class='mt-3'><span style='color: #CDA45E;'>ÉTAPE :</span> $step</li>";
-                                    }
-                                }
-                                ?>
-                            </ul>
-                        </div>
-                    </div>
+
+                    <?php foreach ($results as $cours) {
+                        echo '<div class="col-lg-4 mt-4">';
+                        echo '<div class="card" style="background-color: #404040;height: auto;">';
+                        echo '<div class="container">';
+                        echo '</div>';
+                        echo '<div class="card-body text-center mt-3 mb-3 d-flex flex-column">';
+                        echo '<h4 class="card-title" style="color: #CDA45E;">Titre du cours</h4>';
+                        echo '<p class="card-title">' . strtoupper($cours['nom_cours']) . '</p>';
+                        echo '<h4 class="card-text" style="color: #CDA45E;">Date du cours</h4>';
+                        // echo '<p class="card-text">' . modif_date($cours['date'], 'date') . ' </p>';
+                        // echo '<h4 class="card-text" style="color: #CDA45E;">Heure du cours</h4>';
+                        // echo '<p class="card-text">' . substr($cours['heure'], 0, 5) . ' </p>';
+                        // echo '<h4 class="card-text" style="color: #CDA45E;">Prix du cours</h4>';
+                        echo '<p class="card-text">' . $cours['prix'] . ' €</p>';
+                        echo '<a href="page.info_cours?id_cours='. $cours['id_cours'] .'" class="btn mt-auto" style="background-color: #CDA45E;"><NOBR>Plus d\'information</NOBR></a>';
+                        echo '</div>'; 
+                        echo '</div>';
+                        echo '</div>';
+                    };
+
+                    ?>
+
                 </div>
             </div>
         </section>
-    </main>
 
+    </main>
 
     <?php require_once 'forms/footer.php'; ?>
 

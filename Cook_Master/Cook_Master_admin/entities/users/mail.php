@@ -40,7 +40,7 @@ function sendmail($s, $m, $e)
     }
 }
 
-function sendmailpdf($html, $recipientEmail, $recipientName)
+function sendmailpdf($html, $recipientEmail, $recipientName, $sujet = 'Facture Cook Master')
 {
 
     $mail = new PHPMailer(true);
@@ -61,7 +61,7 @@ function sendmailpdf($html, $recipientEmail, $recipientName)
         $mail->addAddress($recipientEmail, $recipientName); 
 
         $mail->isHTML(true);
-        $mail->Subject = 'Facture Cook Master';
+        $mail->Subject = $sujet;
         $mail->Body = $html;
         $mail->AltBody = 'Veuillez consulter le contenu HTML de votre facture Cook Master.';
 

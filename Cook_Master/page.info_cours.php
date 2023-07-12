@@ -1,9 +1,10 @@
 <?php
 session_start();
 require_once 'entities/users/verif_connecter.php';
-require_once 'entities/users/get_one_recette.php';
-$recette = getOneRecette($_GET['id_recette']);
 require_once __DIR__ . '/entities/users/fonction.php';
+require_once __DIR__ . '/forms/fonction.php';
+require_once __DIR__ . '/entities/users/get_one_cours.php';
+$cours = getOneCours($_GET['id_cours']);
 ?>
 
 <!DOCTYPE html>
@@ -65,38 +66,42 @@ require_once __DIR__ . '/forms/head.php';
         </div>
     </header>
 
-    <main id="main_recette">
-        <section id="materiels">
-            <div class="container" data-aos="fade-up">
-                <div class="section-title">
-                    <h2>Recette</h2>
+    <main id="main">
+        <section id="materiels" class="materiels mt-5">
+            <div class="container mt-4">
+                <div class="my-5 text-center">
+                    <h2 class="mt-4" style="color: #cda45e;">Titre du cours</h2>
+                    <h4><?= $cours['nom_cours'] ?></h4>
                 </div>
-                <div class="row">
-                    <p></p>
-                    <div class="col-lg-4">
-                        <img src="/entities/users/upload-recette/<?= $recette['image'] ?>" style="border: 6px solid #CDA45E;border-radius: 20px;" class="img-fluid" alt="">
-                    </div>
-                    <div class="col-lg-8 pt-4 pt-lg-0 content">
-                        <h3 style="color: #CDA45E;"><?= $recette['nom_recette'] ?></h3>
-                        <p class="mb-4">
-                            <?= $recette['description_recette'] ?>
-                        </p>
-                        <div class="container">
-                            <ul>
-                                <?php
-                                $preparationSteps = explode("ÉTAPE", $recette['preparation']);
-                                foreach ($preparationSteps as $step) {
-                                    $step = trim($step);
-                                    if (!empty($step)) {
-                                        echo "<li class='mt-3'><span style='color: #CDA45E;'>ÉTAPE :</span> $step</li>";
-                                    }
-                                }
-                                ?>
-                            </ul>
+                <div class="my-5">
+                    <h3 style="color: #cda45e;">Description du cours</h3>
+                    <h4><?= $cours['description'] ?></h4>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-lg-6 pt-4 pt-lg-0 content">
+                        <div>
+                            <h3 style="color: #cda45e;">
+                                <NOBR>Date et heure</NOBR>
+                            </h3>
+                            <p>Le cours est planifié pour le <?= modif_date($cours['date'], 'date') . ' à ' . substr($cours['heure'], 0, 5) ?></p>
                         </div>
                     </div>
+                    <h2 class="mt-3">
+                        <h3 style="color: #cda45e;">
+                            Prix :
+                        </h3>
+                        <p><?= $cours['prix'] ?> €</p>
+                    </h2>
+
                 </div>
-            </div>
+                <div class="mt-5 text-center">
+                    <form action="entities/users/exe-payement_cours" method="POST">
+                        <button type="submit" class="btn btn-secondary mt-3" style="background-color: #cda45e;border-color: #cda45e;border-radius: 50px;font-family: Gabriella;font-size: 20px;">S'inscrire au cours</button>
+                        <input type="hidden" name="id_cours" value="<?= $cours['id_cours'] ?>">
+                        <input type="hidden" name="nom_cours" value="<?= $cours['nom_cours'] ?>">
+                        <input type="hidden" name="prix" value="<?= $cours['prix'] ?>">
+                    </form>
+                </div>
         </section>
     </main>
 

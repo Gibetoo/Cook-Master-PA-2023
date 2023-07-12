@@ -1,8 +1,8 @@
 <?php
 
-function getSalleDispo($heure_debut, $heure_fin, $date, $id_es)
+function getFormationUser($email)
 {
-    $url = 'http://127.0.0.1/Projet-Annuel/Database/index?demande=get_salle&heure_debut=' . $heure_debut . '&heure_fin=' . $heure_fin . '&date=' . $date . '&id_es=' . $id_es; // On définit l'URL du serveur
+    $url = 'http://localhost/Projet-Annuel/Database/index?demande=formation_user&email=' . $email; // On définit l'URL du serveur
     $ch = curl_init($url); // On initialise CURL
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET"); // On définit la méthode GET
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // On demande à CURL de nous retourner la réponse
@@ -20,8 +20,8 @@ function getSalleDispo($heure_debut, $heure_fin, $date, $id_es)
     $response = json_decode($result, true); // On décode la réponse JSON
 
     if ($response["success"] == true) { // Si la création de l'utilisateur a réussi, on affecte la réponse à $results
-        return $response;
+        return $response["message"];
     } else { // Si la création de l'utilisateur a échoué, on affecte un tableau vide à $results
-        return $response['error'];
+        return [];
     }
 }

@@ -29,32 +29,32 @@ require_once 'entities/users/verif_connecter.php';
                             <h4 class="text-center mt-4">Selectionner une heure pour le cours</h4>
                             <label for="time">Sélectionnez une heure :</label>
                             <select name="heure" required>
-  <?php
-  $heureDebut = strtotime('08:00');
-  $heureFin = strtotime('19:00');
-  $dureeCours = 5400; // 1h30 en secondes
-  $dureePause = 900; // 15 minutes en secondes
-  $pauseMidi = strtotime('12:00');
-  
-  while ($heureDebut <= $heureFin) {
-    $heure = date('H:i', $heureDebut);
-    
-    // Vérifier si c'est l'heure de la pause à midi
-    if ($heureDebut === $pauseMidi) {
-      echo '<option disabled>--- Pause Midi ---</option>';
-      $heureDebut += 3600; // Ajouter 1 heure pour la pause à midi
-    }
-    
-    echo '<option value="' . $heure . '">' . $heure . '</option>';
-    
-    // Ajouter la durée du cours
-    $heureDebut += $dureeCours;
-    
-    // Ajouter la durée de la pause
-    $heureDebut += $dureePause;
-  }
-  ?>
-</select>
+                                <?php
+                                $heureDebut = strtotime('08:00');
+                                $heureFin = strtotime('20:00');
+                                $dureeCours = 5400; // 1h30 en secondes
+                                $dureePause = 900; // 15 minutes en secondes
+                                $pauseMidi = strtotime('12:00');
+
+                                while ($heureDebut <= $heureFin) {
+                                    $heure = date('H:i', $heureDebut);
+
+                                    // Vérifier si c'est l'heure de la pause à midi
+                                    if ($heureDebut === $pauseMidi) {
+                                        echo '<option disabled>--- Pause Midi ---</option>';
+                                        $heureDebut += 3600; // Ajouter 1 heure pour la pause à midi
+                                    }
+
+                                    echo '<option value="' . $heure . '">' . $heure . '</option>';
+
+                                    // Ajouter la durée du cours
+                                    $heureDebut += $dureeCours;
+
+                                    // Ajouter la durée de la pause
+                                    $heureDebut += $dureePause;
+                                }
+                                ?>
+                            </select>
                         </div>
                         <div class="mt-5 text-center">
                             <button type="submit" class="btn-menu animated fadeInUp scrollto" style="background-color: #cda45e;border-color: #cda45e;">Ajouter</button>

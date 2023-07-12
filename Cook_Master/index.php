@@ -62,8 +62,8 @@ require_once 'entities/users/get_recette.php'
 
   <main id="main">
 
-    <div id="modal" class="modal">
-      <div class="">
+    <div id="modal" class="modal justify-content-center">
+      <div>
         <h2 class="mb-2">Message</h2>
         <p id="modal-message"></p>
       </div>
@@ -242,6 +242,8 @@ require_once 'entities/users/get_recette.php'
                     <ul>
                       <li><i class="bi bi-check-circled"></i> - <?= $formation['cours'] ?></li>
                     </ul>
+                    <?= (isset($_SESSION['user'])) ? '<a href="/entities/users/exe-payement_formation?id_fo='. $formation['id_fo'] .'&nom_fo='. $formation['nom_fo'] .'&prix='. $formation['prix'] .'" class="btn" style="background-color: #404040;color: #CDA45E;font-family: Gabriella;font-size: 20px;">S\'inscrire</a>' : "" ?>
+                    
                   </div>
                 </div>
               </div>

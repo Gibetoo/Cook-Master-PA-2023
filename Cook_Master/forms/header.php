@@ -12,6 +12,7 @@
           <li><a class="nav-link scrollto" href="/#formation">Formation</a></li>
           <li><a class="nav-link scrollto" href="/#reservation">Réservations</a></li>
           <li><a class="nav-link scrollto" href="page.materiels">Matériels</a></li>
+          <li><a class="nav-link scrollto" href="page.cours">Cours</a></li>
         <?php } ?>
         <li><a class="nav-link scrollto" href="/#gallery">Galerie</a></li>
         <li><a class="nav-link scrollto" href="/#chefs">Chefs</a></li>

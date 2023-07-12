@@ -35,6 +35,8 @@ require_once __DIR__ . "/../../entities/users/update-abonnement.php";
 require_once __DIR__ . "/../../entities/users/get-date-salle.php";
 require_once __DIR__ . "/../../entities/users/calendar.php";
 require_once __DIR__ . "/../../entities/users/get-one-salle.php";
+require_once __DIR__ . "/../../entities/users/update-formation.php";
+require_once __DIR__ . "/../../entities/users/add-cours-user.php";
 
 
 
@@ -117,6 +119,21 @@ try {
         UpdateAbonnement($_GET['abonnement'], $_GET['email']);
 
         $message = "Abonnement changé";
+    } else if (isset($_GET['demande']) && isset($_GET['email'])  && isset($_GET['id_cours']) && $_GET['demande'] == 'add_cours_user') {
+
+        AddCoursUser($_GET['id_cours'], $_GET['email']);
+
+        $message = "Cours ajouté";
+    } else if (isset($_GET['demande']) && isset($_GET['email'])  && isset($_GET['id_fo']) && $_GET['demande'] == 'add_formation_user') {
+
+        AddFormationUser($_GET['id_fo'], $_GET['email']);
+
+        $message = "Formation ajouté";
+    } else if (isset($_GET['demande']) && isset($_GET['email']) && $_GET['demande'] == 'formation_user') {
+
+        $formation = getFormationUser($_GET['email']);
+
+        $message = $formation;
     } else if (isset($_GET["email"]) && isset($_GET['demande']) && $_GET['demande'] == 'user') {
         $users = getOneUser($_GET["email"]);
 
@@ -170,7 +187,7 @@ try {
         $message = $recettes;
     } else if (isset($_GET['demande']) && isset($_GET['id_recette']) && $_GET['demande'] == 'one_recette') {
 
-        $recette = getOneRecettes($_GET['id_recette']);
+        $recette = getOneRecette($_GET['id_recette']);
 
         if (isset($recette["error"])) {
             echo jsonResponse(404, [], [
@@ -424,7 +441,12 @@ try {
         $date = getHeure($_GET['date']);
 
         $message = $date;
-    } else if (isset($_GET['demande']) && isset($_GET['id_salle']) && $_GET['demande'] == 'calendar') {
+    } else if (isset($_GET['demande']) && isset($_GET['id_cours']) && $_GET['demande'] == 'one_cours') {
+
+        $oneCours = getOneCours($_GET['id_cours']);
+
+        $message = $oneCours;
+    }else if (isset($_GET['demande']) && isset($_GET['id_salle']) && $_GET['demande'] == 'calendar') {
         $calendar = calendar($_GET['id_salle']);
 
         $message = $calendar;

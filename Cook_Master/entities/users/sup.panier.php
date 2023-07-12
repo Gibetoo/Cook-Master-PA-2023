@@ -1,5 +1,5 @@
 <?php
-session_start(); // Assurez-vous que la session est démarrée
+session_start();
 
 require_once "../../Cook_Master_admin/entities/users/mail.php";
 

@@ -18,6 +18,7 @@ require_once __DIR__ . "/../../entities/users/create-recette.php";
 require_once __DIR__ . "/../../entities/users/create-cours.php";
 require_once __DIR__ . "/../../entities/users/create-formation.php";
 require_once __DIR__ . "/../../entities/users/update-formation.php";
+require_once __DIR__ . "/../../entities/users/update-cours.php";
 
 try {
     $body = getBody();
@@ -88,6 +89,11 @@ try {
         createFormation($body['nom_fo'], $body['description'], $body['cours'], $body['prix']);
 
         $message = "Formation créé";
+    }else if (isset($body["action"]) && ($body["action"]) == "modifier_cours") {
+
+        updateCours($body['nom_cours'], $body["description"], $body["prix"], $body["date"], $body["heure"], $body["id_cours"]);
+
+        $message = "Cours modifié";
     }
 
     echo jsonResponse(200, [], [
