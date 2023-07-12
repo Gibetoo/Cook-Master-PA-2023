@@ -157,7 +157,7 @@ if ($emailExists) {
         // Envoi du mot de passe par e-mail
      $to = $_POST['email_pres'];
      $subject = 'Votre nouveau mot de passe';
-     $message = 'Voici votre nouveau mot de passe : ' . $password;
+     $message = 'Voici votre nouveau mot de passe pour vous connecter a cotre compte CookMaster : ' . $password;
  
      // En-têtes de l'e-mail
      require "mail.php";

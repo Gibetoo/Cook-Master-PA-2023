@@ -6,7 +6,7 @@ function AddCoursUser($id_cours, $email): void
 
     $databaseConnection = getDatabaseConnection();
     
-    $updateClient = $databaseConnection->prepare("UPDATE Client SET id_cours = :id_cours WHERE email = :email");
+    $updateClient = $databaseConnection->prepare("INSERT INTO suivre (id_cours, email) VALUES (:id_cours, :email)");
 
     $updateClient->execute([
         "id_cours" => htmlspecialchars($id_cours),

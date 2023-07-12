@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 
 require_once __DIR__ . '/fonction_panier.php';
@@ -13,12 +13,6 @@ if (!isset($_GET['?session_id'])) {
 
 if ($paiement->getPaymentStatus($_GET['?session_id']) === 'paid' && isset($_GET['id_cours']) && !empty($_GET['id_cours'])) {
     $result = AddCoursUser($_GET['id_cours'], $_SESSION['user']['email']);
-    var_dump($result);
-    // header('Location: https://cook-master.site/page.profil.php?statuspaiemment=success');
-    exit;
-}
-
-if ($paiement->getPaymentStatus($_GET['?session_id']) === 'paid') {
-    header('Location: https://cook-master.site/page.profil.php?statuspaiemment=success');
+    header('Location: https://cook-master.site/?message=Le paiement a bien été effectué. Vous avez accès au cours.');
     exit;
 }

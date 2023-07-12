@@ -31,6 +31,11 @@ if (!isset($_SESSION['user'])) {
                                 <form action="page.choice" method="POST">
                                     <input type="hidden" name="abonnement" value="Cadet">
                                     <h2 class="mt-5">FREE</h2>
+                                    <?php
+                                    if ($_SESSION['user']['abonnement'] == "Cadet") {
+                                        echo '<button type="submit" class="mt-5 btn btn-primary btn-lg btn-block" style="background-color: #cda45e;border-color: #cda45e;" disabled>Déjà abonné</button>';
+                                    }
+                                    ?>
                                 </form>
                             </div>
                         </div>
@@ -40,7 +45,13 @@ if (!isset($_SESSION['user'])) {
                                 <h1 class="mt-5 mb-2" style="color: #cda45e;">Grade Junior</h1>
                                 <form action="page.choice" method="POST">
                                     <input type="hidden" name="abonnement" value="Junior">
-                                    <button type="submit" class="mt-5 btn btn-primary btn-lg btn-block" style="background-color: #cda45e;border-color: #cda45e;">S'abonner</button>
+                                    <?php
+                                    if ($_SESSION['user']['abonnement'] == "Junior") {
+                                        echo '<button type="submit" class="mt-5 btn btn-primary btn-lg btn-block" style="background-color: #cda45e;border-color: #cda45e;" disabled>Déjà abonné</button>';
+                                    } else {
+                                        echo '<button type="submit" class="mt-5 btn btn-primary btn-lg btn-block" style="background-color: #cda45e;border-color: #cda45e;">S\'abonner</button>';
+                                    }
+                                    ?>
                                 </form>
                             </div>
                         </div>
@@ -50,7 +61,13 @@ if (!isset($_SESSION['user'])) {
                                 <h1 class="mt-5 mb-2" style="color: #cda45e;">Grade Senior</h1>
                                 <form action="page.choice" method="POST">
                                     <input type="hidden" name="abonnement" value="Senior">
-                                    <button type="submit" class="mt-5 btn btn-primary btn-lg btn-block" style="background-color: #cda45e;border-color: #cda45e;">S'abonner</button>
+                                    <?php
+                                    if ($_SESSION['user']['abonnement'] == "Senior") {
+                                        echo '<button type="submit" class="mt-5 btn btn-primary btn-lg btn-block" style="background-color: #cda45e;border-color: #cda45e;" disabled>Déjà abonné</button>';
+                                    } else {
+                                        echo '<button type="submit" class="mt-5 btn btn-primary btn-lg btn-block" style="background-color: #cda45e;border-color: #cda45e;">S\'abonner</button>';
+                                    }
+                                    ?>
                                 </form>
                             </div>
                         </div>

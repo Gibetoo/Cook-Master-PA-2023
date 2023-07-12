@@ -17,26 +17,30 @@ require_once __DIR__ . '/forms/fonction.php';
     <main id="hero" class="d-flex align-items-center">
         <div class="shadow-box">
             <div class="row m-4">
-                <h1 class="text-center">PROFIL</h1>
-                <div class="d-flex">
+                <h1 class="text-center">PROFIL <?= strtoupper($_SESSION['user']['prenom']) . ' ' . strtoupper($_SESSION['user']['nom']) ?></h1>
+                <div class="d-flex mb-3">
                     <div class="mt-2 text-center">
                         <?php
                         if (!isset($_SESSION['user']['email_pres'])) {
                             echo '<img src="assets/img/Cook_' . $_SESSION['user']['abonnement'] . '.png" style="width: 200px;height: auto;" alt="avatar">';
                         ?>
                     </div>
-                    <div class="row">
-
-                        <div class="mt-2">
-                            <h2>Abonnement : <?= $_SESSION['user']['abonnement'] ?></h2>
+                    <div class="row ms-3">
+                        <div class="mt-4">
                             <h2>Date d'inscription : <?= modif_date($_SESSION['user']['date_insc'], "date") ?></h2>
                         </div>
-
-                        <div class="mt-2">
+                        <div>
                             <h2>Avantage de l'abonnement :</h2>
-                            <h2>- Suppression des Publicités</h2>
+                            <?php if ($_SESSION['user']['abonnement'] == "Cadet") { ?>
+                                <h2>- Abonnement gratuit</h2>
+                            <?php } else if ($_SESSION['user']['abonnement'] == "Junior") { ?>
+                                <h2>- Suppression des Publicités</h2>
+                                <h2>- Accès aux recettes</h2>
+                            <?php } else if ($_SESSION['user']['abonnement'] == "Senior") { ?>
+                                <h2>- Suppression des Publicités</h2>
+                                <h2>- Accès aux recettes</h2>
+                            <?php } ?>
                         </div>
-
                     </div>
                 </div>
                 <div class="mt-3 d-flex justify-content-around">
@@ -44,7 +48,7 @@ require_once __DIR__ . '/forms/fonction.php';
                         <a href="page.compte" class="btn-menu animated fadeInUp scrollto">Compte</a>
                     </div>
                     <div class="text-center me-2">
-                        <a href="page.atelier" class="btn-menu animated fadeInUp scrollto">
+                        <a href="page.mesCours" class="btn-menu animated fadeInUp scrollto">
                             <NOBR>Mes Cours</NOBR>
                         </a>
                     </div>

@@ -1,44 +1,58 @@
-<?php 
-
-function supPres($email_prest)
+<?php
+function supPres($id_metier) 
 {
     require_once __DIR__ . "/../../database/connection.php";
 
     try {
         $databaseConnection = getDatabaseConnection(); // On récupère la connexion à la base de données
 
-        // Récupérer les cours liés au prestataire
-        $getCoursQuery = $databaseConnection->prepare("
-            SELECT id_cours FROM donner_cours WHERE email_pres = :email_pres
-        ");
-        $getCoursQuery->execute([
-            "email_pres" => htmlspecialchars($email_prest)
-        ]);
-        $coursLiés = $getCoursQuery->fetchAll(PDO::FETCH_COLUMN);
+        $databaseConnection->beginTransaction();
 
-        // Supprimer les cours liés au prestataire
+        // Supprimer les cours liés aux prestataires
         $deleteCoursQuery = $databaseConnection->prepare("
-            DELETE FROM Cours WHERE id_cours = :id_cours
+            DELETE FROM Cours WHERE id_cours IN (
+                SELECT id_cours FROM donner_cours WHERE email_pres IN (
+                    SELECT email_pres FROM Prestataire
+                )
+            )
         ");
-        foreach ($coursLiés as $coursID) {
-            $deleteCoursQuery->execute([
-                "id_cours" => $coursID
-            ]);
-        }
+        $deleteCoursQuery->execute();
 
-        // Supprimer le prestataire
-        $deletePrestQuery = $databaseConnection->prepare("
-            DELETE FROM Prestataire WHERE email_pres = :email_pres
+        // Supprimer les réservations liées aux cours
+        $deleteReservationsQuery = $databaseConnection->prepare("
+            DELETE FROM suivre WHERE id_cours IN (
+                SELECT id_cours FROM donner_cours WHERE email_pres IN (
+                    SELECT email_pres FROM Prestataire
+                )
+            )
         ");
-        $deletePrestQuery->execute([
-            "email_pres" => htmlspecialchars($email_prest)
+        $deleteReservationsQuery->execute();
+
+        // Supprimer les prestataires
+        $deletePrestQuery = $databaseConnection->prepare("
+            DELETE FROM Prestataire
+        ");
+        $deletePrestQuery->execute();
+
+        // Supprimer le métier
+        $deleteMetierQuery = $databaseConnection->prepare("
+            DELETE FROM Metier WHERE id_metier = :id_metier
+        ");
+        $deleteMetierQuery->execute([
+            'id_metier' => $id_metier
         ]);
+
+        $databaseConnection->commit();
 
         return [
             "success" => true,
-            "message" => "Le prestataire et les cours liés ont été supprimés avec succès"
+            "message" => "Le métier, les prestataires, les cours liés et les réservations ont été supprimés avec succès"
         ];
-    } catch (Exception $exception) {
-        return $exception->getMessage();
+    } catch (PDOException $e) {
+        $databaseConnection->rollBack();
+        return [
+            "success" => false,
+            "message" => "Erreur lors de la suppression du métier : " . $e->getMessage()
+        ];
     }
 }

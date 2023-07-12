@@ -5,10 +5,19 @@ require_once 'entities/users/verif_connecter.php';
 require_once __DIR__ . "/entities/users/get_one_prest.php";
 require_once __DIR__ . "/entities/users/get_one_adresse_lo.php";
 require_once __DIR__ . "/entities/users/get_one_salle.php";
+require_once __DIR__ . "/entities/users/get_one_local.php";
+require_once __DIR__ . "/entities/users/get_one_adresse_lo.php";
 require_once "../forms/fonction.php";
 
 $pres = getOnePres($_POST['pres_cours']);
 $salle = getOneSalle($_POST['id_salle']);
+$localId = $salle['id_es']; // Récupérer l'id de l'espace/l'espace loué
+$local = getOneLocal($localId); // Récupérer les informations du local en utilisant son id
+
+if ($local) {
+    $adresseId = $local['id_adr']; // Récupérer l'id de l'adresse associée au local
+    $adresse = getOneAdresse($adresseId); // Récupérer les informations de l'adresse en utilisant son id
+}
 
 ?>
 
@@ -83,7 +92,10 @@ require_once 'forms/head.php';
                                 </h3>
                                 <p>
                                     <NOBR>Nom : <?= $salle['nom_salle'] ?></NOBR><br>
-                                    Adresse : <?= $salle['adresse_salle'] ?>
+                                    Adresse : 
+                                    <?php
+                                        echo $adresse['num_bat_es'] . ' ' . $adresse['rue_es'] .', '. $adresse['code_postal_es'] . ' ' . $adresse['ville_es'];
+                                    ?>
                                 </p>
                             </div>
                         </div>

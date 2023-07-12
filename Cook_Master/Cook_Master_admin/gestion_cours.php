@@ -54,7 +54,7 @@ require_once 'forms/head.php';
                         $salle = getOneSalle($cours['id_salle']);
                         echo '<td class="text-white"><NOBR>' . $salle['nom_salle'] . '</NOBR></td>';
                         echo '<td><NOBR>';
-                        echo '<form action="sup_local.php" method="POST">';
+                        echo '<form action="sup_cours.php" method="POST">';
                         echo '<button type="submit" value="' . $cours['id_cours'] . '" name="id_cours" class="btn btn-danger btn-sm">Supprimer</button>';
                         echo '</form>';
                         echo '</NOBR></td>';

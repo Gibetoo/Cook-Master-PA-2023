@@ -30,15 +30,13 @@ require_once __DIR__ . "/../../entities/users/get-categorie.php";
 require_once __DIR__ . "/../../entities/users/get-recettes.php";
 require_once __DIR__ . "/../../entities/users/get-one-categorie.php";
 require_once __DIR__ . "/../../entities/users/sup_categorie.php";
-require_once __DIR__ . "/../../entities/users/get-all-salle.php";
 require_once __DIR__ . "/../../entities/users/update-abonnement.php";
 require_once __DIR__ . "/../../entities/users/get-date-salle.php";
 require_once __DIR__ . "/../../entities/users/calendar.php";
 require_once __DIR__ . "/../../entities/users/get-one-salle.php";
 require_once __DIR__ . "/../../entities/users/update-formation.php";
-require_once __DIR__ . "/../../entities/users/add-cours-user.php";
-
-
+require_once __DIR__ . "/../../entities/users/sup_cours.php";
+require_once __DIR__ . "/../../entities/users/get-cours-suivi.php";
 
 try {
 
@@ -119,11 +117,6 @@ try {
         UpdateAbonnement($_GET['abonnement'], $_GET['email']);
 
         $message = "Abonnement changé";
-    } else if (isset($_GET['demande']) && isset($_GET['email'])  && isset($_GET['id_cours']) && $_GET['demande'] == 'add_cours_user') {
-
-        AddCoursUser($_GET['id_cours'], $_GET['email']);
-
-        $message = "Cours ajouté";
     } else if (isset($_GET['demande']) && isset($_GET['email'])  && isset($_GET['id_fo']) && $_GET['demande'] == 'add_formation_user') {
 
         AddFormationUser($_GET['id_fo'], $_GET['email']);
@@ -237,6 +230,19 @@ try {
         }
 
         $message = $Cours;
+    } else if (isset($_GET['demande']) && isset($_GET['email']) && $_GET['demande'] == 'cours_suivi') {
+
+        $Courssuivi = getCoursSuivi($_GET['email']);
+
+        if (isset($Courssuivi["error"])) {
+            echo jsonResponse(404, [], [
+                "success" => false,
+                "error" => $Courssuivi["error"]
+            ]);
+            die();
+        }
+
+        $message = $Courssuivi;
     } else if (isset($_GET['demande']) && $_GET['demande'] == 'prestataires') {
 
         $prest = getPrest();
@@ -436,7 +442,7 @@ try {
         $oneSalle = getOneSalle($_GET['id_salle']);
 
         $message = $oneSalle;
-    }else if (isset($_GET['demande'])&& $_GET['demande'] == 'get_date') {
+    } else if (isset($_GET['demande']) && $_GET['demande'] == 'get_date') {
 
         $date = getHeure($_GET['date']);
 
@@ -446,11 +452,23 @@ try {
         $oneCours = getOneCours($_GET['id_cours']);
 
         $message = $oneCours;
-    }else if (isset($_GET['demande']) && isset($_GET['id_salle']) && $_GET['demande'] == 'calendar') {
+    } else if (isset($_GET['demande']) && isset($_GET['id_salle']) && $_GET['demande'] == 'calendar') {
         $calendar = calendar($_GET['id_salle']);
 
         $message = $calendar;
-    }else {
+    } else if (isset($_GET['demande']) && isset($_GET['id_cours']) && $_GET['demande'] == 'supp_cours') {
+        $supp_cours = supCours($_GET['id_cours']);
+
+        if (isset($supp_cours["error"])) {
+            echo jsonResponse(404, [], [
+                "success" => false,
+                "error" => $supp_cours["error"]
+            ]);
+            die();
+        }
+
+        $message = $supp_cours;
+    } else {
         $users = getUsers();
 
         $message = $users;

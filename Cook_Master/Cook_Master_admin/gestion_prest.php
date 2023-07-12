@@ -38,7 +38,6 @@ require_once __DIR__ . "/entities/users/get_prest.php";
                         <th scope="col">Prenom</th>
                         <th scope="col">Nom</th>
                         <th scope="col">Métier</th>
-                        <th scope="col">Bannir</th>
                         <th scope="col">Supprimer</th>
                     </tr>
                 </thead>

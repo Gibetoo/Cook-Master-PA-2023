@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 
 ini_set('display_errors', 1);
@@ -15,11 +15,8 @@ if (!isset($_GET['?session_id'])) {
 
 if ($paiement->getPaymentStatus($_GET['?session_id']) === 'paid' && isset($_GET['abonnement']) && !empty($_GET['abonnement'])) {
     UpdateAbonnement($_GET['abonnement'], $_SESSION['user']['email']);
-    header('Location: https://cook-master.site/page.profil.php?statuspaiemment=success');
-    exit;
-}
-
-if ($paiement->getPaymentStatus($_GET['?session_id']) === 'paid') {
-    header('Location: https://cook-master.site/page.profil.php?statuspaiemment=success');
+    session_start();
+    session_destroy();
+    header('Location: https://cook-master.site/?message=Le paiement a bien été effectué. Vous avez accès à votre abonnement.');
     exit;
 }

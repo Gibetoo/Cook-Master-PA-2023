@@ -3,29 +3,46 @@
 function supLocal($id_es) 
 {
     require_once __DIR__ . "/../../database/connection.php";
+
     try {
         $databaseConnection = getDatabaseConnection(); // On récupère la connexion à la base de données
-        // Désactiver les contraintes de clés étrangères
-        $databaseConnection->exec("SET FOREIGN_KEY_CHECKS=0");
+        $databaseConnection->beginTransaction();
 
-        // Supprimer les salles associées à l'établissement
-        $requeteSuppressionSalle = $databaseConnection->prepare("DELETE FROM Salle WHERE id_es = :id_es");
-        $requeteSuppressionSalle->execute([
-            'id_es' => htmlspecialchars($id_es)
+        // Récupérer les salles associées au local
+        $requeteSalles = $databaseConnection->prepare("SELECT id_salle FROM Salle WHERE id_es = :id_es");
+        $requeteSalles->execute([
+            'id_es' => $id_es
+        ]);
+        $salles = $requeteSalles->fetchAll(PDO::FETCH_COLUMN);
+
+        // Supprimer les cours associés aux salles
+        $requeteSuppressionCours = $databaseConnection->prepare("DELETE FROM Cours WHERE id_salle IN (" . implode(',', array_fill(0, count($salles), '?')) . ")");
+        $requeteSuppressionCours->execute($salles);
+
+        // Supprimer les entrées de suivi des cours
+        $requeteSuppressionSuivi = $databaseConnection->prepare("DELETE FROM suivre WHERE id_cours IN (SELECT id_cours FROM Cours WHERE id_salle IN (" . implode(',', array_fill(0, count($salles), '?')) . "))");
+        $requeteSuppressionSuivi->execute($salles);
+
+        // Supprimer les salles associées au local
+        $requeteSuppressionSalles = $databaseConnection->prepare("DELETE FROM Salle WHERE id_es = :id_es");
+        $requeteSuppressionSalles->execute([
+            'id_es' => $id_es
         ]);
 
-        // Supprimer l'établissement
-        $requeteSuppressionEtablissement = $databaseConnection->prepare("DELETE FROM Espaces_louer_ WHERE id_es = :id_es");
-        $requeteSuppressionEtablissement->execute([
-            'id_es' => htmlspecialchars($id_es)
+        // Supprimer le local
+        $requeteSuppressionLocal = $databaseConnection->prepare("DELETE FROM Local WHERE id_es = :id_es");
+        $requeteSuppressionLocal->execute([
+            'id_es' => $id_es
         ]);
 
-        echo "Le local et les salles associées ont été supprimés avec succès.";
+        $databaseConnection->commit();
+
+        echo "Le local, les salles associées et les cours ont été supprimés avec succès.";
     } catch (PDOException $e) {
+        $databaseConnection->rollBack();
         // En cas d'erreur, afficher le message d'erreur
         echo "Erreur lors de la suppression du local : " . $e->getMessage();
-    } finally {
-        // Réactiver les contraintes de clés étrangères
-        $databaseConnection->exec("SET FOREIGN_KEY_CHECKS=1");
     }
 }
+
+   

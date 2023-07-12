@@ -171,7 +171,7 @@ require_once 'entities/users/get_recette.php'
       </div>
     </section><!-- End Why Us Section -->
 
-    <?php if (isset($_SESSION['user']) && !empty($_SESSION['user'])) { ?>
+    <?php if (isset($_SESSION['user']) && !empty($_SESSION['user']) && ($_SESSION['user']['abonnement']) != "Cadet") { ?>
 
       <!-- ======= Menu Section ======= -->
       <section id="recette" class="menu section-bg">
